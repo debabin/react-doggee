@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './Button.css';
+import styles from './Button.module.css';
 
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {}
 
 export const Button: React.FC<ButtonProps> = ({ children }) => {
-  return <button>{children}</button>;
+  return <button className={styles.button}>{children}</button>;
 };
