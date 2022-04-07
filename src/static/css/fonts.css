@@ -153,3 +153,28 @@
     /* Safari, Android, iOS */ url('../fonts/open-sans-v28-latin-800italic.svg#OpenSans')
       format('svg'); /* Legacy iOS */
 }
+
+/* baloo-2-regular - latin */
+@font-face {
+  font-family: 'Baloo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/baloo-2-v11-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''), url('../fonts/baloo-2-v11-latin-regular.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('../fonts/baloo-2-v11-latin-regular.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('../fonts/baloo-2-v11-latin-regular.woff') format('woff'),
+    /* Modern Browsers */ url('../fonts/baloo-2-v11-latin-regular.ttf') format('truetype'),
+    /* Safari, Android, iOS */ url('../fonts/baloo-2-v11-latin-regular.svg#Baloo2') format('svg'); /* Legacy iOS */
+}
+/* baloo-2-800 - latin */
+@font-face {
+  font-family: 'Baloo';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../fonts/baloo-2-v11-latin-800.eot'); /* IE9 Compat Modes */
+  src: local(''), url('../fonts/baloo-2-v11-latin-800.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('../fonts/baloo-2-v11-latin-800.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('../fonts/baloo-2-v11-latin-800.woff') format('woff'),
+    /* Modern Browsers */ url('../fonts/baloo-2-v11-latin-800.ttf') format('truetype'),
+    /* Safari, Android, iOS */ url('../fonts/baloo-2-v11-latin-800.svg#Baloo2') format('svg'); /* Legacy iOS */
+}

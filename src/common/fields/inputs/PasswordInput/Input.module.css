@@ -1,7 +1,7 @@
 .input_container {
   position: relative;
 }
-.input_container:hover .input {
+.input_container:hover > .input {
   background-color: #ededed;
 }
 .password_toogle_container {
