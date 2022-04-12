@@ -24,7 +24,12 @@
   text-transform: capitalize;
 }
 
-.focused .input_label {
+.input:focus ~ .input_label {
+  transform: translate(-10%, -80%);
+  font-size: 10px;
+}
+
+.input:not([value='']) ~ .input_label {
   transform: translate(-10%, -80%);
   font-size: 10px;
 }

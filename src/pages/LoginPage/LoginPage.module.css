@@ -6,7 +6,8 @@
 }
 
 .container {
-  height: 500px;
+  width: 500px;
+  height: 600px;
   background: #ffffff;
   box-shadow: 0px 4px 50px 2px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
@@ -33,7 +34,8 @@
 }
 
 .form_container {
-  padding: 0 100px;
+  width: 100%;
+  padding: 0 125px;
 }
 
 .input_container {
@@ -44,7 +46,7 @@
   margin-bottom: 15px;
   align-items: center;
   font-weight: 600;
-  font-size: 12px;
-  color: #f5c678;
+  font-size: 14px;
+  color: var(--primary);
   cursor: pointer;
 }

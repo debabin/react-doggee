@@ -1,10 +1,14 @@
 .button {
-  background: #f5c678;
+  height: 48px;
+  width: 100%;
+  background: var(--primary);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  padding: 15.5px 102.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
-  color: #ffffff;
+  color: #fff;
   cursor: pointer;
   font-size: 14px;
   font-weight: 300;
@@ -12,12 +16,12 @@
 }
 
 .button:hover {
-  background: #f5c678;
+  background: var(--primary);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .button:active {
-  background: rgba(245, 198, 120, 0.7);
+  background: var(--primary7);
 }
 
 .dot-flashing {
