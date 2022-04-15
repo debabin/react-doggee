@@ -1,40 +1,34 @@
 import React from 'react';
 
-type MutationMethods = 'post' | 'put' | 'delete';
-
-export const useMutation = <T, K>(
-  url: string,
-  method: MutationMethods,
-  config?: Omit<RequestInit, 'method'>,
-) => {
-  const [status, setStatus] = React.useState(0);
+export const useMutation = <T, K>(request: (body: T) => Promise<K>) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState('');
+  const [data, setData] = React.useState<K | null>(null);
 
-  const mutation = React.useCallback(async (body: T): Promise<ApiResponse<K>> => {
+  const mutation = React.useCallback((body: T): void => {
     setIsLoading(true);
     try {
-      const response = await fetch(url, {
-        credentials: 'same-origin',
-        ...config,
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          ...(!!config?.headers && config.headers),
-        },
-        ...(!!body && { body: JSON.stringify(body) }),
+      request(body).then((response) => {
+        setIsLoading(false);
+        setData(response);
       });
-
-      setStatus(response.status);
-      return await response.json();
     } catch (error) {
       setIsLoading(false);
       setError((error as Error).message);
-      return { success: false, data: { message: (error as Error).message } };
+    }
+  }, []);
+
+  const mutationAsync = React.useCallback(async (body: T): Promise<K | undefined> => {
+    setIsLoading(true);
+    try {
+      return await request(body);
+    } catch (error) {
+      setIsLoading(false);
+      setError((error as Error).message);
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  return { mutation, error, isLoading, status };
+  return { mutation, mutationAsync, data, error, isLoading };
 };
