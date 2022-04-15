@@ -1,19 +1,21 @@
 .input_container {
   position: relative;
   display: flex;
-  background: rgba(237, 237, 237, 0.7);
+  background: var(--background-color-field);
   border-radius: 5px;
   width: 100%;
   padding: 20px 15px 9px;
   height: 48px;
   cursor: text;
+  transition: var(--transition);
 }
 
 .input_container:hover {
-  background-color: #ededed;
+  background-color: var(--color-field-focused);
 }
 
 .input_label {
+  cursor: text;
   position: absolute;
   left: 15px;
   top: 15px;

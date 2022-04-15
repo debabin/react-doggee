@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Input, PasswordInput, CheckBox } from '@common/fields';
 import { Button } from '@common/buttons';
-import { useMutation, useQueryLazy } from '@utils';
+import { api, setCookie, useMutation, useQuery, useQueryLazy } from '@utils';
+import { IntlText } from '@features';
 
 import styles from './LoginPage.module.css';
 
@@ -46,13 +47,15 @@ export const LoginPage = () => {
   const [formValues, setFormValues] = React.useState({
     username: '',
     password: '',
-    notMyComputer: false,
+    isNotMyDevice: false,
   });
-  const { mutation: authMutation, isLoading: authLoading } = useMutation<typeof formValues, User>(
-    'http://localhost:3001/auth',
-    'post',
-  );
-  const { query } = useQueryLazy<User>('http://localhost:3001/users');
+
+  const { mutationAsync: authMutation, isLoading: authLoading } = useMutation<
+    typeof formValues,
+    ApiResponse<User[]>
+  >((values) => api.post('auth', values));
+  // const { data, isLoading } = useQuery<User[]>(() => api.get('users'));
+  // const { query, isLoading } = useQueryLazy<User[]>(() => api.get('users'));
 
   const [formErrors, setFormErrors] = React.useState<FormErrors>({
     username: null,
@@ -68,6 +71,10 @@ export const LoginPage = () => {
           onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const response = await authMutation(formValues);
+
+            if (!!response && formValues.isNotMyDevice) {
+              setCookie('doggee-isNotMyDevice', new Date().getTime() + 30 * 60000);
+            }
             // const response = await query();
             console.log('response', response);
           }}
@@ -111,23 +118,23 @@ export const LoginPage = () => {
           <div className={styles.input_container}>
             <CheckBox
               disabled={authLoading}
-              checked={formValues.notMyComputer}
+              checked={formValues.isNotMyDevice}
               label='This is not my device'
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                const notMyComputer = event.target.checked;
-                setFormValues({ ...formValues, notMyComputer });
+                const isNotMyDevice = event.target.checked;
+                setFormValues({ ...formValues, isNotMyDevice });
               }}
             />
           </div>
           <div>
             <Button isLoading={authLoading} type='submit'>
-              Sign in
+              <IntlText path='button.signIn' />
             </Button>
           </div>
         </form>
 
         <div className={styles.sing_up_container} onClick={() => navigate('/registration')}>
-          Create new account
+          <IntlText path='page.login.createNewAccont' />
         </div>
       </div>
     </div>

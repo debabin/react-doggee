@@ -1,33 +1,20 @@
 import React from 'react';
 
-export const useQueryLazy = <K>(url: string, config?: Omit<RequestInit, 'method'>) => {
-  const [status, setStatus] = React.useState(0);
+export const useQueryLazy = <K>(request: () => Promise<any>) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState('');
 
-  const query = React.useCallback(async (): Promise<ApiResponse<K>> => {
+  const query = React.useCallback(async (): Promise<K | undefined> => {
     setIsLoading(true);
     try {
-      const response = await fetch(url, {
-        method: 'GET',
-        credentials: 'same-origin',
-        ...config,
-        headers: {
-          'Content-Type': 'application/json',
-          ...(!!config?.headers && config.headers),
-        },
-      });
-
-      setStatus(response.status);
-      return await response.json();
+      return await request().then(async (response) => response);
     } catch (error) {
       setIsLoading(false);
       setError((error as Error).message);
-      return { success: false, data: { message: (error as Error).message } };
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  return { query, error, isLoading, status };
+  return { query, error, isLoading };
 };

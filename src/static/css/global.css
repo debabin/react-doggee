@@ -1,7 +1,23 @@
 :root {
   /* colors */
-  --primary: #f5c678;
-  --primary7: rgba(245, 198, 120, 0.7);
+  --color-accent: #f5c678;
+  --color-accent7: rgba(245, 198, 120, 0.7);
+  --color-additional: #93b1ff;
+  --color-additional7: rgba(147, 177, 255, 0.7);
+  --color-text-validation: #db3939;
+  --color-text-validation7: rgba(219, 57, 57, 0.3);
+
+  --color-text: #000000;
+  --color-placeholder: rgba(0, 0, 0, 0.5);
+  --color-field-focused: #ededed;
+  --background-color-field: rgba(237, 237, 237, 0.7);
+  --background-color: #ffffff;
+
+  --shadow-container: 0px 4px 50px 2px rgba(0, 0, 0, 0.15);
+  --shadow-button: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  --shadow-button-hover: 0px 2px 10px rgba(0, 0, 0, 0.05);
+
+  --transition: all 0.3s;
   /* spacing */
   /* text */
 }

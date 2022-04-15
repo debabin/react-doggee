@@ -19,13 +19,13 @@
   cursor: pointer;
   width: 15px;
   height: 15px;
-  border: 2px solid var(--primary7);
+  border: 2px solid var(--color-accent7);
   background: transparent;
   border-radius: 5px;
 }
 
 .custom_checkbox:hover {
-  border: 2px solid var(--primary);
+  border: 2px solid var(--color-accent7);
 }
 
 .checkbox:checked ~ .custom_checkbox {
