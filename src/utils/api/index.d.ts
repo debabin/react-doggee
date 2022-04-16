@@ -11,3 +11,4 @@ interface ApiFailureResponse {
 }
 
 type ApiResponse<T> = ApiSuccessResponse<T> | ApiFailureResponse;
+declare type $TSFixMe = any;
