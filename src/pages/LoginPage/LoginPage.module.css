@@ -1,4 +1,5 @@
 .page {
+  background-color: var(--background-color);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -8,7 +9,7 @@
 .container {
   width: 500px;
   height: 600px;
-  background: #ffffff;
+  background: var(--background-color);
   box-shadow: var(--shadow-container);
   border-radius: 20px;
   display: flex;
@@ -28,7 +29,7 @@
   height: 150px;
   width: 100%;
   border-radius: 20px 20px 0 0;
-  background-image: url('../../static/images/dogge_background.svg');
+  background-image: var(--images-auth-header);
   color: #ffffff;
   font-size: 40px;
 }

@@ -34,6 +34,7 @@
 }
 
 .label {
+  color: var(--color-text);
   display: inline-block;
   margin-left: 5px;
   font-size: 12px;

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import { LoginPage, NotFoundPage, RegistrationPage } from '@pages';
 import { deleteCookie, getCookie, getLocale, getMessages } from '@utils/helpers';
-import { IntlProvider } from '@features';
+import { IntlProvider, Theme, ThemeProvider } from '@features';
 
 import './App.css';
 
@@ -49,10 +49,14 @@ function App() {
 
   if (isLoading) return null;
 
+  const theme = (getCookie('doggee-theme') as Theme) ?? 'light';
+
   return (
-    <IntlProvider locale={locale} messages={messages}>
-      <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>
-    </IntlProvider>
+    <ThemeProvider theme={theme}>
+      <IntlProvider locale={locale} messages={messages}>
+        <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>
+      </IntlProvider>
+    </ThemeProvider>
   );
 }
 

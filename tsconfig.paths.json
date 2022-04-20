@@ -9,7 +9,8 @@
       "@utils": ["./utils"],
       "@utils/helpers": ["./utils/helpers"],
       "@utils/hooks": ["./utils/hooks"],
-      "@features": ["./features"]
+      "@features": ["./features"],
+      "@features/*": ["./features/*"]
     }
   }
 }
