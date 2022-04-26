@@ -16,8 +16,9 @@ export const ThemeProvider: React.FC<IntlProviderProps> = ({ theme, children }) 
     setCurrentTheme(theme);
   };
 
+  const value = React.useMemo(() => ({ theme: currentTheme, setTheme }), []);
   return (
-    <ThemeContext.Provider value={{ theme: currentTheme, setTheme }}>
+    <ThemeContext.Provider value={value}>
       <div className={currentTheme === 'dark' ? darkTheme.container : lightTheme.container}>
         {children}
       </div>

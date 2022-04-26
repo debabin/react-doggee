@@ -5,6 +5,11 @@
   justify-content: center;
   align-items: center;
 }
+.test {
+}
+.test .page {
+  background-color: red;
+}
 
 .container {
   width: 500px;

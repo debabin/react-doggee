@@ -8,9 +8,9 @@ export const useQueryLazy = <K>(request: () => Promise<any>) => {
     setIsLoading(true);
     try {
       return await request().then(async (response) => response);
-    } catch (error) {
+    } catch (e) {
       setIsLoading(false);
-      setError((error as Error).message);
+      setError((e as Error).message);
     } finally {
       setIsLoading(false);
     }

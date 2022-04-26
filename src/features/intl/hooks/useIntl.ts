@@ -7,12 +7,13 @@ export const useIntl = () => {
 
   const translateMessage = (
     path: TranslateMessage['path'],
-    values?: TranslateMessage['values'],
+    values?: TranslateMessage['values']
   ) => {
     if (!intl.messages[path]) return path;
     if (!values) return intl.messages[path];
 
     let translate = intl.messages[path];
+    // eslint-disable-next-line no-restricted-syntax
     for (const key in values) {
       if (Object.prototype.hasOwnProperty.call(values, key)) {
         translate = translate.replace(`{${key}}`, String(values[key]));

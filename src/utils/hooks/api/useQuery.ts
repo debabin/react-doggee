@@ -12,11 +12,11 @@ export const useQuery = <K>(request: () => Promise<any>, deps: React.DependencyL
         setData(response.data);
         setIsLoading(false);
       });
-    } catch (error) {
+    } catch (e) {
       setIsLoading(false);
-      setError((error as Error).message);
+      setError((e as Error).message);
     }
   }, deps);
 
-  return { data, error, isLoading, status };
+  return { data, error, isLoading };
 };

@@ -6,5 +6,6 @@ import { IntlContext } from './IntlContext';
 type IntlProviderProps = IntlContextProps;
 
 export const IntlProvider: React.FC<IntlProviderProps> = ({ locale, messages, children }) => {
-  return <IntlContext.Provider value={{ locale, messages }}>{children}</IntlContext.Provider>;
+  const value = React.useMemo(() => ({ locale, messages }), []);
+  return <IntlContext.Provider value={value}>{children}</IntlContext.Provider>;
 };

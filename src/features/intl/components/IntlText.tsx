@@ -13,21 +13,21 @@ export const IntlText: React.FC<IntlTextProps> = ({ path, values, children }) =>
 
   const translateMessageWithTags = (
     message: Message,
-    values?: TranslateMessage['values'],
+    values?: TranslateMessage['values']
   ): React.ReactNode => {
     if (!values) return message;
 
     const keys = Object.keys(values);
     const functionalKeys = keys.filter((key) => typeof values[key] === 'function');
     const [key, ...restKeys] = functionalKeys;
-    const htmlRegex = new RegExp(`<${key}>(.*?)<\/${key}>`, 'gm');
+    const htmlRegex = new RegExp(`<${key}>(.*?)</${key}>`, 'gm');
     const [contentWithTag, content] = htmlRegex.exec(message) ?? [];
 
     if (!contentWithTag) return message;
     const messageParts: string[] = message.split(contentWithTag);
     const result = (values[key] as IntlFunction)(content);
     const filteredValues = Object.fromEntries(
-      Object.entries(values).filter(([key]) => restKeys.includes(key)),
+      Object.entries(values).filter(([key]) => restKeys.includes(key))
     );
 
     return (

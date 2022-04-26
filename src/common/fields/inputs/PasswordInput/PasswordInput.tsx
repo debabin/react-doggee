@@ -16,6 +16,8 @@ export const PasswordInput: React.FC<InputProps> = ({
   return (
     <>
       <div
+        aria-hidden='true'
+        aria-disabled={props.disabled}
         className={`${inputStyles.input_container} ${isError ? inputStyles.input_container : ''}`}
         onClick={() => inputRef.current?.focus()}
       >
@@ -25,11 +27,13 @@ export const PasswordInput: React.FC<InputProps> = ({
           className={inputStyles.input}
           {...props}
         />
-        <label htmlFor='' className={inputStyles.input_label}>
+        <label htmlFor={props.id} className={inputStyles.input_label}>
           {label}
         </label>
         {showPasswordToggle && (
           <div
+            aria-hidden='true'
+            role='button'
             className={paswordInputstyles.password_toogle_container}
             onClick={() => setShowPassword(!showPassword)}
           >
