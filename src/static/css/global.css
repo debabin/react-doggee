@@ -3,9 +3,13 @@
   --color-accent: #f5c678;
   --color-accent7: rgba(245, 198, 120, 0.7);
   --color-additional: #93b1ff;
+  --color-white: #fff;
+  --color-black: #000;
   --color-additional7: rgba(147, 177, 255, 0.7);
-  --color-text-validation: #db3939;
+  --color-text-validation: #e36464;
   --color-text-validation7: rgba(219, 57, 57, 0.3);
+
+  --background-color-field-validation: rgba(219, 57, 57, 0.3);
 
   --transition: all 0.3s;
   /* spacing */

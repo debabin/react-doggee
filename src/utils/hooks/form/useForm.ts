@@ -3,7 +3,7 @@ import React from 'react';
 interface UseFormParams<Values> {
   intialValues: Values;
   validateSchema?: {
-    [K in keyof Values]?: (value: Pick<Values, K>[K]) => string | null;
+    [K in keyof Values]?: (value: Pick<Values, K>[K]) => ValidationReturn;
   };
   validateOnChange?: boolean;
   onSubmit?: (values: Values) => void;
@@ -24,8 +24,8 @@ export const useForm = <Values extends Object>({
 
     const validateSchemaExistForField = !!validateSchema && !!validateSchema[field];
     if (!validateSchemaExistForField || !validateOnChange) return;
-    // @ts-ignore
-    const error = validateSchema[field](value);
+
+    const error = validateSchema[field]!(value);
     setErrors({ ...errors, [field]: error });
   };
 
@@ -35,6 +35,25 @@ export const useForm = <Values extends Object>({
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+
+    if (!validateSchema) {
+      setIsSubmiting(true);
+      return !!onSubmit && onSubmit(values);
+    }
+
+    let isErrorExist = false;
+    let errors = {};
+    Object.keys(values).forEach((field) => {
+      if (!validateSchema[field as keyof Values]) return;
+      const error = validateSchema[field as keyof Values]!(values[field as keyof Values]);
+      if (error) isErrorExist = true;
+      errors = {
+        ...errors,
+        [field]: error
+      };
+    });
+    setErrors(errors);
+    if (isErrorExist) return;
     setIsSubmiting(true);
     return !!onSubmit && onSubmit(values);
   };

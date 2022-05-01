@@ -1,4 +1,14 @@
 {
+  "field.input.username.label": "Логин",
+  "field.input.password.label": "Пароль",
+  "field.input.passwordAgain.label": "Повтор пароля",
+  "field.checkbox.isNotMyDevice.label": "Не мой компьютер",
+  "button.signIn": "Войти",
+  "button.done": "Готово",
   "page.login.createNewAccont": "Создать новый аккаунт",
-  "button.signIn": "Войти"
+  "page.registration.fillYourLoginData": "Введите свои данные",
+  "page.registration.iAlreadyHaveAnAccount": "У меня уже есть аккаунт",
+  "page.registration.passwordRules.containNumbers": "contain <rule>numbers</rule>",
+
+  "validations.required": "поле обязательно"
 }

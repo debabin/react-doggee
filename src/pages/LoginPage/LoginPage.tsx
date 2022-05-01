@@ -2,50 +2,37 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { api } from '@utils/api';
 import { Input, PasswordInput, CheckBox } from '@common/fields';
 import { Button } from '@common/buttons';
-import { api, setCookie, useForm, useMutation } from '@utils';
-import { IntlText } from '@features';
+import { setCookie, validateIsEmpty } from '@utils/helpers';
+import { useForm, useMutation } from '@utils/hooks';
+import { COOKIE_NAMES, ROUTES } from '@utils/constants';
+import { IntlText, useIntl } from '@features';
 
 import styles from './LoginPage.module.css';
 
-const validateIsEmpty = (value: string) => {
-  if (!value) return 'field required';
-  return null;
-};
-
-const validateUsername = (value: string) => validateIsEmpty(value);
-
-const validatePassword = (value: string) => validateIsEmpty(value);
-
 const loginFormValidateSchema = {
-  username: validateUsername,
-  password: validatePassword,
-  isNotMyDevice: (value: boolean) => null
+  username: (value: string) => validateIsEmpty(value),
+  password: (value: string) => validateIsEmpty(value),
+  test: (value: boolean) => null
 };
 
-// const validateLoginForm = (name: keyof typeof loginFormValidateSchema, value: string) =>
-//   loginFormValidateSchema[name](value);
-
-interface FormValues {
+interface LoginFormValues {
   username: string;
   password: string;
   isNotMyDevice: boolean;
 }
 
-interface User {
-  username: string;
-  password: string;
-}
-
 export const LoginPage = () => {
   const navigate = useNavigate();
+  const intl = useIntl();
   const { mutationAsync: authMutation, isLoading: authLoading } = useMutation<
-    FormValues,
+    LoginFormValues,
     ApiResponse<User[]>
   >((values) => api.post('auth', values));
 
-  const { values, errors, setFieldValue, handleSubmit } = useForm<FormValues>({
+  const { values, errors, setFieldValue, handleSubmit } = useForm<LoginFormValues>({
     intialValues: { username: '', password: '', isNotMyDevice: false },
     validateSchema: loginFormValidateSchema,
     validateOnChange: false,
@@ -54,7 +41,7 @@ export const LoginPage = () => {
       const response = await authMutation(values);
 
       if (!!response && values.isNotMyDevice) {
-        setCookie('doggee-isNotMyDevice', new Date().getTime() + 30 * 60000);
+        setCookie(COOKIE_NAMES.IS_NOT_MY_DEVICE, new Date().getTime() + 30 * 60000);
       }
       // const response = await query();
       console.log('response', response);
@@ -71,9 +58,9 @@ export const LoginPage = () => {
         <form className={styles.form_container} onSubmit={handleSubmit}>
           <div className={styles.input_container}>
             <Input
-              // disabled={authLoading}
+              disabled={authLoading}
               value={values.username}
-              label='username'
+              label={intl.translateMessage('field.input.username.label')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const username = event.target.value;
                 setFieldValue('username', username);
@@ -87,35 +74,35 @@ export const LoginPage = () => {
           </div>
           <div className={styles.input_container}>
             <PasswordInput
-              // disabled={authLoading}
+              disabled={authLoading}
               value={values.password}
-              label='password'
+              label={intl.translateMessage('field.input.password.label')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const password = event.target.value;
                 setFieldValue('password', password);
               }}
-              // {...(!!formErrors.password && {
-              //   isError: !!formErrors.password,
-              //   helperText: formErrors.password
-              // })}
+              {...(!!errors &&
+                !!errors.password && {
+                  isError: !!errors.password,
+                  helperText: errors.password
+                })}
             />
           </div>
           <div className={styles.input_container}>
             <CheckBox
-              // disabled={authLoading}
+              disabled={authLoading}
               checked={values.isNotMyDevice}
-              label='This is not my device'
+              label={intl.translateMessage('field.checkbox.isNotMyDevice.label')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const isNotMyDevice = event.target.checked;
                 setFieldValue('isNotMyDevice', isNotMyDevice);
               }}
             />
           </div>
-          <div>
-            <Button type='submit'>
-              <IntlText path='button.signIn' />
-            </Button>
-          </div>
+
+          <Button type='submit'>
+            <IntlText path='button.signIn' />
+          </Button>
         </form>
 
         <div
@@ -123,7 +110,7 @@ export const LoginPage = () => {
           tabIndex={0}
           aria-hidden='true'
           className={styles.sing_up_container}
-          onClick={() => navigate('/registration')}
+          onClick={() => navigate(ROUTES.REGISTRATION)}
         >
           <IntlText path='page.login.createNewAccont' />
         </div>

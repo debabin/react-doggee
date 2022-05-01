@@ -34,6 +34,7 @@
 }
 
 .label {
+  user-select: none;
   color: var(--color-text);
   display: inline-block;
   margin-left: 5px;

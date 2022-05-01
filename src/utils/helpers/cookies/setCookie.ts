@@ -16,20 +16,16 @@ export const setCookie = (
   }
 
   const cookieValue = value ? encodeURIComponent(value) : null;
-  let updatedCookie = `${name}'='${cookieValue}`;
+  let updatedCookie = `${name}=${cookieValue}`;
+  Object.keys(cookieOptions).forEach((propName) => {
+    updatedCookie += `; ${propName}`;
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const propName in cookieOptions) {
-    if (propName) {
-      updatedCookie += `; ${propName}`;
+    const propValue = cookieOptions[propName];
 
-      const propValue = cookieOptions[propName];
-
-      if (propValue !== true) {
-        updatedCookie += `=${propValue}`;
-      }
+    if (propValue !== true) {
+      updatedCookie += `=${propValue}`;
     }
-  }
+  });
 
   document.cookie = updatedCookie;
 };

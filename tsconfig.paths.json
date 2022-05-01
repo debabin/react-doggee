@@ -6,9 +6,10 @@
       "@common/*": ["./common/*"],
       "@pages": ["./pages"],
       "@static/*": ["./static/*"],
-      "@utils": ["./utils"],
       "@utils/helpers": ["./utils/helpers"],
       "@utils/hooks": ["./utils/hooks"],
+      "@utils/constants": ["./utils/constants"],
+      "@utils/api": ["./utils/api"],
       "@features": ["./features"],
       "@features/*": ["./features/*"]
     }

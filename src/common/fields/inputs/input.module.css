@@ -10,16 +10,21 @@
   transition: var(--transition);
 }
 
+.input_error {
+  background: var(--background-color-field-validation);
+}
+
 .input_container[aria-disabled='true'] {
   cursor: default;
   background-color: var(--background-color-field-focused);
 }
 
-.input_container:hover {
+.input_container:hover:not(.input_error) {
   background-color: var(--background-color-field-focused);
 }
 
 .input_label {
+  user-select: none;
   cursor: text;
   position: absolute;
   left: 15px;
@@ -28,7 +33,6 @@
   color: var(--color-placeholder);
   z-index: 1;
   transition: transform 150ms ease-out, font-size 150ms ease-out;
-  text-transform: capitalize;
 }
 
 .input_container[aria-disabled='true'] .input_label {

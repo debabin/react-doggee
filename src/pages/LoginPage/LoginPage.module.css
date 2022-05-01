@@ -5,11 +5,6 @@
   justify-content: center;
   align-items: center;
 }
-.test {
-}
-.test .page {
-  background-color: red;
-}
 
 .container {
   width: 500px;
@@ -30,11 +25,13 @@
   display: flex;
   justify-content: center;
   align-items: end;
-  padding: 16px;
+  padding-top: 16px;
   height: 150px;
   width: 100%;
   border-radius: 20px 20px 0 0;
-  background-image: var(--images-auth-header);
+  background-image: var(--images-dogge-background);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #ffffff;
   font-size: 40px;
 }

@@ -1,0 +1,82 @@
+.page {
+  background-color: var(--background-color);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: '. form panel';
+  grid-column-gap: 50px;
+  margin: 0 auto;
+  min-width: 1100px;
+  height: 100%;
+}
+
+.form_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-area: form;
+}
+
+.form_title {
+  font-family: 'Baloo';
+  font-size: 20px;
+  margin-bottom: 72.5px;
+  color: var(--color-accent);
+}
+
+.input_container {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.panel_container {
+  align-items: center;
+  grid-area: panel;
+  background-color: var(--color-accent);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.panel_header {
+  font-family: 'Baloo';
+  font-weight: 800;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  height: 223px;
+  width: 100%;
+  background-image: url('../../static/theme//light/dogge_background.svg');
+  background-repeat: no-repeat;
+  color: var(--color-white);
+  font-size: 40px;
+}
+
+.panel_have_account {
+  margin-bottom: 30px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.panel_data {
+  width: 100%;
+  background-color: var(--background-color);
+  color: var(--color-text);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
