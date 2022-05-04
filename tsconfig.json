@@ -17,6 +17,6 @@
     "jsx": "react-jsx",
     "exactOptionalPropertyTypes": true
   },
-  "include": ["src/*", "**/**/*.d.ts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "extends": "./tsconfig.paths.json"
 }

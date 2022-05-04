@@ -1,6 +1,12 @@
 import React from 'react';
 
+import {
+  validateContainNumbers,
+  validateContainUpperCase,
+  validateContainLowerCase
+} from '@utils/helpers';
 import { MIN_LENGHT } from '@utils/constants';
+
 import { PasswordRule } from './PasswordRule/PasswordRule';
 
 interface PasswordRulesProps {
@@ -18,15 +24,15 @@ export const PasswordRules: React.FC<PasswordRulesProps> = ({
     () => [
       {
         title: 'page.registration.passwordRules.containNumbers',
-        isCorrect: /\d/g.test(password)
+        isCorrect: !validateContainNumbers(password)
       },
       {
         title: 'page.registration.passwordRules.containUppercase',
-        isCorrect: /[A-Z]/g.test(password)
+        isCorrect: !validateContainUpperCase(password)
       },
       {
         title: 'page.registration.passwordRules.containLowerCase',
-        isCorrect: /[a-z]/g.test(password)
+        isCorrect: !validateContainLowerCase(password)
       },
       {
         title: 'page.registration.passwordRules.contain8Characters',

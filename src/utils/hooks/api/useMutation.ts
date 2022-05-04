@@ -18,16 +18,11 @@ export const useMutation = <T, K>(request: (body: T) => Promise<K>) => {
     }
   }, []);
 
-  const mutationAsync = React.useCallback(async (body: T): Promise<K | undefined> => {
+  const mutationAsync = React.useCallback(async (body: T): Promise<K> => {
     setIsLoading(true);
-    try {
-      return await request(body);
-    } catch (error) {
-      setIsLoading(false);
-      setError((error as Error).message);
-    } finally {
-      setIsLoading(false);
-    }
+    const response = await request(body);
+    setIsLoading(false);
+    return response;
   }, []);
 
   return { mutation, mutationAsync, data, error, isLoading };

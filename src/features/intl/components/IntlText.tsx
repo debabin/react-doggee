@@ -33,10 +33,10 @@ export const IntlText: React.FC<IntlTextProps> = ({ path, values, children }) =>
     return (
       <>
         {messageParts.map((messagePart, index) => (
-          <>
+          <React.Fragment key={messagePart}>
             {!!index && result}
             {translateMessageWithTags(messagePart, filteredValues)}
-          </>
+          </React.Fragment>
         ))}
       </>
     );

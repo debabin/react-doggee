@@ -3,8 +3,15 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
-  parser: '@typescript-eslint/parser',
+  extends: ['plugin:react/recommended', 'airbnb', 'airbnb-typescript', 'prettier'],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'], // Your TypeScript files extension
+      parserOptions: {
+        project: ['./tsconfig.json'] // Specify it only for TypeScript files
+      }
+    }
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -19,8 +26,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'no-undef': 0,
-    'no-unused-vars': 0,
+    '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/no-unused-vars': 1,
     'consistent-return': 0,
     'react/function-component-definition': [
@@ -30,23 +36,12 @@ module.exports = {
         unnamedComponents: 'arrow-function'
       }
     ],
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-    'import/extensions': [
-      2,
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never'
-      }
-    ],
     'import/prefer-default-export': 0,
     'react/jsx-props-no-spreading': 0,
-    'no-shadow': 0,
     'react/require-default-props': 0,
     'react/button-has-type': 0,
     'react/no-unstable-nested-components': [2, { allowAsProps: true }],
-    'react/no-array-index-key': 0
+    'react/no-array-index-key': 0,
+    'class-methods-use-this': 0
   }
 };

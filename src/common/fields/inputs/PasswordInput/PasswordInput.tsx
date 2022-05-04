@@ -1,59 +1,43 @@
 import React from 'react';
 
-import inputStyles from '../input.module.css';
-import paswordInputstyles from './PasswordInput.module.css';
+import type { InputProps } from '../Input/Input';
+import { Input } from '../Input/Input';
 
-export const PasswordInput: React.FC<InputProps> = ({
-  isError = false,
-  helperText,
-  label,
-  onChange,
-  ...props
-}) => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
+import styles from './PasswordInput.module.css';
+
+type PasswordInputProps = InputProps;
+export const PasswordInput: React.FC<PasswordInputProps> = ({ value, disabled, ...props }) => {
   const [showPassword, setShowPassword] = React.useState(false);
-  const showPasswordToggle = props.value;
+  const showPasswordToggle = !!value;
+  const iconClassName = `${styles.password_icon} ${
+    showPassword ? styles.password_hide_icon : styles.password_show_icon
+  }`;
 
-  return (
-    <>
+  const EyeIcon = React.useCallback(
+    () => (
       <div
         aria-hidden='true'
-        aria-disabled={props.disabled}
-        className={`${isError ? inputStyles.input_error : ''} ${inputStyles.input_container}`}
-        onClick={() => inputRef.current?.focus()}
+        role='button'
+        onClick={() => !disabled && setShowPassword(!showPassword)}
       >
-        <input
-          type={showPasswordToggle && showPassword ? 'text' : 'password'}
-          ref={inputRef}
-          className={inputStyles.input}
-          onChange={(e) => {
-            if (!!onChange && !e.target.value) return onChange(e);
-            if (!onChange || !/^[a-zA-Z0-9!;,.]+$/g.test(e.target.value)) return;
-            onChange(e);
-          }}
-          {...props}
-        />
-        <label htmlFor={props.id} className={inputStyles.input_label}>
-          {label}
-        </label>
-        {showPasswordToggle && (
-          <div
-            aria-hidden='true'
-            role='button'
-            className={paswordInputstyles.password_toogle_container}
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            <div
-              className={
-                showPassword
-                  ? paswordInputstyles.password_hide_icon
-                  : paswordInputstyles.password_show_icon
-              }
-            />
-          </div>
-        )}
+        <div className={iconClassName} />
       </div>
-      {isError && helperText && <div className={inputStyles.helper_text}>{helperText}</div>}
-    </>
+    ),
+    [showPassword, disabled]
+  );
+
+  return (
+    <Input
+      {...(showPasswordToggle && {
+        components: {
+          indicator: EyeIcon
+        }
+      })}
+      type={showPassword ? 'text' : 'password'}
+      availableChars={/^[a-zA-Z0-9!;,.]+$/g}
+      value={value}
+      disabled={disabled}
+      {...props}
+    />
   );
 };

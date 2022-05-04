@@ -32,11 +32,6 @@
   color: var(--color-accent);
 }
 
-.input_container {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
 .panel_container {
   align-items: center;
   grid-area: panel;
@@ -56,19 +51,10 @@
   padding-top: 30px;
   height: 223px;
   width: 100%;
-  background-image: url('../../static/theme/light/dogge_background.svg');
+  background-image: url('../../../../static/theme/light/dogge_background.svg');
   background-repeat: no-repeat;
   color: var(--color-white);
   font-size: 40px;
-}
-
-.panel_have_account {
-  margin-bottom: 30px;
-  align-items: center;
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--color-white);
-  cursor: pointer;
 }
 
 .panel_data {
@@ -79,4 +65,13 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.panel_footer {
+  margin-bottom: 30px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-white);
+  cursor: pointer;
 }

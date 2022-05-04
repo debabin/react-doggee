@@ -8,6 +8,10 @@ export class API {
     this.baseUrl = baseUrl;
   }
 
+  errorHandler(e: Error): ApiFailureResponse {
+    return { data: { message: e.message }, success: false, status: 503 };
+  }
+
   async request<T>(endpoint: string, options: RequestInit = {}) {
     const response = await fetch(this.baseUrl + endpoint, {
       method: 'GET',
@@ -15,8 +19,8 @@ export class API {
       ...options,
       headers: {
         'Content-Type': 'application/json',
-        ...(!!options?.headers && options.headers),
-      },
+        ...(!!options?.headers && options.headers)
+      }
     });
 
     if (!response.ok) throw new Error(response.statusText);
@@ -29,15 +33,15 @@ export class API {
   }
 
   get<T>(endpoint: string, options: Omit<RequestInit, 'body'> = {}) {
-    return this.request<T>(endpoint, { ...options, method: 'GET' });
+    return this.request<T>(endpoint, { ...options, method: 'GET' }).catch(this.errorHandler);
   }
 
   post<T>(endpoint: string, body: Record<string, any>, options: RequestInit = {}) {
     return this.request<T>(endpoint, {
       ...options,
       method: 'POST',
-      ...(!!body && { body: JSON.stringify(body) }),
-    });
+      ...(!!body && { body: JSON.stringify(body) })
+    }).catch(this.errorHandler);
   }
 }
 

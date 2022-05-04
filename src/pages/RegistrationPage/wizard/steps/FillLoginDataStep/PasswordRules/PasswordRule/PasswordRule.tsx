@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IntlText, useIntl } from '@features';
+import { IntlText } from '@features';
 
 import styles from './PasswordRule.module.css';
 

@@ -2,21 +2,58 @@ import React from 'react';
 
 import styles from '../input.module.css';
 
-export const Input: React.FC<InputProps> = ({ isError = false, helperText, label, ...props }) => {
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'placeholder'> {
+  label: string;
+  isError?: boolean;
+  helperText?: string;
+  availableChars?: RegExp;
+  components?: {
+    indicator?: () => React.ReactElement;
+  };
+}
+
+export const Input: React.FC<InputProps> = ({
+  isError = false,
+  helperText,
+  onChange,
+  label,
+  availableChars,
+  components,
+  ...props
+}) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   return (
     <>
       <div
-        aria-hidden='true'
         aria-disabled={props.disabled}
-        className={`${isError ? styles.input_error : ''} ${styles.input_container}`}
-        onClick={() => inputRef.current?.focus()}
+        className={`${isError ? styles.input_error : ''} ${styles.field_container}`}
       >
-        <input ref={inputRef} className={styles.input} {...props} />{' '}
-        <label htmlFor={props.id} className={styles.input_label}>
-          {label}
-        </label>
+        <div
+          aria-hidden='true'
+          className={` ${styles.input_container}`}
+          onClick={() => inputRef.current?.focus()}
+        >
+          <input
+            ref={inputRef}
+            className={styles.input}
+            onChange={(e) => {
+              if (!!onChange && !e.target.value) return onChange(e);
+              if (!onChange || (availableChars && !availableChars.test(e.target.value))) return;
+              onChange(e);
+            }}
+            {...props}
+          />
+          <label htmlFor={props.id} className={styles.input_label}>
+            {label}
+          </label>
+        </div>
+        {components?.indicator && (
+          <div className={styles.indicator_container}>
+            <components.indicator />
+          </div>
+        )}
       </div>
       {isError && helperText && <div className={styles.helper_text}>{helperText}</div>}
     </>

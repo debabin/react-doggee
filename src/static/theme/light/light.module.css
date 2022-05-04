@@ -13,9 +13,9 @@
 
   /* images */
   --images-dogge-background: url('./dogge_background.svg');
-  --images-hide-password: url('./hide_password.svg');
-  --images-show-password: url('./show_password.svg');
-
+  --images-hide-password: url('./icons/hide_password.svg');
+  --images-show-password: url('./icons/show_password.svg');
+  --images-calendar: url('./icons/calendar.svg');
   /* spacing */
   /* text */
 }

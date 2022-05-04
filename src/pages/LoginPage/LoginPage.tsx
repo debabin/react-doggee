@@ -14,8 +14,7 @@ import styles from './LoginPage.module.css';
 
 const loginFormValidateSchema = {
   username: (value: string) => validateIsEmpty(value),
-  password: (value: string) => validateIsEmpty(value),
-  test: (value: boolean) => null
+  password: (value: string) => validateIsEmpty(value)
 };
 
 interface LoginFormValues {

@@ -1,0 +1,20 @@
+.form_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-area: form;
+}
+
+.form_title {
+  font-family: 'Baloo';
+  font-size: 20px;
+  margin-bottom: 72.5px;
+  color: var(--color-accent);
+}
+
+.input_container {
+  width: 100%;
+  margin-bottom: 15px;
+}

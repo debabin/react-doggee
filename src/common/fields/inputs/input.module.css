@@ -1,26 +1,38 @@
-.input_container {
+.field_container {
   position: relative;
   display: flex;
   background: var(--background-color-field);
   border-radius: 5px;
   width: 100%;
-  padding: 20px 15px 9px;
   height: 48px;
   cursor: text;
   transition: var(--transition);
 }
 
-.input_error {
-  background: var(--background-color-field-validation);
-}
-
-.input_container[aria-disabled='true'] {
+.field_container[aria-disabled='true'] {
   cursor: default;
   background-color: var(--background-color-field-focused);
 }
 
-.input_container:hover:not(.input_error) {
+.field_container:hover:not(.input_error) {
   background-color: var(--background-color-field-focused);
+}
+
+.indicator_container {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input_container {
+  width: 90%;
+  display: flex;
+  padding: 20px 0 9px 15px;
+}
+
+.input_error {
+  background: var(--background-color-field-validation);
 }
 
 .input_label {
@@ -40,12 +52,12 @@
 }
 
 .input:focus ~ .input_label {
-  transform: translate(-10%, -80%);
+  transform: translate(-5%, -75%);
   font-size: 10px;
 }
 
 .input:not([value='']) ~ .input_label {
-  transform: translate(-10%, -80%);
+  transform: translate(-5%, -75%);
   font-size: 10px;
 }
 
