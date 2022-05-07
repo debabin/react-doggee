@@ -1,3 +1,4 @@
 export * from './cookies';
 export * from './intl';
 export * from './valdiations';
+export * from './date';

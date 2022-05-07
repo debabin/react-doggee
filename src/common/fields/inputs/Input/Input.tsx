@@ -2,8 +2,7 @@ import React from 'react';
 
 import styles from '../input.module.css';
 
-export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'placeholder'> {
+export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   label: string;
   isError?: boolean;
   helperText?: string;
@@ -39,6 +38,7 @@ export const Input: React.FC<InputProps> = ({
             ref={inputRef}
             className={styles.input}
             onChange={(e) => {
+              console.log(e.target.value);
               if (!!onChange && !e.target.value) return onChange(e);
               if (!onChange || (availableChars && !availableChars.test(e.target.value))) return;
               onChange(e);

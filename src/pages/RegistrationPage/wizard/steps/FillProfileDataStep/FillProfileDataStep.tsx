@@ -105,10 +105,9 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextSt
                 disabled={registrationLoading}
                 value={values.birthDate}
                 label={intl.translateMessage('field.input.birthDate.label')}
-                // onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                //   const birthDate = event.target.value;
-                //   setFieldValue('birthDate', passwordAgain);
-                // }}
+                onChange={(date: Date) => {
+                  setFieldValue('birthDate', date);
+                }}
                 {...(!!errors &&
                   !!errors.birthDate && {
                     isError: !!errors.birthDate,

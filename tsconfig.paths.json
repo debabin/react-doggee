@@ -7,9 +7,9 @@
       "@pages": ["./pages"],
       "@static/*": ["./static/*"],
       "@utils/helpers": ["./utils/helpers"],
-      "@utils/hooks": ["./utils/hooks"],
       "@utils/constants": ["./utils/constants"],
       "@utils/api": ["./utils/api"],
+      "@utils/hooks": ["./utils/hooks"],
       "@features": ["./features"],
       "@features/*": ["./features/*"]
     }

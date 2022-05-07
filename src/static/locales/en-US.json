@@ -4,11 +4,14 @@
   "field.input.registrationAddress.label": "Where do you live?",
   "field.input.birthday.label": "Your birthday",
   "field.input.password.label": "Password",
+  "field.input.birthDate.label": "When's your birthday?",
   "field.input.passwordAgain.label": "Password again",
   "field.checkbox.isNotMyDevice.label": "Is not my device",
+
   "button.signIn": "Sign in",
   "button.done": "Done",
   "button.next": "Next",
+
   "page.login.createNewAccont": "Create new account",
   "page.registration.fillYourLoginData": "Fill your login data",
   "page.registration.iAlreadyHaveAnAccount": "I already have an account",

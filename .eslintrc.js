@@ -6,9 +6,9 @@ module.exports = {
   extends: ['plugin:react/recommended', 'airbnb', 'airbnb-typescript', 'prettier'],
   overrides: [
     {
-      files: ['*.ts', '*.tsx'], // Your TypeScript files extension
+      files: ['*.ts', '*.tsx'],
       parserOptions: {
-        project: ['./tsconfig.json'] // Specify it only for TypeScript files
+        project: ['./tsconfig.json']
       }
     }
   ],
@@ -18,11 +18,6 @@ module.exports = {
     },
     ecmaVersion: 'latest',
     sourceType: 'module'
-  },
-  settings: {
-    'import/resolver': {
-      typescript: {}
-    }
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
@@ -42,6 +37,7 @@ module.exports = {
     'react/button-has-type': 0,
     'react/no-unstable-nested-components': [2, { allowAsProps: true }],
     'react/no-array-index-key': 0,
-    'class-methods-use-this': 0
+    'class-methods-use-this': 0,
+    'no-param-reassign': 0
   }
 };

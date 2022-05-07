@@ -4,3 +4,13 @@
   height: 19px;
   background-image: var(--images-calendar);
 }
+
+.date_input_container {
+  position: relative;
+}
+
+.calendar_container {
+  margin-top: 5px;
+  position: absolute;
+  right: 0;
+}

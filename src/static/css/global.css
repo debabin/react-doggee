@@ -12,6 +12,8 @@
   --background-color-field-validation: rgba(219, 57, 57, 0.3);
 
   --transition: all 0.3s;
+
+  --images-arrow: url('../images/arrow.svg');
   /* spacing */
   /* text */
 }
