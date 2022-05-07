@@ -68,7 +68,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           onClick={() => functions.onClickArrow('right')}
         />
       </div>
-      <div className={styles.calendar_picker_container}>
+      <div className={styles.calendar_body_container}>
         {mode === 'days' && (
           <>
             <div className={styles.calendar_week_days_container}>
