@@ -99,11 +99,7 @@ export const Select: React.FC<SelectProps> = ({
             onChange={functions.searchInputHandler}
           />
           {showOption && (
-            <div
-              className={`${selectStyles.option_label} ${
-                state.showOptions ? selectStyles.hidden_option_label : ''
-              }`}
-            >
+            <div className={selectStyles.option_label}>
               {components?.SelectedValue ? (
                 <components.SelectedValue option={value} />
               ) : (
