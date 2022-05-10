@@ -127,14 +127,16 @@ export const useCalendar = ({
   };
 
   return {
-    mode,
-    calendarDays,
-    weekDaysNames,
-    monthesNames,
-    selectedDay,
-    selectedMonth,
-    selectedYear,
-    selectedYearsInterval,
+    state: {
+      mode,
+      calendarDays,
+      weekDaysNames,
+      monthesNames,
+      selectedDay,
+      selectedMonth,
+      selectedYear,
+      selectedYearsInterval
+    },
     functions: {
       onClickArrow,
       setMode,

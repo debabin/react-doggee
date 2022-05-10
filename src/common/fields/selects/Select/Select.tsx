@@ -65,7 +65,7 @@ export const Select: React.FC<SelectProps> = ({
       <div
         aria-hidden='true'
         role='button'
-        style={{ transform: state.showOptions ? 'rotate(180deg)' : 'rotate(0)' }}
+        style={{ transform: !state.showOptions ? 'rotate(180deg)' : 'rotate(0)' }}
       >
         <div className={selectStyles.select_icon} />
       </div>
@@ -99,7 +99,11 @@ export const Select: React.FC<SelectProps> = ({
             onChange={functions.searchInputHandler}
           />
           {showOption && (
-            <div className={selectStyles.option_label}>
+            <div
+              className={`${selectStyles.option_label} ${
+                state.showOptions ? selectStyles.hidden_option_label : ''
+              }`}
+            >
               {components?.SelectedValue ? (
                 <components.SelectedValue option={value} />
               ) : (
@@ -107,7 +111,12 @@ export const Select: React.FC<SelectProps> = ({
               )}
             </div>
           )}
-          <label htmlFor={props.id} className={selectStyles.input_label}>
+          <label
+            htmlFor={props.id}
+            className={`${selectStyles.input_label} ${
+              state.showOptions || showOption ? selectStyles.translated_input_label : ''
+            }`}
+          >
             {props.label}
           </label>
         </div>
