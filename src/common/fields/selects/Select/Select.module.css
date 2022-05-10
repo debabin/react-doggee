@@ -1,0 +1,111 @@
+.select_icon {
+  cursor: pointer;
+  width: 19px;
+  height: 19px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: var(--images-select-arrow);
+}
+
+.options_container {
+  margin-top: 5px;
+  position: absolute;
+  width: 100%;
+  border-radius: 5px;
+  background-color: var(--background-color-field-focused);
+}
+
+.option_container {
+  cursor: pointer;
+  padding: 6.5px 20px;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: inherit;
+  color: var(--color-placeholder);
+}
+.option_container:hover {
+  background-color: var(--color-additional7);
+}
+.option_container:last-child {
+  border-radius: 0 0 5px 5px;
+}
+.option_container:first-child {
+  border-radius: 5px 5px 0 0;
+}
+.option_container:only-child {
+  border-radius: 5px;
+}
+.selected_option_container {
+  cursor: pointer;
+  padding: 6.5px 20px;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: inherit;
+  background-color: var(--color-additional);
+  color: var(--color-text);
+}
+.selected_option_container:hover {
+  background-color: var(--color-additional);
+}
+
+.focused_option_container {
+  background-color: var(--color-additional7);
+}
+
+.date_input_container {
+  position: relative;
+}
+
+.select_options_container {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.option_label {
+  position: absolute;
+  font-size: 12px;
+  color: var(--color-text);
+}
+.select_options_container ~ .option_label {
+  display: none;
+}
+
+.input_label {
+  user-select: none;
+  cursor: text;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  font-size: 14px;
+  color: var(--color-placeholder);
+  z-index: 1;
+  transition: transform 150ms ease-out, font-size 150ms ease-out;
+}
+
+.input_container[aria-disabled='true'] .input_label {
+  cursor: default;
+}
+
+.input:focus ~ .input_label,
+.input:not([value='']) ~ .input_label,
+div ~ .input_label {
+  transform: translate(-5%, -75%);
+  font-size: 10px;
+}
+
+.input {
+  border: none;
+  width: 100%;
+  font-size: 12px;
+  color: var(--color-text);
+  background-color: transparent;
+}
+
+.input:active,
+.input:focus {
+  outline: none;
+  caret-color: var(--color-text);
+}

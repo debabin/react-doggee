@@ -51,11 +51,7 @@
   cursor: default;
 }
 
-.input:focus ~ .input_label {
-  transform: translate(-5%, -75%);
-  font-size: 10px;
-}
-
+.input:focus ~ .input_label,
 .input:not([value='']) ~ .input_label {
   transform: translate(-5%, -75%);
   font-size: 10px;

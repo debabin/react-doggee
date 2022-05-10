@@ -4,13 +4,46 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '@utils/api';
 import { IntlText, useIntl } from '@features';
 import { useForm, useMutation } from '@utils/hooks';
-import { DateInput, Input } from '@common/fields';
+import { DateInput, Input, Select } from '@common/fields';
 import { Button } from '@common/buttons';
 import { validateIsEmpty } from '@utils/helpers';
 
 import { RegistrationWizardContainer } from '../../RegistrationWizardContainer/RegistrationWizardContainer';
 
-import styles from './FillProfileDataStep.module.css';
+import styles from '../../../RegistrationPage.module.css';
+
+const options = [
+  {
+    label: 'Example1',
+    value: { id: '1', name: 'Example1' },
+    id: '1'
+  },
+  {
+    label: 'Example2',
+    value: { id: '2', name: 'Example2' },
+    id: '2'
+  },
+  {
+    label: 'Example3',
+    value: { id: '3', name: 'Example3' },
+    id: '3'
+  },
+  {
+    label: 'Example4',
+    value: { id: '4', name: 'Example4' },
+    id: '4'
+  },
+  {
+    label: 'Example5',
+    value: { id: '5', name: 'Example5' },
+    id: '5'
+  },
+  {
+    label: 'Example6',
+    value: { id: '6', name: 'Example6' },
+    id: '6'
+  }
+];
 
 const registrationFormValidateSchema = {
   name: (value: string) => validateIsEmpty(value),
@@ -21,6 +54,7 @@ interface ProfileFormValues {
   name: string;
   registrationAddress: string;
   birthDate: Date;
+  select: { id: string; name: string } | null;
 }
 
 interface FillProfileDataStepProps {
@@ -37,7 +71,7 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextSt
   >((values) => api.post('registration', values));
 
   const { values, errors, setFieldValue, handleSubmit } = useForm<ProfileFormValues>({
-    intialValues: { name: '', registrationAddress: '', birthDate: new Date() },
+    intialValues: { name: '', registrationAddress: '', birthDate: new Date(), select: null },
     validateSchema: registrationFormValidateSchema,
     validateOnChange: false
     // onSubmit: async (values) => {
@@ -102,10 +136,11 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextSt
             </div>
             <div className={styles.input_container}>
               <DateInput
+                locale={intl.locale}
                 disabled={registrationLoading}
                 value={values.birthDate}
                 label={intl.translateMessage('field.input.birthDate.label')}
-                onChange={(date: Date) => {
+                onChange={(date) => {
                   setFieldValue('birthDate', date);
                 }}
                 {...(!!errors &&
@@ -115,7 +150,22 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextSt
                   })}
               />
             </div>
-
+            <div className={styles.input_container}>
+              <Select
+                options={options}
+                disabled={registrationLoading}
+                value={options.find((op) => op.id === values.select?.id) ?? null}
+                label='choose example'
+                onChange={(option) => {
+                  setFieldValue('select', option.value);
+                }}
+                {...(!!errors &&
+                  !!errors.birthDate && {
+                    isError: !!errors.birthDate,
+                    helperText: errors.birthDate
+                  })}
+              />
+            </div>
             <Button type='submit' isLoading={registrationLoading}>
               <IntlText path='button.next' />
             </Button>

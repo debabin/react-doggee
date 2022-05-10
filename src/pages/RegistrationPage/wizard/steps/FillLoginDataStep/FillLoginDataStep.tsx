@@ -12,7 +12,7 @@ import { validateIsEmpty } from '@utils/helpers';
 import { RegistrationWizardContainer } from '../../RegistrationWizardContainer/RegistrationWizardContainer';
 import { PasswordRules } from './PasswordRules/PasswordRules';
 
-import styles from './FillLoginDataStep.module.css';
+import styles from '../../../RegistrationPage.module.css';
 
 const registrationFormValidateSchema = {
   username: (value: string) => validateIsEmpty(value),

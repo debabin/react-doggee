@@ -2,11 +2,7 @@ import React from 'react';
 
 import styles from '../input.module.css';
 
-export interface InputProps extends React.HTMLProps<HTMLInputElement> {
-  label: string;
-  isError?: boolean;
-  helperText?: string;
-  availableChars?: RegExp;
+export interface InputProps extends FieldProps {
   components?: {
     indicator?: () => React.ReactElement;
   };
@@ -31,14 +27,13 @@ export const Input: React.FC<InputProps> = ({
       >
         <div
           aria-hidden='true'
-          className={` ${styles.input_container}`}
+          className={`${styles.input_container}`}
           onClick={() => inputRef.current?.focus()}
         >
           <input
             ref={inputRef}
             className={styles.input}
             onChange={(e) => {
-              console.log(e.target.value);
               if (!!onChange && !e.target.value) return onChange(e);
               if (!onChange || (availableChars && !availableChars.test(e.target.value))) return;
               onChange(e);

@@ -2,7 +2,6 @@ import { createDate } from './createDate';
 
 export const formatDate = (date: Date, format: string) => {
   const d = createDate({ date });
-  console.log('d', d.date.toString(), d.monthNumber.toString());
 
   return format
     .replace(/\bYYYY\b/, d.year.toString())

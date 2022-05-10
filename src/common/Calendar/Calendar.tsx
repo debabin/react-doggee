@@ -12,11 +12,6 @@ interface CalendarProps {
   firstWeekDayNumber?: number;
 }
 
-const getYearsInterval = (year: number) => {
-  const startYear = Math.floor(year / 10) * 10;
-  return [...Array(10)].map((_, index) => startYear + index);
-};
-
 export const Calendar: React.FC<CalendarProps> = ({
   locale = 'default',
   selectedDate: date,
@@ -38,7 +33,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     selectedDate: date,
     firstWeekDayNumber
   });
-  console.log('selectedMonth.monthIndex', selectedMonth.monthIndex);
+
   return (
     <div className={styles.calendar_container}>
       <div className={styles.calendar_header_container}>
@@ -106,7 +101,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         )}
 
         {mode === 'monthes' && (
-          <div className={styles.calendar_monthes_container}>
+          <div className={styles.calendar_pick_items_container}>
             {monthesNames.map((monthesName) => (
               <div
                 key={monthesName.month}
@@ -115,7 +110,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                   functions.setSelectedMonthByIndex(monthesName.monthIndex);
                   functions.setMode('days');
                 }}
-                className={`${styles.calendar_month_container} ${
+                className={`${styles.calendar_pick_item_container} ${
                   monthesName.monthIndex === selectedMonth.monthIndex
                     ? styles.calendar_selected_item_container
                     : ''
@@ -133,8 +128,8 @@ export const Calendar: React.FC<CalendarProps> = ({
         )}
 
         {mode === 'years' && (
-          <div className={styles.calendar_monthes_container}>
-            {selectedYearsInterval[0] - 1}
+          <div className={styles.calendar_pick_items_container}>
+            <div className={styles.calendar_unchoosable_year}>{selectedYearsInterval[0] - 1}</div>
             {selectedYearsInterval.map((year) => (
               <div
                 key={year}
@@ -143,7 +138,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                   functions.setSelectedYear(year);
                   functions.setMode('monthes');
                 }}
-                className={`${styles.calendar_month_container} ${
+                className={`${styles.calendar_pick_item_container} ${
                   year === selectedYear ? styles.calendar_selected_item_container : ''
                 }
                   ${new Date().getFullYear() === year ? styles.calendar_today_item_container : ''}`}
@@ -151,7 +146,9 @@ export const Calendar: React.FC<CalendarProps> = ({
                 {year}
               </div>
             ))}
-            {selectedYearsInterval[selectedYearsInterval.length - 1] + 1}
+            <div className={styles.calendar_unchoosable_year}>
+              {selectedYearsInterval[selectedYearsInterval.length - 1] + 1}
+            </div>
           </div>
         )}
       </div>

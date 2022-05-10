@@ -13,7 +13,13 @@
 
   --transition: all 0.3s;
 
+  /* images */
   --images-arrow: url('../images/arrow.svg');
-  /* spacing */
-  /* text */
+  --images-dogge-background-light: url('../theme/light/dogge_background.svg');
+
+  /* fonts */
+  --font-family-baloo: 'Baloo';
+  --font-family-open-sans: 'Open Sans', sans-serif;
+  --font-weight800: 800;
+  --font-weight600: 600;
 }

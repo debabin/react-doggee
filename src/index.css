@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Open sans', sans-serif;
+  font-family: var(--font-family-open-sans);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -1,14 +1,25 @@
 {
   "field.input.username.label": "Логин",
+  "field.input.name.label": "Как вас зовут ?",
+  "field.input.registrationAddress.label": "Где вы живете ?",
+  "field.input.birthday.label": "Ваш день рождение ?",
   "field.input.password.label": "Пароль",
+  "field.input.birthDate.label": "Когда ваш день рождение ?",
   "field.input.passwordAgain.label": "Повтор пароля",
   "field.checkbox.isNotMyDevice.label": "Не мой компьютер",
+
   "button.signIn": "Войти",
   "button.done": "Готово",
+  "button.next": "Далее",
+
   "page.login.createNewAccont": "Создать новый аккаунт",
   "page.registration.fillYourLoginData": "Введите свои данные",
   "page.registration.iAlreadyHaveAnAccount": "У меня уже есть аккаунт",
   "page.registration.passwordRules.containNumbers": "contain <rule>numbers</rule>",
+  "page.registration.passwordRules.containUppercase": "contain <rule>uppercase</rule> letter",
+  "page.registration.passwordRules.containLowerCase": "contain <rule>lowercase</rule> letter",
+  "page.registration.passwordRules.contain8Characters": "contain at least <rule>8</rule> characters",
+  "page.registration.passwordRules.mustMatch": "Пароль должен <rule>совпадать</rule>",
 
   "validations.required": "поле обязательно"
 }

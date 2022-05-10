@@ -1,5 +1,5 @@
 const ACCEPT_LOCALES = ['ru', 'en-US'] as const;
-export const DEFAULT_LOCALE = ACCEPT_LOCALES[1];
+export const DEFAULT_LOCALE = ACCEPT_LOCALES[0];
 export type AcceptLocales = typeof ACCEPT_LOCALES[number];
 
 export const getLocale = (): AcceptLocales => {

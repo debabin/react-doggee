@@ -26,24 +26,26 @@
 }
 
 .form_title {
-  font-family: 'Baloo';
+  color: var(--color-accent);
+  font-weight: var(--font-weight600);
   font-size: 20px;
   margin-bottom: 72.5px;
-  color: var(--color-accent);
 }
 
 .panel_container {
+  background-color: var(--color-accent);
   align-items: center;
   grid-area: panel;
-  background-color: var(--color-accent);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
 
 .panel_header {
-  font-family: 'Baloo';
-  font-weight: 800;
+  background-image: var(--images-dogge-background-light);
+  color: var(--color-white);
+  font-family: var(--font-family-baloo);
+  font-weight: var(--font-weight800);
   font-style: normal;
   display: flex;
   justify-content: center;
@@ -51,16 +53,14 @@
   padding-top: 30px;
   height: 223px;
   width: 100%;
-  background-image: url('../../../../static/theme/light/dogge_background.svg');
   background-repeat: no-repeat;
-  color: var(--color-white);
   font-size: 40px;
 }
 
 .panel_data {
-  width: 100%;
   background-color: var(--background-color);
   color: var(--color-text);
+  width: 100%;
   padding: 40px 30px;
   display: flex;
   flex-direction: column;
@@ -68,10 +68,10 @@
 }
 
 .panel_footer {
+  color: var(--color-white);
   margin-bottom: 30px;
   align-items: center;
   font-weight: 600;
   font-size: 14px;
-  color: var(--color-white);
   cursor: pointer;
 }

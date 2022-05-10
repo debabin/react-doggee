@@ -6,8 +6,6 @@ import { deleteCookie, getCookie, getLocale, getMessages } from '@utils/helpers'
 import { IntlProvider, Theme, ThemeProvider } from '@features';
 import { COOKIE_NAMES } from '@utils/constants';
 
-import { createYear, getMonthesNames } from './utils/helpers';
-
 import './App.css';
 
 const AuthRoutes = () => (

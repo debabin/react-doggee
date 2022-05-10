@@ -64,7 +64,7 @@
 }
 
 .calendar_day_container {
-  padding: 5.5px;
+  padding: 5.5px 0px;
   cursor: pointer;
 }
 
@@ -80,7 +80,7 @@
   color: var(--color-placeholder);
 }
 
-.calendar_monthes_container {
+.calendar_pick_items_container {
   font-weight: 400;
   color: var(--color-text);
   text-align: center;
@@ -91,12 +91,15 @@
   font-size: 12px;
 }
 
-.calendar_month_container {
-  padding: 9px 16px;
+.calendar_pick_item_container {
+  padding: 9px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
-.calendar_month_container:hover {
+.calendar_pick_item_container:hover {
   border-radius: 5px;
   background-color: var(--color-additional7);
 }
@@ -113,4 +116,10 @@
 
 .calendar_selected_item_container:hover {
   background-color: var(--color-additional);
+}
+
+.calendar_unchoosable_year {
+  font-weight: 300;
+  padding: 9px 16px;
+  color: var(--color-placeholder);
 }
