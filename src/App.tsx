@@ -5,6 +5,7 @@ import { LoginPage, NotFoundPage, RegistrationPage } from '@pages';
 import { deleteCookie, getCookie, getLocale, getMessages } from '@utils/helpers';
 import { IntlProvider, Theme, ThemeProvider } from '@features';
 import { COOKIE_NAMES } from '@utils/constants';
+import { StoreProvider } from '@utils/contextes';
 
 import './App.css';
 
@@ -55,7 +56,9 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <IntlProvider locale={locale} messages={messages}>
-        <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>
+        <StoreProvider>
+          <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>
+        </StoreProvider>
       </IntlProvider>
     </ThemeProvider>
   );

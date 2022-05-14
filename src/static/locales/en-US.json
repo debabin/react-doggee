@@ -13,13 +13,15 @@
   "button.next": "Next",
 
   "page.login.createNewAccont": "Create new account",
-  "page.registration.fillYourLoginData": "Fill your login data",
-  "page.registration.iAlreadyHaveAnAccount": "I already have an account",
-  "page.registration.passwordRules.containNumbers": "contain <rule>numbers</rule>",
-  "page.registration.passwordRules.containUppercase": "contain <rule>uppercase</rule> letter",
-  "page.registration.passwordRules.containLowerCase": "contain <rule>lowercase</rule> letter",
-  "page.registration.passwordRules.contain8Characters": "contain at least <rule>8</rule> characters",
-  "page.registration.passwordRules.mustMatch": "Password must <rule>match</rule>",
+  "page.registration.skipAndFillInLater": "Skip and fill in later",
+  "page.registration.step.fillLoginDataStep.fillYourLoginData": "Fill your login data",
+  "page.registration.step.fillLoginDataStep.iAlreadyHaveAnAccount": "I already have an account",
+  "page.registration.step.fillLoginDataStep.passwordRules.containNumbers": "contain <rule>numbers</rule>",
+  "page.registration.step.fillLoginDataStep.passwordRules.containUppercase": "contain <rule>uppercase</rule> letter",
+  "page.registration.step.fillLoginDataStep.passwordRules.containLowerCase": "contain <rule>lowercase</rule> letter",
+  "page.registration.step.fillLoginDataStep.passwordRules.contain8Characters": "contain at least <rule>8</rule> characters",
+  "page.registration.step.fillLoginDataStep.passwordRules.mustMatch": "Password must <rule>match</rule>",
+  "page.registration.step.fillProfileData.hint.registrationAddressHint": "We want to know your address so that we can suggest good places for walks with your pet, the nearest veterinary clinics, etc.",
 
   "validations.required": "field required"
 }

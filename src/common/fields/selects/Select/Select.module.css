@@ -4,7 +4,7 @@
   height: 19px;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: var(--images-select-arrow);
+  background-image: var(--images-arrow);
 }
 
 .options_container {

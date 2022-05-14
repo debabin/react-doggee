@@ -15,11 +15,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({ value, disabled, .
 
   const EyeIcon = React.useCallback(
     () => (
-      <div
-        aria-hidden='true'
-        role='button'
-        onClick={() => !disabled && setShowPassword(!showPassword)}
-      >
+      <div aria-hidden role='button' onClick={() => !disabled && setShowPassword(!showPassword)}>
         <div className={iconClassName} />
       </div>
     ),

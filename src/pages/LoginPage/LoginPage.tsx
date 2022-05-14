@@ -107,7 +107,7 @@ export const LoginPage = () => {
         <div
           role='link'
           tabIndex={0}
-          aria-hidden='true'
+          aria-hidden
           className={styles.sing_up_container}
           onClick={() => navigate(ROUTES.REGISTRATION)}
         >

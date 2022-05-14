@@ -26,7 +26,7 @@ export const Input: React.FC<InputProps> = ({
         className={`${isError ? styles.input_error : ''} ${styles.field_container}`}
       >
         <div
-          aria-hidden='true'
+          aria-hidden
           className={`${styles.input_container}`}
           onClick={() => inputRef.current?.focus()}
         >

@@ -1,6 +1,6 @@
 .container {
   /* colors */
-  --color-text: #000000;
+  --color-text: #434141;
   --color-placeholder: rgba(0, 0, 0, 0.5);
   --background-color-field-focused: #ededed;
   --background-color-field: rgba(237, 237, 237, 0.7);
@@ -17,7 +17,7 @@
   --images-hide-password: url('./icons/hide_password.svg');
   --images-show-password: url('./icons/show_password.svg');
   --images-calendar: url('./icons/calendar.svg');
-  --images-select-arrow: url('./icons/select_arrow.svg');
+  --images-arrow: url('./icons/arrow.svg');
   /* spacing */
   /* text */
 }

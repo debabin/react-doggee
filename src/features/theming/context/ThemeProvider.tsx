@@ -7,7 +7,9 @@ import { ThemeContext } from './ThemeContext';
 import darkTheme from '../../../static/theme/dark/dark.module.css';
 import lightTheme from '../../../static/theme/light/light.module.css';
 
-type IntlProviderProps = Omit<ThemeContextProps, 'setTheme'>;
+interface IntlProviderProps extends Omit<ThemeContextProps, 'setTheme'> {
+  children: React.ReactNode;
+}
 
 export const ThemeProvider: React.FC<IntlProviderProps> = ({ theme, children }) => {
   const [currentTheme, setCurrentTheme] = React.useState(theme);

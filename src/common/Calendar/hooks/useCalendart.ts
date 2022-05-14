@@ -42,8 +42,8 @@ export const useCalendar = ({
   const days = React.useMemo(() => selectedMonth.createMonthDays(), [selectedMonth, selectedYear]);
 
   const calendarDays = React.useMemo(() => {
-    const monthNumberOfDays = getMonthNumberOfDays(selectedMonth.monthIndex);
-
+    const monthNumberOfDays = getMonthNumberOfDays(selectedMonth.monthNumber, selectedYear);
+    console.log('monthNumberOfDays', monthNumberOfDays);
     const prevMonthDays = createMonth({
       date: new Date(selectedYear, selectedMonth.monthIndex - 1),
       locale
@@ -56,7 +56,7 @@ export const useCalendar = ({
 
     const firstDay = days[0];
     const lastDay = days[monthNumberOfDays - 1];
-
+    console.log('lastDay', days);
     const shiftIndex = firstWeekDayNumber - 1;
     const numberOfPrevDays =
       firstDay.dayNumberInWeek - 1 - shiftIndex < 0
@@ -86,7 +86,7 @@ export const useCalendar = ({
     }
 
     return result;
-  }, [selectedMonth.monthIndex, selectedYear]);
+  }, [selectedMonth.year, selectedMonth.monthIndex, selectedYear]);
 
   const onClickArrow = (direction: 'right' | 'left') => {
     if (mode === 'years' && direction === 'left') {

@@ -49,7 +49,7 @@ export const Select: React.FC<SelectProps> = ({
         key={option.id}
         role='option'
         aria-selected={value?.id === option.id}
-        aria-hidden='true'
+        aria-hidden
         className={`${selectStyles.option_container} ${
           isSelected ? selectStyles.selected_option_container : ''
         }`}
@@ -63,7 +63,7 @@ export const Select: React.FC<SelectProps> = ({
   const SelectIcon = React.useCallback(
     () => (
       <div
-        aria-hidden='true'
+        aria-hidden
         role='button'
         style={{ transform: !state.showOptions ? 'rotate(180deg)' : 'rotate(0)' }}
       >
@@ -81,14 +81,14 @@ export const Select: React.FC<SelectProps> = ({
       onKeyDown={functions.onSelectKeyDown}
     >
       <div
-        aria-hidden='true'
+        aria-hidden
         onClick={() => {
-          if (disabled || loading || state.showOptions) return;
+          if (disabled || loading) return;
           functions.onSelectClick();
         }}
         className={`${isError ? inputStyles.input_error : ''} ${inputStyles.field_container}`}
       >
-        <div aria-hidden='true' className={`${inputStyles.input_container}`}>
+        <div className={`${inputStyles.input_container}`}>
           <input
             autoComplete='off'
             type='text'

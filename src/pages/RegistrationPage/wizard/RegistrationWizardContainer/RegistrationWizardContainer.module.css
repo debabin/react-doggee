@@ -16,6 +16,12 @@
   height: 100%;
 }
 
+.stepper_container {
+  width: 100%;
+  padding: 29px;
+  margin-bottom: 40px;
+}
+
 .form_container {
   width: 100%;
   display: flex;
@@ -33,6 +39,7 @@
 }
 
 .panel_container {
+  max-width: 300px;
   background-color: var(--color-accent);
   align-items: center;
   grid-area: panel;
@@ -61,7 +68,7 @@
   background-color: var(--background-color);
   color: var(--color-text);
   width: 100%;
-  padding: 40px 30px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;

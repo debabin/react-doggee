@@ -21,14 +21,14 @@
   width: 5px;
   height: 10px;
   cursor: pointer;
-  background-image: var(--images-arrow);
+  background-image: var(--images-arrow-additional);
 }
 
 .calendar_header_arrow_right {
   width: 5px;
   height: 10px;
   cursor: pointer;
-  background-image: var(--images-arrow);
+  background-image: var(--images-arrow-additional);
   transform: rotate(-180deg);
 }
 

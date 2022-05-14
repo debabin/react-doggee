@@ -10,7 +10,6 @@ import { useStore } from '@utils/contextes';
 import { changeUser } from '@utils/api';
 
 import { RegistrationWizardContainer } from '../../RegistrationWizardContainer/RegistrationWizardContainer';
-import { FillProfilePanelData } from './FillProfilePanelData/FillProfilePanelData';
 
 import styles from '../../../RegistrationPage.module.css';
 
@@ -29,7 +28,7 @@ interface FillProfileDataStepProps {
   nextStep: () => void;
 }
 
-export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextStep }) => {
+export const AddYourPetsStep: React.FC<FillProfileDataStepProps> = ({ nextStep }) => {
   const navigate = useNavigate();
   const intl = useIntl();
   const [focusedField, setFocuseField] = React.useState<'name' | 'registrationAddress' | null>(
@@ -69,7 +68,7 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextSt
     <RegistrationWizardContainer
       activeStep={1}
       panel={{
-        ...(focusedField && { data: <FillProfilePanelData focusedField={focusedField} /> }),
+        // ...(focusedField && { data: <FillProfilePanelData focusedField={focusedField} /> }),
         footer: (
           <div role='link' tabIndex={0} aria-hidden onClick={() => nextStep()}>
             <IntlText path='page.registration.skipAndFillInLater' />

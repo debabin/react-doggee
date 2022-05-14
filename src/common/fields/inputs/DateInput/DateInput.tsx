@@ -37,11 +37,7 @@ export const DateInput: React.FC<DateInputProps> = ({
 
   const CalendarIcon = React.useCallback(
     () => (
-      <div
-        aria-hidden='true'
-        role='button'
-        onClick={() => !disabled && setShowCalendar(!showCalendar)}
-      >
+      <div aria-hidden role='button' onClick={() => !disabled && setShowCalendar(!showCalendar)}>
         <div className={styles.date_icon} />
       </div>
     ),

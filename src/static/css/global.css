@@ -14,7 +14,9 @@
   --transition: all 0.3s;
 
   /* images */
-  --images-arrow: url('../images/arrow.svg');
+  --images-arrow-additional: url('../images/arrow_additional.svg');
+  --images-checkmark-additional: url('../images/checkmark_additional.svg');
+  --images-checkmark: url('../images/checkmark.svg');
   --images-dogge-background-light: url('../theme/light/dogge_background.svg');
 
   /* fonts */

@@ -10,6 +10,7 @@
       "@utils/constants": ["./utils/constants"],
       "@utils/api": ["./utils/api"],
       "@utils/hooks": ["./utils/hooks"],
+      "@utils/contextes": ["./utils/contextes"],
       "@features": ["./features"],
       "@features/*": ["./features/*"]
     }

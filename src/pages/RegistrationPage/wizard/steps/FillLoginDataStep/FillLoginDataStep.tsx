@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { api } from '@utils/api';
+import { api, createRegistration } from '@utils/api';
 import { IntlText, useIntl } from '@features';
 import { useForm, useMutation } from '@utils/hooks';
 import { Input, PasswordInput } from '@common/fields';
 import { Button } from '@common/buttons';
 import { ROUTES } from '@utils/constants';
 import { validateIsEmpty } from '@utils/helpers';
+import { useStore } from '@utils/contextes';
 
 import { RegistrationWizardContainer } from '../../RegistrationWizardContainer/RegistrationWizardContainer';
 import { PasswordRules } from './PasswordRules/PasswordRules';
@@ -32,11 +33,12 @@ interface FillLoginDataStepProps {
 export const FillLoginDataStep: React.FC<FillLoginDataStepProps> = ({ nextStep }) => {
   const navigate = useNavigate();
   const intl = useIntl();
+  const { setStore } = useStore();
 
   const { mutationAsync: registrationMutation, isLoading: registrationLoading } = useMutation<
-    Omit<RegistrationFormValues, 'passwordAgain'>,
-    ApiResponse<User[]>
-  >((values) => api.post('registration', values));
+    RegistrationReqPostParams,
+    ApiResponse<User>
+  >((params) => createRegistration({ params }));
 
   const { values, errors, setFieldValue, handleSubmit } = useForm<RegistrationFormValues>({
     intialValues: { username: '', password: '', passwordAgain: '' },
@@ -48,10 +50,11 @@ export const FillLoginDataStep: React.FC<FillLoginDataStepProps> = ({ nextStep }
         username: values.username
       });
 
-      // if (!response.success) {
-      //   return;
-      // }
-      console.log('response', response);
+      if (!response.success) {
+        return;
+      }
+      setStore({ user: response.data });
+
       nextStep();
     }
   });
@@ -67,13 +70,13 @@ export const FillLoginDataStep: React.FC<FillLoginDataStepProps> = ({ nextStep }
           />
         ),
         footer: (
-          <div role='link' tabIndex={0} aria-hidden='true' onClick={() => navigate(ROUTES.AUTH)}>
-            <IntlText path='page.registration.iAlreadyHaveAnAccount' />
+          <div role='link' tabIndex={0} aria-hidden onClick={() => navigate(ROUTES.AUTH)}>
+            <IntlText path='page.registration.step.fillLoginDataStep.iAlreadyHaveAnAccount' />
           </div>
         )
       }}
       form={{
-        title: <IntlText path='page.registration.fillYourLoginData' />,
+        title: <IntlText path='page.registration.step.fillLoginDataStep.fillYourLoginData' />,
         content: (
           <form className={styles.form_container} onSubmit={handleSubmit}>
             <div className={styles.input_container}>

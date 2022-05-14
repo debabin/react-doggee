@@ -23,19 +23,19 @@ export const PasswordRules: React.FC<PasswordRulesProps> = ({
   const rules = React.useMemo(
     () => [
       {
-        title: 'page.registration.passwordRules.containNumbers',
+        title: 'page.registration.step.fillLoginDataStep.passwordRules.containNumbers',
         isCorrect: !validateContainNumbers(password)
       },
       {
-        title: 'page.registration.passwordRules.containUppercase',
+        title: 'page.registration.step.fillLoginDataStep.passwordRules.containUppercase',
         isCorrect: !validateContainUpperCase(password)
       },
       {
-        title: 'page.registration.passwordRules.containLowerCase',
+        title: 'page.registration.step.fillLoginDataStep.passwordRules.containLowerCase',
         isCorrect: !validateContainLowerCase(password)
       },
       {
-        title: 'page.registration.passwordRules.contain8Characters',
+        title: 'page.registration.step.fillLoginDataStep.passwordRules.contain8Characters',
         isCorrect: password.length >= MIN_LENGHT.PASSWORD
       }
     ],
@@ -58,7 +58,7 @@ export const PasswordRules: React.FC<PasswordRulesProps> = ({
       <div>
         <PasswordRule
           showIcon={isPasswordMatch || hasPasswordErrors}
-          title='page.registration.passwordRules.mustMatch'
+          title='page.registration.step.fillLoginDataStep.passwordRules.mustMatch'
           isCorrect={isPasswordMatch}
         />
       </div>
