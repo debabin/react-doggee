@@ -8,6 +8,7 @@ import { COOKIE_NAMES } from '@utils/constants';
 import { StoreProvider } from '@utils/contextes';
 
 import './App.css';
+import { ApiClientProvider } from '@features/api';
 
 const AuthRoutes = () => (
   <Routes>
@@ -56,9 +57,11 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <IntlProvider locale={locale} messages={messages}>
-        <StoreProvider>
-          <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>
-        </StoreProvider>
+        <ApiClientProvider>
+          <StoreProvider>
+            <BrowserRouter>{isAuth ? <MainRoutes /> : <AuthRoutes />}</BrowserRouter>
+          </StoreProvider>
+        </ApiClientProvider>
       </IntlProvider>
     </ThemeProvider>
   );

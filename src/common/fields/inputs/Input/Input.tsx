@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { classnames } from '@utils/helpers';
 import styles from '../input.module.css';
 
 export interface InputProps extends FieldProps {
@@ -23,11 +23,16 @@ export const Input: React.FC<InputProps> = ({
     <>
       <div
         aria-disabled={props.disabled}
-        className={`${isError ? styles.input_error : ''} ${styles.field_container}`}
+        className={classnames(styles.field_container, { [styles.input_error]: isError })}
       >
+        {components?.indicator && (
+          <div className={styles.indicator_container}>
+            <components.indicator />
+          </div>
+        )}
         <div
           aria-hidden
-          className={`${styles.input_container}`}
+          className={styles.input_container}
           onClick={() => inputRef.current?.focus()}
         >
           <input
@@ -44,11 +49,6 @@ export const Input: React.FC<InputProps> = ({
             {label}
           </label>
         </div>
-        {components?.indicator && (
-          <div className={styles.indicator_container}>
-            <components.indicator />
-          </div>
-        )}
       </div>
       {isError && helperText && <div className={styles.helper_text}>{helperText}</div>}
     </>

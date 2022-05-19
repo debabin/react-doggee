@@ -1,4 +1,5 @@
 import React from 'react';
+import { classnames } from '@utils/helpers';
 
 import inputStyles from '../../inputs/input.module.css';
 import selectStyles from './Select.module.css';
@@ -50,9 +51,9 @@ export const Select: React.FC<SelectProps> = ({
         role='option'
         aria-selected={value?.id === option.id}
         aria-hidden
-        className={`${selectStyles.option_container} ${
-          isSelected ? selectStyles.selected_option_container : ''
-        }`}
+        className={classnames(selectStyles.option_container, {
+          [selectStyles.selected_option_container]: isSelected
+        })}
         onClick={() => functions.onOptionClick(option)}
       >
         {components?.Option ? <components.Option option={option} /> : option.label}
@@ -86,8 +87,13 @@ export const Select: React.FC<SelectProps> = ({
           if (disabled || loading) return;
           functions.onSelectClick();
         }}
-        className={`${isError ? inputStyles.input_error : ''} ${inputStyles.field_container}`}
+        className={classnames(inputStyles.field_container, {
+          [inputStyles.input_error]: isError
+        })}
       >
+        <div className={inputStyles.indicator_container}>
+          <SelectIcon />
+        </div>
         <div className={`${inputStyles.input_container}`}>
           <input
             autoComplete='off'
@@ -109,16 +115,12 @@ export const Select: React.FC<SelectProps> = ({
           )}
           <label
             htmlFor={props.id}
-            className={`${selectStyles.input_label} ${
-              state.showOptions || showOption ? selectStyles.translated_input_label : ''
-            }`}
+            className={classnames(selectStyles.input_label, {
+              [selectStyles.translated_input_label]: state.showOptions || showOption
+            })}
           >
             {props.label}
           </label>
-        </div>
-
-        <div className={inputStyles.indicator_container}>
-          <SelectIcon />
         </div>
       </div>
       {state.showOptions && (

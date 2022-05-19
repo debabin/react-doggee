@@ -1,20 +1,22 @@
 import { createDate } from './createDate';
 
-export const getMonthesNames = (locale: string = 'default') => {
+export const getMonthesNames = (locale: string = 'defalut') => {
   const monthesNames: {
     month: ReturnType<typeof createDate>['month'];
     monthShort: ReturnType<typeof createDate>['monthShort'];
     monthIndex: ReturnType<typeof createDate>['monthIndex'];
+    date: ReturnType<typeof createDate>['date'];
   }[] = Array.from({ length: 12 });
-  const date = new Date();
+
+  const d = new Date();
 
   monthesNames.forEach((_, i) => {
-    const { month, monthIndex, monthShort } = createDate({
+    const { month, monthIndex, monthShort, date } = createDate({
       locale,
-      date: new Date(date.getFullYear(), date.getMonth() + i, date.getDate())
+      date: new Date(d.getFullYear(), d.getMonth() + i, d.getDate())
     });
 
-    monthesNames[monthIndex] = { month, monthShort, monthIndex };
+    monthesNames[monthIndex] = { month, monthIndex, monthShort, date };
   });
 
   return monthesNames;

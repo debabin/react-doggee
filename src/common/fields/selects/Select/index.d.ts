@@ -1,7 +1,7 @@
 interface Option {
   value: any;
   label: string;
-  id: string;
+  id: string | number;
 }
 
 interface FilterOptionFunc {

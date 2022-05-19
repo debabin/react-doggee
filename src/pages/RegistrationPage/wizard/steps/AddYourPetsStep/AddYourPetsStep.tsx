@@ -1,72 +1,81 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { IntlText, useIntl } from '@features';
-import { useForm, useMutation } from '@utils/hooks';
-import { DateInput, Input } from '@common/fields';
+import { IntlText, useIntl, useMutation, useQuery } from '@features';
+import { useForm } from '@utils/hooks';
+import { DateInput, Input, Select } from '@common/fields';
 import { Button } from '@common/buttons';
 import { validateIsEmpty } from '@utils/helpers';
 import { useStore } from '@utils/contextes';
-import { changeUser } from '@utils/api';
+import { changeUser, requestBreeds } from '@utils/api';
 
 import { RegistrationWizardContainer } from '../../RegistrationWizardContainer/RegistrationWizardContainer';
 
 import styles from '../../../RegistrationPage.module.css';
 
 const registrationFormValidateSchema = {
-  name: (value: string) => validateIsEmpty(value),
-  registrationAddress: (value: string) => validateIsEmpty(value)
+  dogName: (value: string) => validateIsEmpty(value),
+  dogWeight: (value: string) => validateIsEmpty(value),
+  breed: (value: string) => validateIsEmpty(value)
 };
 
-interface ProfileFormValues {
-  name: string;
-  registrationAddress: string;
-  birthDate: Date;
+interface PetFormValues {
+  dogName: string;
+  dogWeight: string;
+  breed: $TSFixMe;
+  dogBirthday: Date;
 }
 
 interface FillProfileDataStepProps {
   nextStep: () => void;
+  backStep: () => void;
 }
 
-export const AddYourPetsStep: React.FC<FillProfileDataStepProps> = ({ nextStep }) => {
+export const AddYourPetsStep: React.FC<FillProfileDataStepProps> = ({ nextStep, backStep }) => {
   const navigate = useNavigate();
   const intl = useIntl();
-  const [focusedField, setFocuseField] = React.useState<'name' | 'registrationAddress' | null>(
-    null
-  );
+  // const [focusedField, setFocuseField] = React.useState<'name' | 'registrationAddress' | null>(
+  //   null
+  // );
   const { user, setStore } = useStore();
+
+  const {
+    data: breedsData,
+    isLoading: breedsLoading,
+    error
+  } = useQuery('breeds', () => requestBreeds({ params: null }), { staleTime: 4000 });
 
   const { mutationAsync: changeUserMutation, isLoading: changeUserLoading } = useMutation<
     UsersReqPatchParams,
     ApiResponse<User>
-  >((params) => changeUser({ params }));
+  >('changeUser', (params) => changeUser({ params }));
 
-  const { values, errors, setFieldValue, handleSubmit } = useForm<ProfileFormValues>({
-    intialValues: { name: '', registrationAddress: '', birthDate: new Date() },
+  const { values, errors, setFieldValue, handleSubmit } = useForm<PetFormValues>({
+    intialValues: { dogName: '', dogWeight: '', breed: null, dogBirthday: new Date() },
     validateSchema: registrationFormValidateSchema,
     validateOnChange: false,
     onSubmit: async (values) => {
       if (!user?.id) return;
 
-      const changeUserMutationParams: UsersReqPatchParams = {
-        ...values,
-        id: user.id,
-        birthDate: values.birthDate.getTime()
-      };
-      const response = await changeUserMutation(changeUserMutationParams);
+      // const changeUserMutationParams: UsersReqPatchParams = {
+      //   ...values,
+      //   id: user.id,
+      //   birthDate: values.birthDate.getTime()
+      // };
+      // const response = await changeUserMutation(changeUserMutationParams);
 
-      if (!response.success) {
-        return;
-      }
+      // if (!response.success) {
+      //   return;
+      // }
 
-      setStore({ user: response.data });
+      // setStore({ user: response.data });
       nextStep();
     }
   });
 
   return (
     <RegistrationWizardContainer
-      activeStep={1}
+      activeStep={2}
       panel={{
         // ...(focusedField && { data: <FillProfilePanelData focusedField={focusedField} /> }),
         footer: (
@@ -79,57 +88,77 @@ export const AddYourPetsStep: React.FC<FillProfileDataStepProps> = ({ nextStep }
         title: <IntlText path='page.registration.step.fillLoginDataStep.fillYourLoginData' />,
         content: (
           <form className={styles.form_container} onSubmit={handleSubmit}>
+            <button onClick={() => backStep()}>back</button>
             <div className={styles.input_container}>
               <Input
                 disabled={changeUserLoading}
-                value={values.name}
-                label={intl.translateMessage('field.input.name.label')}
-                onFocus={() => setFocuseField('name')}
+                value={values.dogName}
+                label={intl.translateMessage('field.input.dogName.label')}
+                // onFocus={() => setFocuseField('')}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  const username = event.target.value;
-                  setFieldValue('name', username);
+                  const dogName = event.target.value;
+                  setFieldValue('dogName', dogName);
                 }}
                 {...(!!errors &&
-                  !!errors.name && {
-                    isError: !!errors.name,
-                    helperText: errors.name
+                  !!errors.dogName && {
+                    isError: !!errors.dogName,
+                    helperText: errors.dogName
                   })}
               />
             </div>
+
             <div className={styles.input_container}>
-              <Input
-                disabled={changeUserLoading}
-                value={values.registrationAddress}
-                label={intl.translateMessage('field.input.registrationAddress.label')}
-                onFocus={() => setFocuseField('registrationAddress')}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  const password = event.target.value;
-                  setFieldValue('registrationAddress', password);
+              <Select
+                options={
+                  breedsData?.map((breed) => ({
+                    label: breed.name,
+                    id: breed.id,
+                    value: breed
+                  })) ?? []
+                }
+                onChange={(option) => {
+                  setFieldValue('breed', option);
                 }}
-                {...(!!errors &&
-                  !!errors.registrationAddress && {
-                    isError: !!errors.registrationAddress,
-                    helperText: errors.registrationAddress
-                  })}
+                value={values.breed}
+                label={intl.translateMessage('field.input.breed.label')}
               />
             </div>
             <div className={styles.input_container}>
               <DateInput
                 locale={intl.locale}
                 disabled={changeUserLoading}
-                value={values.birthDate}
-                label={intl.translateMessage('field.input.birthDate.label')}
-                onFocus={() => setFocuseField(null)}
+                value={values.dogBirthday}
+                label={intl.translateMessage('field.input.dogBirthday.label')}
+                // onFocus={() => setFocuseField(null)}
                 onChange={(date) => {
-                  setFieldValue('birthDate', date);
+                  setFieldValue('dogBirthday', date);
                 }}
                 {...(!!errors &&
-                  !!errors.birthDate && {
-                    isError: !!errors.birthDate,
-                    helperText: errors.birthDate
+                  !!errors.dogBirthday && {
+                    isError: !!errors.dogBirthday,
+                    helperText: errors.dogBirthday
                   })}
               />
             </div>
+
+            <div className={styles.input_container}>
+              <Input
+                disabled={changeUserLoading}
+                value={values.dogWeight}
+                label={intl.translateMessage('field.input.dogWeight.label')}
+                // onFocus={() => setFocuseField('')}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  const dogWeight = event.target.value;
+                  setFieldValue('dogWeight', dogWeight);
+                }}
+                {...(!!errors &&
+                  !!errors.dogWeight && {
+                    isError: !!errors.dogWeight,
+                    helperText: errors.dogWeight
+                  })}
+              />
+            </div>
+
             <Button type='submit' isLoading={changeUserLoading}>
               <IntlText path='button.next' />
             </Button>

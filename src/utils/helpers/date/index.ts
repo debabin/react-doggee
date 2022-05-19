@@ -6,6 +6,5 @@ export * from './getWeekNumber';
 export * from './checkIsToday';
 export * from './createYear';
 export * from './createMonth';
-export * from './checkIsLeapYear';
 export * from './getMonthNumberOfDays';
 export * from './checkDateIsEqual';

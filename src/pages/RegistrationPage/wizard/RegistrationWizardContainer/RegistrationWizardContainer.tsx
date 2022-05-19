@@ -26,10 +26,7 @@ export const RegistrationWizardContainer: React.FC<RegistrationWizardContainerPr
         <h1 className={styles.form_title}>{form.title}</h1>
         {activeStep && (
           <div className={styles.stepper_container}>
-            <Stepper
-              activeStep={activeStep}
-              stepLabels={['Your profile', 'Your pets', 'Woof!', 'Woof!']}
-            />
+            <Stepper activeStep={activeStep} stepLabels={['Your profile', 'Woof!', 'Woof!']} />
           </div>
         )}
         {form.content}

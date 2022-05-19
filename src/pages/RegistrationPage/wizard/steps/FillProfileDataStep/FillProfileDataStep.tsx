@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { IntlText, useIntl } from '@features';
-import { useForm, useMutation } from '@utils/hooks';
+import { IntlText, useIntl, useMutation } from '@features';
+import { useForm } from '@utils/hooks';
 import { DateInput, Input } from '@common/fields';
 import { Button } from '@common/buttons';
 import { validateIsEmpty } from '@utils/helpers';
@@ -35,32 +35,30 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextSt
   const [focusedField, setFocuseField] = React.useState<'name' | 'registrationAddress' | null>(
     null
   );
-  const { user, setStore } = useStore();
-
-  const { mutationAsync: changeUserMutation, isLoading: changeUserLoading } = useMutation<
-    UsersReqPatchParams,
-    ApiResponse<User>
-  >((params) => changeUser({ params }));
+  const { mutationAsync: changeUserMutation, isLoading: changeUserLoading } = useMutation(
+    'changeUser',
+    (params: UsersReqPatchParams) => changeUser({ params })
+  );
 
   const { values, errors, setFieldValue, handleSubmit } = useForm<ProfileFormValues>({
     intialValues: { name: '', registrationAddress: '', birthDate: new Date() },
-    validateSchema: registrationFormValidateSchema,
+    // validateSchema: registrationFormValidateSchema,
     validateOnChange: false,
     onSubmit: async (values) => {
-      if (!user?.id) return;
+      // if (!user?.id) return;
 
-      const changeUserMutationParams: UsersReqPatchParams = {
-        ...values,
-        id: user.id,
-        birthDate: values.birthDate.getTime()
-      };
-      const response = await changeUserMutation(changeUserMutationParams);
+      // const changeUserMutationParams: UsersReqPatchParams = {
+      //   ...values,
+      //   id: user.id,
+      //   birthDate: values.birthDate.getTime()
+      // };
+      // const response = await changeUserMutation(changeUserMutationParams);
 
-      if (!response.success) {
-        return;
-      }
+      // if (!response.success) {
+      //   return;
+      // }
 
-      setStore({ user: response.data });
+      // setStore({ user: response.data });
       nextStep();
     }
   });

@@ -8,6 +8,7 @@
 }
 
 .options_container {
+  z-index: 99;
   margin-top: 5px;
   position: absolute;
   width: 100%;

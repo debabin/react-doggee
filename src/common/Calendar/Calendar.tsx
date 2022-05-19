@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { checkDateIsEqual, checkIsToday } from '@utils/helpers';
+import { checkDateIsEqual, checkIsToday, classnames } from '@utils/helpers';
 
-import styles from './Calendar.module.css';
 import { useCalendar } from './hooks/useCalendart';
+import styles from './Calendar.module.css';
 
 interface CalendarProps {
   locale?: string;
@@ -63,58 +63,57 @@ export const Calendar: React.FC<CalendarProps> = ({
               ))}
             </div>
             <div className={styles.calendar_days_container}>
-              {state.calendarDays.map((day) => (
-                <div
-                  key={`${day.dayNumber}-${day.monthIndex}`}
-                  aria-hidden
-                  onClick={() => {
-                    functions.setSelectedDay(day);
-                    selectDate(day.date);
-                  }}
-                  className={`${styles.calendar_day_container} 
-              ${
-                checkDateIsEqual(day.date, state.selectedDay.date)
-                  ? styles.calendar_selected_item_container
-                  : ''
-              }
-              ${checkIsToday(day.date) ? styles.calendar_today_item_container : ''}
-              ${
-                day.monthIndex !== state.selectedMonth.monthIndex
-                  ? styles.calendar_additional_day_container
-                  : ''
-              }`}
-                >
-                  {day.dayNumber}
-                </div>
-              ))}
+              {state.calendarDays.map((day) => {
+                const isToday = checkIsToday(day.date);
+                const isSelectedDay = checkDateIsEqual(day.date, state.selectedDay.date);
+                const isAdditionalDay = day.monthIndex !== state.selectedMonth.monthIndex;
+
+                return (
+                  <div
+                    key={`${day.dayNumber}-${day.monthIndex}`}
+                    aria-hidden
+                    onClick={() => {
+                      functions.setSelectedDay(day);
+                      selectDate(day.date);
+                    }}
+                    className={classnames(styles.calendar_day_container, {
+                      [styles.calendar_today_item_container]: isToday,
+                      [styles.calendar_selected_item_container]: isSelectedDay,
+                      [styles.calendar_additional_day_container]: isAdditionalDay
+                    })}
+                  >
+                    {day.dayNumber}
+                  </div>
+                );
+              })}
             </div>
           </>
         )}
 
         {state.mode === 'monthes' && (
           <div className={styles.calendar_pick_items_container}>
-            {state.monthesNames.map((monthesName) => (
-              <div
-                key={monthesName.month}
-                aria-hidden
-                onClick={() => {
-                  functions.setSelectedMonthByIndex(monthesName.monthIndex);
-                  functions.setMode('days');
-                }}
-                className={`${styles.calendar_pick_item_container} ${
-                  monthesName.monthIndex === state.selectedMonth.monthIndex
-                    ? styles.calendar_selected_item_container
-                    : ''
-                }
-                  ${
-                    new Date().getMonth() === monthesName.monthIndex
-                      ? styles.calendar_today_item_container
-                      : ''
-                  }`}
-              >
-                {monthesName.monthShort}
-              </div>
-            ))}
+            {state.monthesNames.map((monthesName) => {
+              const isCurrentMonth =
+                new Date().getMonth() === monthesName.monthIndex &&
+                state.selectedYear === new Date().getFullYear();
+              const isSelectedMonth = monthesName.monthIndex === state.selectedMonth.monthIndex;
+              return (
+                <div
+                  key={monthesName.month}
+                  aria-hidden
+                  onClick={() => {
+                    functions.setSelectedMonthByIndex(monthesName.monthIndex);
+                    functions.setMode('days');
+                  }}
+                  className={classnames(styles.calendar_pick_item_container, {
+                    [styles.calendar_today_item_container]: isCurrentMonth,
+                    [styles.calendar_selected_item_container]: isSelectedMonth
+                  })}
+                >
+                  {monthesName.monthShort}
+                </div>
+              );
+            })}
           </div>
         )}
 
@@ -123,22 +122,27 @@ export const Calendar: React.FC<CalendarProps> = ({
             <div className={styles.calendar_unchoosable_year}>
               {state.selectedYearsInterval[0] - 1}
             </div>
-            {state.selectedYearsInterval.map((year) => (
-              <div
-                key={year}
-                aria-hidden
-                onClick={() => {
-                  functions.setSelectedYear(year);
-                  functions.setMode('monthes');
-                }}
-                className={`${styles.calendar_pick_item_container} ${
-                  year === state.selectedYear ? styles.calendar_selected_item_container : ''
-                }
-                  ${new Date().getFullYear() === year ? styles.calendar_today_item_container : ''}`}
-              >
-                {year}
-              </div>
-            ))}
+            {state.selectedYearsInterval.map((year) => {
+              const isCurrentYear = new Date().getFullYear() === year;
+              const isSelectedYear = year === state.selectedYear;
+
+              return (
+                <div
+                  key={year}
+                  aria-hidden
+                  onClick={() => {
+                    functions.setSelectedYear(year);
+                    functions.setMode('monthes');
+                  }}
+                  className={classnames(styles.calendar_pick_item_container, {
+                    [styles.calendar_today_item_container]: isCurrentYear,
+                    [styles.calendar_selected_item_container]: isSelectedYear
+                  })}
+                >
+                  {year}
+                </div>
+              );
+            })}
             <div className={styles.calendar_unchoosable_year}>
               {state.selectedYearsInterval[state.selectedYearsInterval.length - 1] + 1}
             </div>

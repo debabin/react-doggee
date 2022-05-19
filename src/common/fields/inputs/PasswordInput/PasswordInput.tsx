@@ -1,4 +1,5 @@
 import React from 'react';
+import { classnames } from '@utils/helpers';
 
 import type { InputProps } from '../Input/Input';
 import { Input } from '../Input/Input';
@@ -9,14 +10,16 @@ type PasswordInputProps = InputProps;
 export const PasswordInput: React.FC<PasswordInputProps> = ({ value, disabled, ...props }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const showPasswordToggle = !!value;
-  const iconClassName = `${styles.password_icon} ${
-    showPassword ? styles.password_hide_icon : styles.password_show_icon
-  }`;
 
   const EyeIcon = React.useCallback(
     () => (
       <div aria-hidden role='button' onClick={() => !disabled && setShowPassword(!showPassword)}>
-        <div className={iconClassName} />
+        <div
+          className={classnames(styles.password_icon, {
+            [styles.password_hide_icon]: !showPassword,
+            [styles.password_show_icon]: showPassword
+          })}
+        />
       </div>
     ),
     [showPassword, disabled]

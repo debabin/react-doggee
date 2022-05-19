@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { api, createRegistration } from '@utils/api';
-import { IntlText, useIntl } from '@features';
-import { useForm, useMutation } from '@utils/hooks';
+import { createRegistration } from '@utils/api';
+import { IntlText, useIntl, useMutation } from '@features';
+import { useForm } from '@utils/hooks';
 import { Input, PasswordInput } from '@common/fields';
 import { Button } from '@common/buttons';
 import { ROUTES } from '@utils/constants';
@@ -35,10 +35,10 @@ export const FillLoginDataStep: React.FC<FillLoginDataStepProps> = ({ nextStep }
   const intl = useIntl();
   const { setStore } = useStore();
 
-  const { mutationAsync: registrationMutation, isLoading: registrationLoading } = useMutation<
-    RegistrationReqPostParams,
-    ApiResponse<User>
-  >((params) => createRegistration({ params }));
+  const { mutationAsync: registrationMutation, isLoading: registrationLoading } = useMutation(
+    'createRegistration',
+    (params: RegistrationReqPostParams) => createRegistration({ params })
+  );
 
   const { values, errors, setFieldValue, handleSubmit } = useForm<RegistrationFormValues>({
     intialValues: { username: '', password: '', passwordAgain: '' },

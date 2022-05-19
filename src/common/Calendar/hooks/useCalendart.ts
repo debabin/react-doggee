@@ -6,7 +6,7 @@ import {
   getWeekDaysNames,
   getMonthNumberOfDays,
   createDate
-} from '@utils/helpers';
+} from '../../../utils/helpers/date';
 
 interface UseCalendarParams {
   locale?: string;
@@ -42,8 +42,8 @@ export const useCalendar = ({
   const days = React.useMemo(() => selectedMonth.createMonthDays(), [selectedMonth, selectedYear]);
 
   const calendarDays = React.useMemo(() => {
-    const monthNumberOfDays = getMonthNumberOfDays(selectedMonth.monthNumber, selectedYear);
-    console.log('monthNumberOfDays', monthNumberOfDays);
+    const monthNumberOfDays = getMonthNumberOfDays(selectedMonth.monthIndex, selectedYear);
+
     const prevMonthDays = createMonth({
       date: new Date(selectedYear, selectedMonth.monthIndex - 1),
       locale
@@ -56,7 +56,7 @@ export const useCalendar = ({
 
     const firstDay = days[0];
     const lastDay = days[monthNumberOfDays - 1];
-    console.log('lastDay', days);
+
     const shiftIndex = firstWeekDayNumber - 1;
     const numberOfPrevDays =
       firstDay.dayNumberInWeek - 1 - shiftIndex < 0
@@ -98,10 +98,14 @@ export const useCalendar = ({
     }
 
     if (mode === 'monthes' && direction === 'left') {
+      const year = selectedYear - 1;
+      if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
       return setSelectedYear(selectedYear - 1);
     }
 
     if (mode === 'monthes' && direction === 'right') {
+      const year = selectedYear + 1;
+      if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
       return setSelectedYear(selectedYear + 1);
     }
 
@@ -109,13 +113,17 @@ export const useCalendar = ({
       const monthIndex =
         direction === 'left' ? selectedMonth.monthIndex - 1 : selectedMonth.monthIndex + 1;
       if (monthIndex === -1) {
-        setSelectedYear(selectedYear - 1);
-        return setSelectedMonth(createMonth({ date: new Date(selectedYear, 11), locale }));
+        const year = selectedYear - 1;
+        setSelectedYear(year);
+        if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+        return setSelectedMonth(createMonth({ date: new Date(selectedYear - 1, 11), locale }));
       }
 
       if (monthIndex === 12) {
-        setSelectedYear(selectedYear + 1);
-        return setSelectedMonth(createMonth({ date: new Date(selectedYear, 0), locale }));
+        const year = selectedYear + 1;
+        setSelectedYear(year);
+        if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
+        return setSelectedMonth(createMonth({ date: new Date(year, 0), locale }));
       }
 
       setSelectedMonth(createMonth({ date: new Date(selectedYear, monthIndex), locale }));

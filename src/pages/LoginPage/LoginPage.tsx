@@ -1,14 +1,13 @@
-/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { api } from '@utils/api';
+import { createAuth } from '@utils/api';
 import { Input, PasswordInput, CheckBox } from '@common/fields';
 import { Button } from '@common/buttons';
 import { setCookie, validateIsEmpty } from '@utils/helpers';
-import { useForm, useMutation } from '@utils/hooks';
+import { useForm } from '@utils/hooks';
 import { COOKIE_NAMES, ROUTES } from '@utils/constants';
-import { IntlText, useIntl } from '@features';
+import { IntlText, useIntl, useMutation } from '@features';
 
 import styles from './LoginPage.module.css';
 
@@ -26,10 +25,10 @@ interface LoginFormValues {
 export const LoginPage = () => {
   const navigate = useNavigate();
   const intl = useIntl();
-  const { mutationAsync: authMutation, isLoading: authLoading } = useMutation<
-    LoginFormValues,
-    ApiResponse<User[]>
-  >((values) => api.post('auth', values));
+  const { mutationAsync: authMutation, isLoading: authLoading } = useMutation(
+    'auth',
+    (params: AuthReqPostParams) => createAuth({ params })
+  );
 
   const { values, errors, setFieldValue, handleSubmit } = useForm<LoginFormValues>({
     intialValues: { username: '', password: '', isNotMyDevice: false },

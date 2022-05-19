@@ -5,7 +5,7 @@ import { AddYourPetsStep, FillLoginDataStep, FillProfileDataStep } from './wizar
 export const RegistrationPage: React.FC = () => {
   const [step, setStep] = React.useState<
     'fillLoginData' | 'fillProfileData' | 'addPetsData' | 'check'
-  >('fillProfileData');
+  >('addPetsData');
 
   return (
     <>
@@ -15,7 +15,12 @@ export const RegistrationPage: React.FC = () => {
       {step === 'fillProfileData' && (
         <FillProfileDataStep nextStep={() => setStep('addPetsData')} />
       )}
-      {step === 'addPetsData' && <AddYourPetsStep nextStep={() => setStep('check')} />}
+      {step === 'addPetsData' && (
+        <AddYourPetsStep
+          nextStep={() => setStep('check')}
+          backStep={() => setStep('fillProfileData')}
+        />
+      )}
     </>
   );
 };
