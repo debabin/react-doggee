@@ -14,6 +14,8 @@
   --transition: all 0.3s;
 
   /* images */
+  --images-cross: url('../images/cross.svg');
+  --images-plus-additional: url('../images/plus_additional.svg');
   --images-arrow-additional: url('../images/arrow_additional.svg');
   --images-checkmark-additional: url('../images/checkmark_additional.svg');
   --images-checkmark: url('../images/checkmark.svg');

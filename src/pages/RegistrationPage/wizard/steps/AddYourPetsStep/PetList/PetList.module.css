@@ -1,0 +1,47 @@
+.pets_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+}
+
+.title {
+  color: var(--color-text);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.line {
+  height: 1px;
+  background-color: var(--background-color-field-focused);
+}
+
+.add_pet {
+  font-weight: 400;
+  font-size: 12px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+}
+
+.add_pet::before {
+  position: absolute;
+  left: 60px;
+  content: '';
+  width: 15px;
+  height: 14px;
+  background-size: 15px 14px;
+  background-image: var(--images-plus-additional);
+}
+
+.pets_list_container {
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow-y: scroll;
+  gap: 10px 0px;
+}
+
+.pets_list_container::-webkit-scrollbar {
+  display: none;
+}

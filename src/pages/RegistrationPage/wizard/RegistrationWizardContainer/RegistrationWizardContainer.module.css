@@ -82,3 +82,13 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+.back_container {
+  color: var(--color-additional);
+  font-weight: var(--font-weight600);
+  font-size: 12px;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 15px;
+  cursor: pointer;
+}

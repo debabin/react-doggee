@@ -112,3 +112,12 @@
   outline: none;
   caret-color: var(--color-text);
 }
+
+.no_option_container {
+  padding: 6.5px 20px;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: inherit;
+  color: var(--color-placeholder);
+  text-align: center;
+}

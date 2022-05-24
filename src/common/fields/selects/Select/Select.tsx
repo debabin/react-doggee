@@ -12,6 +12,7 @@ export interface SelectProps extends Omit<FieldProps, 'value' | 'onChange'> {
   onChange: (option: Option) => void;
   filterOption?: FilterOptionFunc;
   components?: {
+    NoOptionsMessage?: React.ComponentType;
     Option?: React.ComponentType<{ option: Option }>;
     SelectedValue?: React.ComponentType<{ option: Option }>;
   };
@@ -104,15 +105,16 @@ export const Select: React.FC<SelectProps> = ({
             value={state.inputValue}
             onChange={functions.searchInputHandler}
           />
-          {showOption && (
-            <div className={selectStyles.option_label}>
-              {components?.SelectedValue ? (
-                <components.SelectedValue option={value} />
-              ) : (
-                value.label
-              )}
-            </div>
-          )}
+          {state.showOptions ||
+            (showOption && (
+              <div className={selectStyles.option_label}>
+                {components?.SelectedValue ? (
+                  <components.SelectedValue option={value} />
+                ) : (
+                  value.label
+                )}
+              </div>
+            ))}
           <label
             htmlFor={props.id}
             className={classnames(selectStyles.input_label, {
@@ -126,7 +128,11 @@ export const Select: React.FC<SelectProps> = ({
       {state.showOptions && (
         <div className={selectStyles.options_container}>
           <ul ref={refs.ulRef} className={selectStyles.select_options_container}>
-            {!state.filteredOptions.length && <div>no options</div>}
+            {!state.filteredOptions.length && (
+              <div className={classnames(selectStyles.no_option_container)}>
+                {components?.NoOptionsMessage ? <components.NoOptionsMessage /> : 'no option'}
+              </div>
+            )}
             {optionItems}
           </ul>
         </div>

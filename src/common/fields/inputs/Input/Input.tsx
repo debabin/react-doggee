@@ -40,7 +40,9 @@ export const Input: React.FC<InputProps> = ({
             className={styles.input}
             onChange={(e) => {
               if (!!onChange && !e.target.value) return onChange(e);
-              if (!onChange || (availableChars && !availableChars.test(e.target.value))) return;
+              if (!onChange || (availableChars && !availableChars.test(e.target.value)))
+                // @ts-ignore
+                return onChange({ ...e, target: { ...e.target, value: props.value } });
               onChange(e);
             }}
             {...props}

@@ -6,11 +6,17 @@
   "field.input.password.label": "Password",
   "field.input.birthDate.label": "When's your birthday?",
   "field.input.passwordAgain.label": "Password again",
+  "field.input.dogName.label": "Dog's name",
+  "field.input.breed.label": "Dog’s breed",
+  "field.input.dogBirthday.label": "Dog’s birthday",
+  "field.input.dogWeight.label": "Dog's weight",
   "field.checkbox.isNotMyDevice.label": "Is not my device",
+  "field.select.noOption": "no option",
 
   "button.signIn": "Sign in",
   "button.done": "Done",
   "button.next": "Next",
+  "button.goNextStep": "Go to the previous step",
 
   "page.login.createNewAccont": "Create new account",
   "page.registration.skipAndFillInLater": "Skip and fill in later",

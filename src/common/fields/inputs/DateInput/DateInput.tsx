@@ -20,7 +20,7 @@ const getDateStringFormat = (value: string) => {
   const day = date.substring(0, 2);
   const month = date.substring(2, 4);
   const year = date.substring(4, 8);
-  return { value: `${day}${month && '.'}${month}${year && '.'}${year}`, day, month, year };
+  return { day, month, year };
 };
 
 export const DateInput: React.FC<DateInputProps> = ({
@@ -29,8 +29,8 @@ export const DateInput: React.FC<DateInputProps> = ({
   locale = 'default',
   ...props
 }) => {
+  const inputValue = formatDate(value, 'DD.MM.YYYY');
   const calendarContainerRef = React.useRef<HTMLDivElement>(null);
-  const [inputValue, setInputValue] = React.useState(formatDate(value, 'DD.MM.YYYY'));
   const [showCalendar, setShowCalendar] = React.useState(false);
 
   useOnClickOutside(calendarContainerRef, () => setShowCalendar(false));
@@ -38,7 +38,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   const CalendarIcon = React.useCallback(
     () => (
       <div aria-hidden role='button' onClick={() => !disabled && setShowCalendar(!showCalendar)}>
-        <div className={styles.date_icon} />
+        <div className={styles.calendar_icon} />
       </div>
     ),
     [showCalendar, disabled]
@@ -65,13 +65,12 @@ export const DateInput: React.FC<DateInputProps> = ({
             (event.target.value.replaceAll('.', '').length % 3 === 0 ||
               event.target.value.replaceAll('.', '').length % 5 === 0);
 
-          const { value, year, month, day } = getDateStringFormat(
+          const { year, month, day } = getDateStringFormat(
             isDeletedCharIsDot
               ? event.target.value.slice(0, caretStart - 1) + event.target.value.slice(caretStart)
               : event.target.value
           );
 
-          setInputValue(value);
           props.onChange(new Date(+year, +month - 1, +day));
 
           const updateCaret = (caretStart: number) =>
@@ -93,14 +92,7 @@ export const DateInput: React.FC<DateInputProps> = ({
       />
       {showCalendar && (
         <div ref={calendarContainerRef} className={styles.calendar_container}>
-          <Calendar
-            locale={locale}
-            selectDate={(date) => {
-              props.onChange(date);
-              setInputValue(formatDate(date, 'DD.MM.YYYY'));
-            }}
-            selectedDate={value}
-          />
+          <Calendar locale={locale} selectDate={props.onChange} selectedDate={value} />
         </div>
       )}
     </div>

@@ -46,9 +46,6 @@ export const LoginPage = () => {
     }
   });
 
-  // const { data, isLoading } = useQuery<User[]>(() => api.get('users'));
-  // const { query, isLoading } = useQueryLazy<User[]>(() => api.get('users'));
-
   return (
     <div className={styles.page}>
       <div className={styles.container}>

@@ -9,7 +9,7 @@ interface StoreProviderProps extends Omit<StoreContextProps, 'setStore'> {
 
 export const StoreProvider: React.FC<StoreProviderProps> = ({ user, children }) => {
   const [store, setStore] = React.useState<Store>({ user });
-  const value = React.useMemo(() => ({ ...store, setStore }), []);
+  const value = React.useMemo(() => ({ ...store, setStore }), [store]);
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 };

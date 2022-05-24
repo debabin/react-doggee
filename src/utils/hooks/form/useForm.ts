@@ -58,6 +58,13 @@ export const useForm = <Values extends Object>({
     return !!onSubmit && onSubmit(values);
   };
 
+  const resetForm = (values?: Values) => {
+    if (values) {
+      setValues(values);
+    }
+    setValues(intialValues);
+  };
+
   return {
     values,
     errors,
@@ -65,6 +72,7 @@ export const useForm = <Values extends Object>({
     setFieldsError,
     handleSubmit,
     isSubminting,
-    setIsSubmiting
+    setIsSubmiting,
+    resetForm
   };
 };

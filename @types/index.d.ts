@@ -30,3 +30,11 @@ interface Breed {
     metric: string;
   };
 }
+
+interface Pet {
+  id: number;
+  dogName: string;
+  dogWeight: string;
+  breed: $TSFixMe;
+  dogBirthday: Date;
+}

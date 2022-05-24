@@ -26,10 +26,14 @@ interface ProfileFormValues {
 }
 
 interface FillProfileDataStepProps {
-  nextStep: () => void;
+  initialData: ProfileFormValues;
+  nextStep: (fillProfileData: ProfileFormValues) => void;
 }
 
-export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextStep }) => {
+export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
+  initialData,
+  nextStep
+}) => {
   const navigate = useNavigate();
   const intl = useIntl();
   const [focusedField, setFocuseField] = React.useState<'name' | 'registrationAddress' | null>(
@@ -41,7 +45,7 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextSt
   );
 
   const { values, errors, setFieldValue, handleSubmit } = useForm<ProfileFormValues>({
-    intialValues: { name: '', registrationAddress: '', birthDate: new Date() },
+    intialValues: initialData,
     // validateSchema: registrationFormValidateSchema,
     validateOnChange: false,
     onSubmit: async (values) => {
@@ -59,7 +63,7 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextSt
       // }
 
       // setStore({ user: response.data });
-      nextStep();
+      nextStep(values);
     }
   });
 
@@ -69,7 +73,7 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({ nextSt
       panel={{
         ...(focusedField && { data: <FillProfilePanelData focusedField={focusedField} /> }),
         footer: (
-          <div role='link' tabIndex={0} aria-hidden onClick={() => nextStep()}>
+          <div role='link' tabIndex={0} aria-hidden onClick={() => nextStep(values)}>
             <IntlText path='page.registration.skipAndFillInLater' />
           </div>
         )

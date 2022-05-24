@@ -7,6 +7,7 @@ interface RegistrationWizardContainerProps {
   activeStep?: number;
   form: {
     title: React.ReactNode;
+    backButton?: React.ReactNode;
     content: React.ReactNode;
   };
   panel: {
@@ -29,6 +30,7 @@ export const RegistrationWizardContainer: React.FC<RegistrationWizardContainerPr
             <Stepper activeStep={activeStep} stepLabels={['Your profile', 'Woof!', 'Woof!']} />
           </div>
         )}
+        {form.backButton && <div className={styles.back_container}>{form.backButton}</div>}
         {form.content}
       </div>
       <div className={styles.panel_container}>

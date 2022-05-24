@@ -62,6 +62,6 @@ export const ApiClientProvider: React.FC<CacheProviderProps> = ({
     [apiClient.cache]
   );
 
-  console.log('cache', apiClient.cache);
+  // console.log('cache', apiClient.cache);
   return <ApiClientContext.Provider value={value}>{children}</ApiClientContext.Provider>;
 };

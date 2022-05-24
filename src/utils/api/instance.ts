@@ -80,7 +80,7 @@ export class API {
       headers: { ...(!!options?.headers && options.headers), ...this.headers }
     };
 
-    const config = this.runRequestInterceptors(defaultConfig);
+    const config = this.runRequestInterceptors({});
 
     const response = await fetch(this.baseUrl + endpoint, config);
 
