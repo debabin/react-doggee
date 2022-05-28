@@ -4,8 +4,8 @@ import { MAX_LENGHT } from '@utils/constants';
 import { formatDate } from '@utils/helpers';
 import { useOnClickOutside } from '@utils/hooks';
 
-import { Input } from '../Input/Input';
 import { Calendar } from '../../../Calendar/Calendar';
+import { Input } from '../Input/Input';
 
 import styles from './DateInput.module.css';
 

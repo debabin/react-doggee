@@ -36,5 +36,5 @@ interface Pet {
   dogName: string;
   dogWeight: string;
   breed: $TSFixMe;
-  dogBirthday: Date;
+  dogBirthday: number;
 }

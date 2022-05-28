@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { classnames } from '@utils/helpers';
+
 import styles from './Stepper.module.css';
 
 interface StepperProps {
@@ -16,7 +18,7 @@ export const Stepper: React.FC<StepperProps> = ({ activeStep, stepLabels }) => (
         const isActiveStep = stepNumber <= activeStep;
 
         return (
-          <div key={index} className={styles.step_container}>
+          <div key={stepNumber} className={styles.step_container}>
             <div
               className={classnames(styles.step_index_container, {
                 [styles.active_step_index_container]: isActiveStep
@@ -36,11 +38,12 @@ export const Stepper: React.FC<StepperProps> = ({ activeStep, stepLabels }) => (
       })
       .reduce((array: JSX.Element[], element: JSX.Element, index) => {
         const stepNumber = index + 1;
-        const isActiveStep = stepNumber === activeStep;
+        const isActiveStep = stepNumber <= activeStep;
 
         return [
           ...array,
           <div
+            key={`line-${stepNumber}`}
             className={classnames(styles.step_separator, {
               [styles.active_step_separator]: isActiveStep
             })}

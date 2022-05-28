@@ -20,6 +20,8 @@
   --images-checkmark-additional: url('../images/checkmark_additional.svg');
   --images-checkmark: url('../images/checkmark.svg');
   --images-dogge-background-light: url('../theme/light/dogge_background.svg');
+  --images-warning: url('../images/warning.svg');
+  --images-pen-additional: url('../images/pen_additional.svg');
 
   /* fonts */
   --font-family-baloo: 'Baloo';

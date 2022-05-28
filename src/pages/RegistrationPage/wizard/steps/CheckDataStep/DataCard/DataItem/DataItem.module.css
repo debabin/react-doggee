@@ -1,0 +1,22 @@
+.data_body_item {
+  display: flex;
+  font-size: 14px;
+  width: 100%;
+}
+
+.data_body_item_label {
+  color: var(--color-text);
+  font-weight: 600;
+  width: 30%;
+}
+
+.data_body_item_content {
+  color: var(--color-text);
+  font-weight: 400;
+  width: 70%;
+}
+
+.line {
+  height: 1px;
+  background-color: var(--background-color-field-focused);
+}

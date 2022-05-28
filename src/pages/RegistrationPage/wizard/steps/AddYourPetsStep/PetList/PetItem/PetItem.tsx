@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { classnames, getRandomAnimal } from '@utils/helpers';
+
 import styles from './PetItem.module.css';
 
 interface PetItemProps {

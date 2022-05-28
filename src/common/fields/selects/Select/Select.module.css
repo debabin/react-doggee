@@ -53,7 +53,8 @@
   background-color: var(--color-additional7);
 }
 
-.date_input_container {
+.select_container {
+  width: 100%;
   position: relative;
 }
 

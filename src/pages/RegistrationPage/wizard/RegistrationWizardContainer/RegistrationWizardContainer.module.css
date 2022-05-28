@@ -19,7 +19,10 @@
 .stepper_container {
   width: 100%;
   padding: 29px;
-  margin-bottom: 40px;
+}
+
+.content_container {
+  width: 100%;
 }
 
 .form_container {
@@ -35,7 +38,6 @@
   color: var(--color-accent);
   font-weight: var(--font-weight600);
   font-size: 20px;
-  margin-bottom: 72.5px;
 }
 
 .panel_container {
@@ -89,6 +91,5 @@
   font-size: 12px;
   text-align: left;
   width: 100%;
-  margin-bottom: 15px;
   cursor: pointer;
 }

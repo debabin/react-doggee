@@ -3,6 +3,7 @@
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "baseUrl": "./src",
     "paths": {
+      "@common": ["./common"],
       "@common/*": ["./common/*"],
       "@pages": ["./pages"],
       "@static/*": ["./static/*"],

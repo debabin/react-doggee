@@ -1,10 +1,11 @@
 import React from 'react';
+
 import { classnames } from '@utils/helpers';
+
+import { useSelect } from './hooks/useSelect';
 
 import inputStyles from '../../inputs/input.module.css';
 import selectStyles from './Select.module.css';
-
-import { useSelect } from './hooks/useSelect';
 
 export interface SelectProps extends Omit<FieldProps, 'value' | 'onChange'> {
   options: Option[];
@@ -78,7 +79,7 @@ export const Select: React.FC<SelectProps> = ({
   return (
     <div
       aria-hidden
-      className={selectStyles.date_input_container}
+      className={selectStyles.select_container}
       ref={refs.selectRef}
       onKeyDown={functions.onSelectKeyDown}
     >

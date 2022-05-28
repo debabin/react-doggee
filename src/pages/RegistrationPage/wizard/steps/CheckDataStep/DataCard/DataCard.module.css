@@ -1,0 +1,40 @@
+.data_container {
+  background-color: var(--background-color-field);
+  padding: 15px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.data_header {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.data_header_title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-additional);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.data_header_edit_icon {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  background-size: 12px;
+  background-image: var(--images-pen-additional);
+}
+
+.data_body {
+  gap: 9px;
+  display: flex;
+  flex-direction: column;
+}
+
+.line {
+  height: 1px;
+  background-color: var(--background-color-field-focused);
+}

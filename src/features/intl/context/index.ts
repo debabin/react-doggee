@@ -1,2 +1,2 @@
-export * from './IntlProvider';
 export * from './IntlContext';
+export * from './IntlProvider';

@@ -1,19 +1,26 @@
 import React from 'react';
 
-import { AddYourPetsStep, FillLoginDataStep, FillProfileDataStep } from './wizard/steps';
+import {
+  AddYourPetsStep,
+  CheckDataStep,
+  FillLoginDataStep,
+  FillProfileDataStep
+} from './wizard/steps';
 
 export const RegistrationPage: React.FC = () => {
   const [registrationData, setRegistrationData] = React.useState<{
-    fillProfileData: $TSFixMe;
-    addPetsData: $TSFixMe;
+    fillProfileData: FillProfileData;
+    addPetsData: AddPetsData;
   }>({
-    fillProfileData: { name: '', registrationAddress: '', birthDate: new Date() },
-    addPetsData: [{ id: 1, dogName: '', dogWeight: '', breed: null, dogBirthday: new Date() }]
+    fillProfileData: { name: '', registrationAddress: '', birthDate: new Date().getTime() },
+    addPetsData: [
+      { id: 1, dogName: '', dogWeight: '', breed: null, dogBirthday: new Date().getTime() }
+    ]
   });
 
   const [step, setStep] = React.useState<
-    'fillLoginData' | 'fillProfileData' | 'addPetsData' | 'check'
-  >('addPetsData');
+    'fillLoginData' | 'fillProfileData' | 'addPetsData' | 'checkData'
+  >('fillLoginData');
 
   console.log('step', step);
   console.log('registrationData', registrationData);
@@ -35,14 +42,21 @@ export const RegistrationPage: React.FC = () => {
       {step === 'addPetsData' && (
         <AddYourPetsStep
           initialData={registrationData.addPetsData}
-          nextStep={(addPetsData: $TSFixMe) => {
+          nextStep={(addPetsData) => {
             setRegistrationData({ ...registrationData, addPetsData });
-            setStep('check');
+            setStep('checkData');
           }}
-          backStep={(addPetsData: $TSFixMe) => {
+          backStep={(addPetsData) => {
             setRegistrationData({ ...registrationData, addPetsData });
             setStep('fillProfileData');
           }}
+        />
+      )}
+      {step === 'checkData' && (
+        <CheckDataStep
+          initialData={registrationData}
+          chooseStep={(step: 'fillProfileData' | 'addPetsData') => setStep(step)}
+          backStep={() => setStep('addPetsData')}
         />
       )}
     </>

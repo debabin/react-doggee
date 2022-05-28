@@ -45,3 +45,29 @@
 .pets_list_container::-webkit-scrollbar {
   display: none;
 }
+
+.pet_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* todo */
+.pet_icon_container {
+  width: 18px;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.pet_correct_icon {
+  width: 17px;
+  height: 13px;
+  background-image: var(--images-checkmark-additional);
+}
+
+.pet_uncorrect_icon {
+  width: 18px;
+  height: 17px;
+  background-image: var(--images-warning);
+}

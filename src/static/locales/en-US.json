@@ -20,14 +20,27 @@
 
   "page.login.createNewAccont": "Create new account",
   "page.registration.skipAndFillInLater": "Skip and fill in later",
-  "page.registration.step.fillLoginDataStep.fillYourLoginData": "Fill your login data",
+  "page.registration.step.fillLoginDataStep.title": "Fill your login data",
   "page.registration.step.fillLoginDataStep.iAlreadyHaveAnAccount": "I already have an account",
   "page.registration.step.fillLoginDataStep.passwordRules.containNumbers": "contain <rule>numbers</rule>",
   "page.registration.step.fillLoginDataStep.passwordRules.containUppercase": "contain <rule>uppercase</rule> letter",
   "page.registration.step.fillLoginDataStep.passwordRules.containLowerCase": "contain <rule>lowercase</rule> letter",
   "page.registration.step.fillLoginDataStep.passwordRules.contain8Characters": "contain at least <rule>8</rule> characters",
   "page.registration.step.fillLoginDataStep.passwordRules.mustMatch": "Password must <rule>match</rule>",
+
+  "page.registration.step.fillProfileData.label": "Your profile",
+  "page.registration.step.fillProfileData.title": "Let's fill your profile!",
   "page.registration.step.fillProfileData.hint.registrationAddressHint": "We want to know your address so that we can suggest good places for walks with your pet, the nearest veterinary clinics, etc.",
+
+  "page.registration.step.addYourPetsStep.label": "Your pets",
+  "page.registration.step.addYourPetsStep.title": "Let's add your pets",
+  "page.registration.step.addYourPetsStep.yourPets": "Your pets",
+  "page.registration.step.addYourPetsStep.addAnotherPet": "Add another pet",
+
+  "page.registration.step.checkDataStep.label": "Woof!",
+  "page.registration.step.checkDataStep.title": "Check your data",
+  "page.registration.step.checkDataStep.card.profile": "Profile",
+  "page.registration.step.checkDataStep.card.pets": "Pets",
 
   "validations.required": "field required"
 }

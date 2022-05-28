@@ -1,11 +1,10 @@
 import React from 'react';
 
-import {
-  validateContainNumbers,
-  validateContainUpperCase,
-  validateContainLowerCase
-} from '@utils/helpers';
 import { MIN_LENGHT } from '@utils/constants';
+import {
+  validateContainLowerCase,
+  validateContainNumbers,
+  validateContainUpperCase} from '@utils/helpers';
 
 import { PasswordRule } from './PasswordRule/PasswordRule';
 

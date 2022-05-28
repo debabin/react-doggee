@@ -48,7 +48,7 @@ export class API {
         });
       } catch (e) {
         if (onFailure) {
-          onFailure(e as Error);
+          body = onFailure(e as Error);
         } else throw new Error((e as Error).message);
       }
     });
@@ -80,13 +80,20 @@ export class API {
       headers: { ...(!!options?.headers && options.headers), ...this.headers }
     };
 
-    const config = this.runRequestInterceptors({});
+    const config = this.runRequestInterceptors(defaultConfig);
 
-    const response = await fetch(this.baseUrl + endpoint, config);
+    const response = await fetch(this.baseUrl + endpoint, config).catch((e) => ({
+      ok: false,
+      statusText: e.message,
+      headers: config.headers,
+      redirected: false,
+      status: 503,
+      type: 'error',
+      url: this.baseUrl + endpoint,
+      json: () => null
+    }));
 
-    if (!response.ok) throw new Error(response.statusText);
-
-    return this.runResponseInterceptors<T>(response);
+    return this.runResponseInterceptors<T>(response as Response);
   }
 
   get<T>(endpoint: string, options: Omit<RequestInit, 'body'> = {}) {

@@ -1,5 +1,8 @@
-import { Stepper } from '@common/wizard';
 import React from 'react';
+
+import { Spacing } from '@common';
+import { Stepper } from '@common/wizard';
+import { useIntl } from '@features';
 
 import styles from './RegistrationWizardContainer.module.css';
 
@@ -11,7 +14,7 @@ interface RegistrationWizardContainerProps {
     content: React.ReactNode;
   };
   panel: {
-    footer: React.ReactNode;
+    footer?: React.ReactNode;
     data?: React.ReactNode;
   };
 }
@@ -20,25 +23,44 @@ export const RegistrationWizardContainer: React.FC<RegistrationWizardContainerPr
   activeStep,
   form,
   panel
-}) => (
-  <div className={styles.page}>
-    <div className={styles.container}>
-      <div className={styles.form_container}>
-        <h1 className={styles.form_title}>{form.title}</h1>
-        {activeStep && (
-          <div className={styles.stepper_container}>
-            <Stepper activeStep={activeStep} stepLabels={['Your profile', 'Woof!', 'Woof!']} />
-          </div>
-        )}
-        {form.backButton && <div className={styles.back_container}>{form.backButton}</div>}
-        {form.content}
-      </div>
-      <div className={styles.panel_container}>
-        <div className={styles.panel_header}>DOGGEE</div>
-        {panel.data && <div className={styles.panel_data}>{panel.data}</div>}
+}) => {
+  const intl = useIntl();
 
-        <div className={styles.panel_footer}>{panel.footer}</div>
+  return (
+    <div className={styles.page}>
+      <div className={styles.container}>
+        <div className={styles.form_container}>
+          <h1 className={styles.form_title}>{form.title}</h1>
+          {activeStep && (
+            <div className={styles.stepper_container}>
+              <Stepper
+                activeStep={activeStep}
+                stepLabels={[
+                  intl.translateMessage('page.registration.step.fillProfileData.label'),
+                  intl.translateMessage('page.registration.step.addYourPetsStep.label'),
+                  intl.translateMessage('page.registration.step.checkDataStep.label')
+                ]}
+              />
+            </div>
+          )}
+          <Spacing spacing={40} />
+          <div className={styles.content_container}>
+            {form.backButton && (
+              <>
+                <div className={styles.back_container}>{form.backButton}</div>
+                <Spacing spacing={15} />
+              </>
+            )}
+            {form.content}
+          </div>
+        </div>
+        <div className={styles.panel_container}>
+          <div className={styles.panel_header}>DOGGEE</div>
+          {panel.data && <div className={styles.panel_data}>{panel.data}</div>}
+
+          <div className={styles.panel_footer}>{panel.footer}</div>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};

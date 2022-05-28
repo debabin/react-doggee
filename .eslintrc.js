@@ -19,7 +19,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'simple-import-sort'],
   rules: {
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/no-unused-vars': 1,
@@ -38,6 +38,28 @@ module.exports = {
     'react/no-unstable-nested-components': [2, { allowAsProps: true }],
     'react/no-array-index-key': 0,
     'class-methods-use-this': 0,
-    'no-param-reassign': 0
+    'no-param-reassign': 0,
+
+    'import/order': 0,
+    'simple-import-sort/exports': 2,
+    'simple-import-sort/imports': [
+      2,
+      {
+        groups: [
+          // External packages.
+          ['^'],
+          // Internal packages.
+          ['^@'],
+          // Side effect imports.
+          ['^\\u0000'],
+          // Parent imports.
+          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+          // Other relative imports.
+          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+          // Style imports.
+          ['^.+\\.s?css$']
+        ]
+      }
+    ]
   }
 };

@@ -1,14 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Navigate,Route, Routes } from 'react-router-dom';
 
-import { LoginPage, NotFoundPage, RegistrationPage } from '@pages';
-import { deleteCookie, getCookie, getLocale, getMessages } from '@utils/helpers';
 import { IntlProvider, Theme, ThemeProvider } from '@features';
+import { ApiClientProvider } from '@features/api';
+import { LoginPage, NotFoundPage, RegistrationPage } from '@pages';
 import { COOKIE_NAMES } from '@utils/constants';
 import { StoreProvider } from '@utils/contextes';
+import { deleteCookie, getCookie, getLocale, getMessages } from '@utils/helpers';
 
 import './App.css';
-import { ApiClientProvider } from '@features/api';
 
 const AuthRoutes = () => (
   <Routes>

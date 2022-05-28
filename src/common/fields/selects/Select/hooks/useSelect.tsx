@@ -1,5 +1,6 @@
-import { useOnClickOutside } from '@utils/hooks';
 import React from 'react';
+
+import { useOnClickOutside } from '@utils/hooks';
 
 interface UseSelectParams {
   options: Option[];

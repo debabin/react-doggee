@@ -1,12 +1,11 @@
 import React from 'react';
 
 import {
-  getMonthesNames,
+  createDate,
   createMonth,
-  getWeekDaysNames,
+  getMonthesNames,
   getMonthNumberOfDays,
-  createDate
-} from '../../../utils/helpers/date';
+  getWeekDaysNames} from '../../../utils/helpers/date';
 
 interface UseCalendarParams {
   locale?: string;

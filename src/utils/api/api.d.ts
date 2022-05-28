@@ -24,7 +24,7 @@ interface InterceptorResponseResult {
 
 type SuccessResponseFun = (res: InterceptorResponseResult) => InterceptorResponseResult['body'];
 type SuccessRequestFun = (options: RequestInit) => RequestInit;
-type FailureFun = (e: Error) => void;
+type FailureFun = (e: Error) => InterceptorResponseResult['body'];
 
 type Interceptors = {
   request?: Array<{

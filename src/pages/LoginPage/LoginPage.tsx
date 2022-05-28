@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { createAuth } from '@utils/api';
-import { Input, PasswordInput, CheckBox } from '@common/fields';
 import { Button } from '@common/buttons';
+import { CheckBox,Input, PasswordInput } from '@common/fields';
+import { IntlText, useIntl, useMutation } from '@features';
+import { createAuth } from '@utils/api';
+import { COOKIE_NAMES, ROUTES } from '@utils/constants';
 import { setCookie, validateIsEmpty } from '@utils/helpers';
 import { useForm } from '@utils/hooks';
-import { COOKIE_NAMES, ROUTES } from '@utils/constants';
-import { IntlText, useIntl, useMutation } from '@features';
 
 import styles from './LoginPage.module.css';
 
