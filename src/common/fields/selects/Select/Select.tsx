@@ -79,6 +79,7 @@ export const Select: React.FC<SelectProps> = ({
   return (
     <div
       aria-hidden
+      aria-disabled={disabled}
       className={selectStyles.select_container}
       ref={refs.selectRef}
       onKeyDown={functions.onSelectKeyDown}

@@ -22,6 +22,7 @@
   "page.registration.skipAndFillInLater": "Skip and fill in later",
   "page.registration.step.fillLoginDataStep.title": "Fill your login data",
   "page.registration.step.fillLoginDataStep.iAlreadyHaveAnAccount": "I already have an account",
+  "page.registration.step.fillLoginDataStep.passwordRules.must": "Password must:",
   "page.registration.step.fillLoginDataStep.passwordRules.containNumbers": "contain <rule>numbers</rule>",
   "page.registration.step.fillLoginDataStep.passwordRules.containUppercase": "contain <rule>uppercase</rule> letter",
   "page.registration.step.fillLoginDataStep.passwordRules.containLowerCase": "contain <rule>lowercase</rule> letter",

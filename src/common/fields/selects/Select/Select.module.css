@@ -54,8 +54,14 @@
 }
 
 .select_container {
+  border-radius: 5px;
   width: 100%;
   position: relative;
+}
+
+.select_container[aria-disabled='true'] {
+  cursor: default;
+  background-color: var(--background-color-field-focused);
 }
 
 .select_options_container {

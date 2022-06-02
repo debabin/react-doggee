@@ -1,9 +1,15 @@
 import React from 'react';
 
-import { StoreContext } from './StoreContext';
+import { Store, StoreContext } from './StoreContext';
 
 export const useStore = () => {
-  const { setStore, ...store } = React.useContext(StoreContext);
+  const storeContext = React.useContext(StoreContext);
+  console.log('@@storeContext', storeContext);
 
-  return { ...store, setStore };
+  return {
+    ...storeContext.store,
+    setStore: (data: Partial<Store>) => {
+      storeContext.setStore({ ...storeContext.store, ...data });
+    }
+  };
 };

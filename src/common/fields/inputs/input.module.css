@@ -38,6 +38,10 @@
   padding-right: 0px;
 }
 
+.indicator_container ~ .input:disabled {
+  background-color: red;
+}
+
 .input_error {
   background: var(--background-color-field-validation);
 }

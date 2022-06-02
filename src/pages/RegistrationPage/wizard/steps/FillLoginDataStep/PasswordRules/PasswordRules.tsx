@@ -1,66 +1,35 @@
 import React from 'react';
 
-import { MIN_LENGHT } from '@utils/constants';
-import {
-  validateContainLowerCase,
-  validateContainNumbers,
-  validateContainUpperCase} from '@utils/helpers';
+import { IntlText } from '@features/intl';
 
 import { PasswordRule } from './PasswordRule/PasswordRule';
 
 interface PasswordRulesProps {
-  password: string;
-  passwordAgain: string;
+  rules: {
+    title: string;
+    isCorrect: boolean;
+  }[];
   hasPasswordErrors: boolean;
 }
 
-export const PasswordRules: React.FC<PasswordRulesProps> = ({
-  password,
-  passwordAgain,
-  hasPasswordErrors
-}) => {
-  const rules = React.useMemo(
-    () => [
-      {
-        title: 'page.registration.step.fillLoginDataStep.passwordRules.containNumbers',
-        isCorrect: !validateContainNumbers(password)
-      },
-      {
-        title: 'page.registration.step.fillLoginDataStep.passwordRules.containUppercase',
-        isCorrect: !validateContainUpperCase(password)
-      },
-      {
-        title: 'page.registration.step.fillLoginDataStep.passwordRules.containLowerCase',
-        isCorrect: !validateContainLowerCase(password)
-      },
-      {
-        title: 'page.registration.step.fillLoginDataStep.passwordRules.contain8Characters',
-        isCorrect: password.length >= MIN_LENGHT.PASSWORD
-      }
-    ],
-    [password]
-  );
+export const PasswordRules: React.FC<PasswordRulesProps> = ({ rules, hasPasswordErrors }) => (
+  <>
+    <div>
+      <IntlText path='page.registration.step.fillLoginDataStep.passwordRules.must' />
+    </div>
+    {rules.slice(0, -1).map(({ title, isCorrect }, index) => (
+      <PasswordRule
+        key={index}
+        title={title}
+        isCorrect={isCorrect}
+        showIcon={isCorrect || hasPasswordErrors}
+      />
+    ))}
 
-  const isPasswordMatch = !!password && !!passwordAgain && password === passwordAgain;
-  return (
-    <>
-      <div>Password must: </div>
-      {rules.map(({ title, isCorrect }, index) => (
-        <PasswordRule
-          key={index}
-          title={title}
-          isCorrect={isCorrect}
-          showIcon={isCorrect || hasPasswordErrors}
-        />
-      ))}
-
-      <div>
-        <PasswordRule
-          showIcon={isPasswordMatch || hasPasswordErrors}
-          title='page.registration.step.fillLoginDataStep.passwordRules.mustMatch'
-          isCorrect={isPasswordMatch}
-        />
-      </div>
-    </>
-  );
-};
+    <PasswordRule
+      showIcon={rules[rules.length - 1].isCorrect || hasPasswordErrors}
+      title='page.registration.step.fillLoginDataStep.passwordRules.mustMatch'
+      isCorrect={rules[rules.length - 1].isCorrect}
+    />
+  </>
+);

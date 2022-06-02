@@ -5,7 +5,8 @@ import {
   createMonth,
   getMonthesNames,
   getMonthNumberOfDays,
-  getWeekDaysNames} from '../../../utils/helpers/date';
+  getWeekDaysNames
+} from '../../../utils/helpers/date';
 
 interface UseCalendarParams {
   locale?: string;

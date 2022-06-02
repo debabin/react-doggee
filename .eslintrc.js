@@ -41,9 +41,9 @@ module.exports = {
     'no-param-reassign': 0,
 
     'import/order': 0,
-    'simple-import-sort/exports': 2,
+    'simple-import-sort/exports': 1,
     'simple-import-sort/imports': [
-      2,
+      1,
       {
         groups: [
           // External packages.

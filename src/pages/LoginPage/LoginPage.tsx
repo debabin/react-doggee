@@ -2,10 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@common/buttons';
-import { CheckBox,Input, PasswordInput } from '@common/fields';
+import { CheckBox, Input, PasswordInput } from '@common/fields';
 import { IntlText, useIntl, useMutation } from '@features';
 import { createAuth } from '@utils/api';
 import { COOKIE_NAMES, ROUTES } from '@utils/constants';
+import { useStore } from '@utils/contextes';
 import { setCookie, validateIsEmpty } from '@utils/helpers';
 import { useForm } from '@utils/hooks';
 
@@ -23,26 +24,30 @@ interface LoginFormValues {
 }
 
 export const LoginPage = () => {
+  const { setStore } = useStore();
   const navigate = useNavigate();
   const intl = useIntl();
+
   const { mutationAsync: authMutation, isLoading: authLoading } = useMutation(
     'auth',
     (params: AuthReqPostParams) => createAuth({ params })
   );
 
-  const { values, errors, setFieldValue, handleSubmit } = useForm<LoginFormValues>({
+  const { values, errors, setFieldValue, handleSubmit, setIsSubmiting } = useForm<LoginFormValues>({
     intialValues: { username: '', password: '', isNotMyDevice: false },
     validateSchema: loginFormValidateSchema,
     validateOnChange: false,
     onSubmit: async (values) => {
-      console.log('values', values);
       const response = await authMutation(values);
+      if (!response.success) return;
 
-      if (!!response && values.isNotMyDevice) {
+      if (values.isNotMyDevice) {
         setCookie(COOKIE_NAMES.IS_NOT_MY_DEVICE, new Date().getTime() + 30 * 60000);
       }
-      // const response = await query();
-      console.log('response', response);
+
+      setStore({ user: response.data, service: { isLogined: true } });
+      navigate(ROUTES.MAIN);
+      setIsSubmiting(false);
     }
   });
 
@@ -95,7 +100,7 @@ export const LoginPage = () => {
             />
           </div>
 
-          <Button type='submit'>
+          <Button type='submit' isLoading={authLoading}>
             <IntlText path='button.signIn' />
           </Button>
         </form>

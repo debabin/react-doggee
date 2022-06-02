@@ -43,7 +43,8 @@ export const PetList: React.FC<PetListProps> = ({
       </div>
       <div className={styles.pets_list_container} ref={listRef}>
         {pets.map((pet) => {
-          const showIcon = isSubmited;
+          const showIcon =
+            isSubmited || (pet.dogName && pet.dogWeight && pet.breed && pet.dogBirthday);
           const iconClassName = errors[pet.id]
             ? styles.pet_uncorrect_icon
             : styles.pet_correct_icon;

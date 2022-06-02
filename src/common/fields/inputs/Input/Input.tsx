@@ -24,6 +24,8 @@ export const Input: React.FC<InputProps> = ({
   return (
     <>
       <div
+        aria-hidden
+        onClick={() => inputRef.current?.focus()}
         aria-disabled={props.disabled}
         className={classnames(styles.field_container, { [styles.input_error]: isError })}
       >
@@ -32,11 +34,7 @@ export const Input: React.FC<InputProps> = ({
             <components.indicator />
           </div>
         )}
-        <div
-          aria-hidden
-          className={styles.input_container}
-          onClick={() => inputRef.current?.focus()}
-        >
+        <div className={styles.input_container}>
           <input
             ref={inputRef}
             className={styles.input}

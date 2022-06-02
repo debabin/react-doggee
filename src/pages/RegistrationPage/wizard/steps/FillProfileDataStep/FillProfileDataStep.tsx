@@ -28,13 +28,16 @@ interface FillProfileDataStepValues {
 
 interface FillProfileDataStepProps {
   initialData: FillProfileData;
+  skipStep: () => void;
   nextStep: (fillProfileData: FillProfileData) => void;
 }
 
 export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
   initialData,
-  nextStep
+  nextStep,
+  skipStep
 }) => {
+  const { setStore } = useStore();
   const intl = useIntl();
   const [focusedField, setFocuseField] = React.useState<'name' | 'registrationAddress' | null>(
     null
@@ -42,7 +45,7 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
 
   const { mutationAsync: changeUserMutation, isLoading: changeUserLoading } = useMutation(
     'changeUser',
-    (params: UsersReqPatchParams) => changeUser({ params })
+    (params: UsersIdReqPatchParams) => changeUser({ params })
   );
 
   const { values, errors, setFieldValue, handleSubmit } = useForm<FillProfileDataStepValues>({
@@ -52,18 +55,16 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
     onSubmit: async (values) => {
       // if (!user?.id) return;
 
-      // const changeUserMutationParams: UsersReqPatchParams = {
-      //   ...values,
-      //   id: user.id,
-      //   birthDate: values.birthDate.getTime()
-      // };
-      // const response = await changeUserMutation(changeUserMutationParams);
+      const changeUserMutationParams: UsersIdReqPatchParams = {
+        ...values,
+        id: '1',
+        birthDate: values.birthDate.getTime()
+      };
+      const response = await changeUserMutation(changeUserMutationParams);
 
-      // if (!response.success) {
-      //   return;
-      // }
+      if (!response.success) return;
 
-      // setStore({ user: response.data });
+      setStore({ user: response.data });
       nextStep({ ...values, birthDate: values.birthDate.getTime() });
     }
   });
@@ -74,12 +75,7 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
       panel={{
         ...(focusedField && { data: <FillProfilePanelData focusedField={focusedField} /> }),
         footer: (
-          <div
-            role='link'
-            tabIndex={0}
-            aria-hidden
-            onClick={() => nextStep({ ...values, birthDate: values.birthDate.getTime() })}
-          >
+          <div role='link' tabIndex={0} aria-hidden onClick={skipStep}>
             <IntlText path='page.registration.skipAndFillInLater' />
           </div>
         )

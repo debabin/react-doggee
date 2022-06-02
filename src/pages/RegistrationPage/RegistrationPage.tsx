@@ -1,4 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { ROUTES } from '@utils/constants';
+import { useStore } from '@utils/contextes';
 
 import {
   AddYourPetsStep,
@@ -7,23 +11,36 @@ import {
   FillProfileDataStep
 } from './wizard/steps';
 
+const defaultAddPetsData = [
+  {
+    id: 1,
+    dogName: '',
+    dogWeight: '',
+    breed: null,
+    dogBirthday: new Date().getTime()
+  }
+];
+
 export const RegistrationPage: React.FC = () => {
+  const navigate = useNavigate();
+  const { setStore } = useStore();
+
   const [registrationData, setRegistrationData] = React.useState<{
     fillProfileData: FillProfileData;
     addPetsData: AddPetsData;
   }>({
     fillProfileData: { name: '', registrationAddress: '', birthDate: new Date().getTime() },
-    addPetsData: [
-      { id: 1, dogName: '', dogWeight: '', breed: null, dogBirthday: new Date().getTime() }
-    ]
+    addPetsData: defaultAddPetsData
   });
 
   const [step, setStep] = React.useState<
     'fillLoginData' | 'fillProfileData' | 'addPetsData' | 'checkData'
   >('fillLoginData');
 
-  console.log('step', step);
-  console.log('registrationData', registrationData);
+  const skipStep = React.useCallback(() => {
+    navigate(ROUTES.MAIN);
+    setStore({ service: { isLogined: true } });
+  }, [setStore]);
 
   return (
     <>
@@ -33,6 +50,7 @@ export const RegistrationPage: React.FC = () => {
       {step === 'fillProfileData' && (
         <FillProfileDataStep
           initialData={registrationData.fillProfileData}
+          skipStep={skipStep}
           nextStep={(fillProfileData: $TSFixMe) => {
             setRegistrationData({ ...registrationData, fillProfileData });
             setStep('addPetsData');
@@ -42,6 +60,7 @@ export const RegistrationPage: React.FC = () => {
       {step === 'addPetsData' && (
         <AddYourPetsStep
           initialData={registrationData.addPetsData}
+          skipStep={skipStep}
           nextStep={(addPetsData) => {
             setRegistrationData({ ...registrationData, addPetsData });
             setStep('checkData');
@@ -56,7 +75,16 @@ export const RegistrationPage: React.FC = () => {
         <CheckDataStep
           initialData={registrationData}
           chooseStep={(step: 'fillProfileData' | 'addPetsData') => setStep(step)}
-          backStep={() => setStep('addPetsData')}
+          backStep={() => {
+            if (!registrationData.addPetsData.length) {
+              setRegistrationData({
+                ...registrationData,
+                addPetsData: defaultAddPetsData
+              });
+            }
+
+            setStep('addPetsData');
+          }}
         />
       )}
     </>

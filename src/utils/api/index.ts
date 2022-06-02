@@ -5,31 +5,25 @@ export * from './requests';
 
 // server instance
 const baseUrlApi: BaseUrl = 'http://localhost:3001/';
-export const api = new API(baseUrlApi);
+export const api = new API(baseUrlApi, {
+  headers: { 'Content-Type': 'application/json' }
+});
+api.interceptors.request.use((config) => ({ ...config, credentials: 'include' }));
 api.interceptors.response.use(
   (res) => {
     if (!res.ok) throw new Error(res.statusText);
 
     if (res.body.success) {
       return {
-        ...res,
-        body: {
-          data: res.body.data,
-          status: res.status,
-          success: res.body.success
-        }
+        data: res.body.data,
+        status: res.status,
+        success: res.body.success
       };
     }
 
-    return {
-      ...res,
-      body: { data: res.body.data, status: res.status, success: res.body.success }
-    };
+    return { data: res.body.data, status: res.status, success: res.body.success };
   },
-  (error) => {
-    console.log('@@@@');
-    return { data: { message: error.message }, success: false, status: 503 };
-  }
+  (error) => ({ data: { message: error.message }, success: false, status: 503 })
 );
 
 // export const api = new API(baseUrlApi, {

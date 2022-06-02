@@ -1,8 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@common/buttons';
-import { IntlText, useIntl, useMutation } from '@features';
+import { IntlText, useMutation } from '@features';
 import { changeUser } from '@utils/api';
 import { useStore } from '@utils/contextes';
 import { validateIsEmpty } from '@utils/helpers';
@@ -14,6 +13,7 @@ import { PetList } from './PetList/PetList';
 
 interface AddYourPetsStepProps {
   initialData: AddPetsData;
+  skipStep: () => void;
   nextStep: (addPetsData: AddPetsData) => void;
   backStep: (addPetsData: AddPetsData) => void;
 }
@@ -57,10 +57,14 @@ const validatePets = (pets: Pet[]) => {
 export const AddYourPetsStep: React.FC<AddYourPetsStepProps> = ({
   initialData,
   nextStep,
-  backStep
+  backStep,
+  skipStep
 }) => {
-  const navigate = useNavigate();
-  const intl = useIntl();
+  const { mutationAsync: changeUserMutation, isLoading: changeUserLoading } = useMutation(
+    'changeUser',
+    (params: UsersIdReqPatchParams) => changeUser({ params })
+  );
+
   const [pets, setPets] = React.useState(initialData);
   const [selectedPetId, setSelectedPetId] = React.useState(pets[0].id);
   const [petErrors, setPetErrors] = React.useState({});
@@ -70,11 +74,6 @@ export const AddYourPetsStep: React.FC<AddYourPetsStepProps> = ({
   //   null
   // );
   const { user, setStore } = useStore();
-
-  const { mutationAsync: changeUserMutation, isLoading: changeUserLoading } = useMutation<
-    UsersReqPatchParams,
-    ApiResponse<User>
-  >('changeUser', (params) => changeUser({ params }));
 
   const addPet = () => {
     const id = pets[pets.length - 1].id + 1;
@@ -117,7 +116,7 @@ export const AddYourPetsStep: React.FC<AddYourPetsStepProps> = ({
           />
         ),
         footer: (
-          <div role='link' tabIndex={0} aria-hidden onClick={() => nextStep(pets)}>
+          <div role='link' tabIndex={0} aria-hidden onClick={skipStep}>
             <IntlText path='page.registration.skipAndFillInLater' />
           </div>
         )
@@ -148,7 +147,7 @@ export const AddYourPetsStep: React.FC<AddYourPetsStepProps> = ({
             <Button
               type='submit'
               isLoading={changeUserLoading}
-              onClick={() => {
+              onClick={async () => {
                 setSubmited(true);
                 const petErrors = validatePets(pets);
 
@@ -157,6 +156,11 @@ export const AddYourPetsStep: React.FC<AddYourPetsStepProps> = ({
                   return;
                 }
 
+                if (!user?.id) return;
+                const response = await changeUserMutation({ id: user.id, pets });
+                if (!response.success) return;
+
+                setStore({ user: { ...user, pets } });
                 nextStep(pets);
               }}
             >

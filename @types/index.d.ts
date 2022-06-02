@@ -1,12 +1,3 @@
-interface User {
-  username: string;
-  password: string;
-  name: string;
-  birthday: number;
-  registrationAddress: string;
-  id: string;
-}
-
 interface Breed {
   bred_for: string;
   height: {
@@ -37,4 +28,18 @@ interface Pet {
   dogWeight: string;
   breed: $TSFixMe;
   dogBirthday: number;
+}
+
+interface User {
+  username: string;
+  password: string;
+  name: string;
+  birthday: number;
+  registrationAddress: string;
+  id: string;
+  pets: Pet[];
+}
+
+interface Service {
+  isLogined: boolean;
 }

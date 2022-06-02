@@ -6,9 +6,13 @@ import { Button } from '@common/buttons';
 import { Input, PasswordInput } from '@common/fields';
 import { IntlText, useIntl, useMutation } from '@features';
 import { createRegistration } from '@utils/api';
-import { ROUTES } from '@utils/constants';
+import { MIN_LENGHT,ROUTES } from '@utils/constants';
 import { useStore } from '@utils/contextes';
-import { validateIsEmpty } from '@utils/helpers';
+import {
+  validateContainLowerCase,
+  validateContainNumbers,
+  validateContainUpperCase,
+  validateIsEmpty} from '@utils/helpers';
 import { useForm } from '@utils/hooks';
 
 import { RegistrationWizardContainer } from '../../RegistrationWizardContainer/RegistrationWizardContainer';
@@ -33,10 +37,35 @@ interface FillLoginDataStepProps {
   nextStep: () => void;
 }
 
+export const getPasswordRules = (
+  password: FillLoginDataStepValues['password'],
+  passwordAgain: FillLoginDataStepValues['passwordAgain']
+) => [
+  {
+    title: 'page.registration.step.fillLoginDataStep.passwordRules.containNumbers',
+    isCorrect: !validateContainNumbers(password)
+  },
+  {
+    title: 'page.registration.step.fillLoginDataStep.passwordRules.containUppercase',
+    isCorrect: !validateContainUpperCase(password)
+  },
+  {
+    title: 'page.registration.step.fillLoginDataStep.passwordRules.containLowerCase',
+    isCorrect: !validateContainLowerCase(password)
+  },
+  {
+    title: 'page.registration.step.fillLoginDataStep.passwordRules.contain8Characters',
+    isCorrect: password.length >= MIN_LENGHT.PASSWORD
+  },
+  {
+    title: 'page.registration.step.fillLoginDataStep.passwordRules.mustMatch',
+    isCorrect: !!password && !!passwordAgain && password === passwordAgain
+  }
+];
+
 export const FillLoginDataStep: React.FC<FillLoginDataStepProps> = ({ nextStep }) => {
   const intl = useIntl();
   const navigate = useNavigate();
-
   const { setStore } = useStore();
 
   const { mutationAsync: registrationMutation, isLoading: registrationLoading } = useMutation(
@@ -50,31 +79,33 @@ export const FillLoginDataStep: React.FC<FillLoginDataStepProps> = ({ nextStep }
       validateSchema: fillLoginDataStepValidateSchema,
       validateOnChange: false,
       onSubmit: async (values) => {
+        const passwordRules = getPasswordRules(values.password, values.passwordAgain);
+        const isPasswordUnCorrect = passwordRules.some((rule) => rule.isCorrect === false);
+
+        if (isPasswordUnCorrect) return;
+
         const response = await registrationMutation({
           password: values.password,
           username: values.username
         });
-        setIsSubmiting(false);
 
-        // if (!response.success) {
-        //   return;
-        // }
+        if (!response.success) return;
 
-        // setStore({ user: response.data });
+        setStore({ user: response.data });
         nextStep();
+        setIsSubmiting(false);
       }
     });
+
+  const rules = React.useMemo(
+    () => getPasswordRules(values.password, values.passwordAgain),
+    [values.password, values.passwordAgain]
+  );
 
   return (
     <RegistrationWizardContainer
       panel={{
-        data: (
-          <PasswordRules
-            password={values.password}
-            passwordAgain={values.passwordAgain}
-            hasPasswordErrors={!!errors?.password}
-          />
-        ),
+        data: <PasswordRules rules={rules} hasPasswordErrors={!!errors?.password} />,
         footer: (
           <div role='link' tabIndex={0} aria-hidden onClick={() => navigate(ROUTES.AUTH)}>
             <IntlText path='page.registration.step.fillLoginDataStep.iAlreadyHaveAnAccount' />

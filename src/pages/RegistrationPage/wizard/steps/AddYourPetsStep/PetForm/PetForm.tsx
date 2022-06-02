@@ -71,6 +71,7 @@ export const PetForm: React.FC<PetFromProps> = ({ pet, onChange, isLoading }) =>
       />
       <Spacing spacing={15} />
       <Select
+        disabled={isLoading}
         options={
           breedsData?.map((breed) => ({
             label: breed.name,
@@ -116,6 +117,7 @@ export const PetForm: React.FC<PetFromProps> = ({ pet, onChange, isLoading }) =>
       <Spacing spacing={15} />
       <Input
         disabled={isLoading}
+        availableChars={/^[0-9]+$/g}
         value={values.dogWeight}
         label={intl.translateMessage('field.input.dogWeight.label')}
         // onFocus={() => setFocuseField('')}
