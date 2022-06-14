@@ -1,5 +1,5 @@
 .calendar_container {
-  width: 200px;
+  width: 200;
   border-radius: 0.35rem;
   text-transform: capitalize;
   background-color: var(--background-color-field-focused);
@@ -10,7 +10,7 @@
   border-radius: 0.35rem 0.35rem 0 0;
   background-color: var(--background-color);
   color: var(--color-text);
-  padding: 10px;
+  padding: 0.71rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,14 +19,14 @@
 
 .calendar_header_arrow_left {
   width: 0.35rem;
-  height: 10px;
+  height: 0.71rem;
   cursor: pointer;
   background-image: var(--images-arrow-additional);
 }
 
 .calendar_header_arrow_right {
   width: 0.35rem;
-  height: 10px;
+  height: 0.71rem;
   cursor: pointer;
   background-image: var(--images-arrow-additional);
   transform: rotate(-180deg);
@@ -38,9 +38,9 @@
 }
 
 .calendar_week_days_container {
-  height: 20px;
+  height: 1.42rem;
   font-weight: 600;
-  font-size: 8px;
+  font-size: 0.57rem;
   color: var(--color-additional);
   text-align: center;
   align-items: center;
@@ -51,7 +51,7 @@
 }
 
 .calendar_days_container {
-  font-size: 10px;
+  font-size: 0.71rem;
   font-weight: 400;
   color: var(--color-text);
   text-align: center;
@@ -64,7 +64,7 @@
 }
 
 .calendar_day_container {
-  padding: 5.35rem 0px;
+  padding: 5.35rem 0;
   cursor: pointer;
 }
 
@@ -88,11 +88,11 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 0.07rem 0.07rem;
-  font-size: 12px;
+  font-size: 0.85rem;
 }
 
 .calendar_pick_item_container {
-  padding: 9px 0px;
+  padding: 0.64rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,6 +120,6 @@
 
 .calendar_unchoosable_year {
   font-weight: 300;
-  padding: 9px 16px;
+  padding: 0.64rem 16px;
   color: var(--color-placeholder);
 }

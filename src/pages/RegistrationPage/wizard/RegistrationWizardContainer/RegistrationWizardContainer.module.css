@@ -10,9 +10,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: '. form panel';
-  grid-column-gap: 50px;
+  grid-column-gap: 3.57rem;
   margin: 0 auto;
-  min-width: 1100px;
+  min-width: 78.57rem;
   height: 100%;
 }
 
@@ -32,7 +32,7 @@
 
 .stepper_container {
   width: 100%;
-  padding: 29px;
+  padding: 20.64rem;
 }
 
 .content_container {
@@ -51,7 +51,7 @@
 .form_title {
   color: var(--color-accent);
   font-weight: var(--font-weight600);
-  font-size: 20px;
+  font-size: 1.42rem;
 }
 
 .form_footer {
@@ -64,7 +64,7 @@
 }
 
 .panel_container {
-  max-width: 300px;
+  max-width: 21.42rem;
   background-color: var(--color-accent);
   align-items: center;
   grid-area: panel;
@@ -82,11 +82,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
-  height: 223px;
+  padding-top: 2.14rem;
+  height: 15.92rem;
   width: 100%;
   background-repeat: no-repeat;
-  font-size: 40px;
+  font-size: 2.85rem;
 }
 
 .panel_data {
@@ -96,17 +96,17 @@
 
 .panel_footer {
   color: var(--color-white);
-  margin-bottom: 30px;
+  margin-bottom: 2.14rem;
   align-items: center;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
 .back_container {
   color: var(--color-additional);
   font-weight: var(--font-weight600);
-  font-size: 12px;
+  font-size: 0.85rem;
   text-align: left;
   width: 100%;
   cursor: pointer;

@@ -1,6 +1,6 @@
 .data_body_item {
   display: flex;
-  font-size: 14px;
+  font-size: 1rem;
   width: 100%;
 }
 

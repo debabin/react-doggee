@@ -1,13 +1,13 @@
 .pets_container {
   display: flex;
   flex-direction: column;
-  gap: 10px 0px;
+  gap: 0.71rem 0;
 }
 
 .title {
   color: var(--color-text);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 .line {
@@ -17,7 +17,7 @@
 
 .add_pet {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.85rem;
   text-align: center;
   position: relative;
   cursor: pointer;
@@ -26,20 +26,20 @@
 
 .add_pet::before {
   position: absolute;
-  left: 60px;
+  left: 60;
   content: '';
-  width: 15px;
-  height: 14px;
-  background-size: 15px 14px;
+  width: 1.07rem;
+  height: 1rem;
+  background-size: 1.07rem 1rem;
   background-image: var(--images-plus-additional);
 }
 
 .pets_list_container {
   display: flex;
   flex-direction: column;
-  max-height: 200px;
+  max-height: 200;
   overflow-y: scroll;
-  gap: 10px 0px;
+  gap: 0.71rem 0;
 }
 
 .pets_list_container::-webkit-scrollbar {
@@ -55,19 +55,19 @@
 
 /* todo */
 .pet_icon_container {
-  width: 18px;
-  margin-right: 8px;
+  width: 1.28rem;
+  margin-right: 0.57rem;
   display: inline-block;
 }
 
 .pet_correct_icon {
-  width: 17px;
+  width: 1.21rem;
   height: 13px;
   background-image: var(--images-checkmark-additional);
 }
 
 .pet_uncorrect_icon {
-  width: 18px;
-  height: 17px;
+  width: 1.28rem;
+  height: 1.21rem;
   background-image: var(--images-warning);
 }

@@ -19,10 +19,10 @@
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  width: 30px;
-  height: 30px;
+  width: 2.14rem;
+  height: 2.14rem;
   border-radius: 25px;
-  font-size: 12px;
+  font-size: 0.85rem;
   margin-bottom: 3px;
 }
 
@@ -32,16 +32,16 @@
 
 .last_step_checkmark {
   background-image: var(--images-checkmark);
-  width: 17px;
-  height: 12px;
+  width: 1.21rem;
+  height: 0.85rem;
 }
 
 .step_label_container {
   color: var(--color-text);
   position: absolute;
   width: max-content;
-  font-size: 10px;
-  bottom: -15px;
+  font-size: 0.71rem;
+  bottom: -1.07rem;
 }
 
 .active_step_label_container {
@@ -52,10 +52,10 @@
   background-color: var(--color-additional7);
   width: 100%;
   height: 0.07rem;
-  margin: 23px 15px 0;
+  margin: 23px 1.07rem 0;
 }
 
 .active_step_separator {
   background-color: var(--color-additional);
-  height: 2px;
+  height: 0.14rem;
 }

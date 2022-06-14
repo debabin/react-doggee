@@ -1,18 +1,18 @@
 .data_container {
   background-color: var(--background-color-field);
-  padding: 15px;
+  padding: 1.07rem;
   border-radius: 0.35rem;
   width: 100%;
 }
 
 .data_header {
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 1.07rem;
 }
 
 .data_header_title {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 1rem;
   color: var(--color-additional);
   display: flex;
   justify-content: center;
@@ -22,14 +22,14 @@
 
 .data_header_edit_icon {
   cursor: pointer;
-  width: 12px;
-  height: 12px;
-  background-size: 12px;
+  width: 0.85rem;
+  height: 0.85rem;
+  background-size: 0.85rem;
   background-image: var(--images-pen-additional);
 }
 
 .data_body {
-  gap: 9px;
+  gap: 0.64rem;
   display: flex;
   flex-direction: column;
 }

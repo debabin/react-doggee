@@ -3,9 +3,9 @@
   width: 100%;
   background: var(--background-color-field-focused);
   border-radius: 0.35rem;
-  padding: 9px 10px;
+  padding: 0.64rem 0.71rem;
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 0.85rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -23,8 +23,8 @@
 }
 
 .cross {
-  width: 12px;
-  height: 12px;
-  background-size: 12px;
+  width: 0.85rem;
+  height: 0.85rem;
+  background-size: 0.85rem;
   background-image: var(--images-cross);
 }

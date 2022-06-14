@@ -1,7 +1,7 @@
 .calendar_icon {
   cursor: pointer;
-  width: 19px;
-  height: 19px;
+  width: 1.35rem;
+  height: 1.35rem;
   background-image: var(--images-calendar);
 }
 
