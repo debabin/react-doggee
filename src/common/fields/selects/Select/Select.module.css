@@ -9,16 +9,16 @@
 
 .options_container {
   z-index: 99;
-  margin-top: 5px;
+  margin-top: 0.35rem;
   position: absolute;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 0.35rem;
   background-color: var(--background-color-field-focused);
 }
 
 .option_container {
   cursor: pointer;
-  padding: 6.5px 20px;
+  padding: 6.35rem 20px;
   font-weight: 400;
   font-size: 14px;
   border-radius: inherit;
@@ -28,17 +28,17 @@
   background-color: var(--color-additional7);
 }
 .option_container:last-child {
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 0.35rem 0.35rem;
 }
 .option_container:first-child {
-  border-radius: 5px 5px 0 0;
+  border-radius: 0.35rem 0.35rem 0 0;
 }
 .option_container:only-child {
-  border-radius: 5px;
+  border-radius: 0.35rem;
 }
 .selected_option_container {
   cursor: pointer;
-  padding: 6.5px 20px;
+  padding: 6.35rem 20px;
   font-weight: 400;
   font-size: 14px;
   border-radius: inherit;
@@ -54,7 +54,7 @@
 }
 
 .select_container {
-  border-radius: 5px;
+  border-radius: 0.35rem;
   width: 100%;
   position: relative;
 }
@@ -121,7 +121,7 @@
 }
 
 .no_option_container {
-  padding: 6.5px 20px;
+  padding: 6.35rem 20px;
   font-weight: 400;
   font-size: 14px;
   border-radius: inherit;

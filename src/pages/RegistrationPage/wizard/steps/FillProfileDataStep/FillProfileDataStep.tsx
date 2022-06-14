@@ -9,7 +9,7 @@ import { useStore } from '@utils/contextes';
 import { validateIsEmpty } from '@utils/helpers';
 import { useForm } from '@utils/hooks';
 
-import { RegistrationWizardContainer } from '../../RegistrationWizardContainer/RegistrationWizardContainer';
+import { RegistrationWizardContainerDesktop } from '../../RegistrationWizardContainer';
 
 import { FillProfilePanelData } from './FillProfilePanelData/FillProfilePanelData';
 
@@ -70,7 +70,7 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
   });
 
   return (
-    <RegistrationWizardContainer
+    <RegistrationWizardContainerDesktop
       activeStep={1}
       panel={{
         ...(focusedField && { data: <FillProfilePanelData focusedField={focusedField} /> }),

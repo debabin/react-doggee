@@ -17,6 +17,6 @@
 }
 
 .line {
-  height: 1px;
+  height: 0.07rem;
   background-color: var(--background-color-field-focused);
 }

@@ -4,7 +4,7 @@ import { Spacing } from '@common';
 import { Stepper } from '@common/wizard';
 import { useIntl } from '@features';
 
-import styles from './RegistrationWizardContainer.module.css';
+import styles from '../RegistrationWizardContainer.module.css';
 
 interface RegistrationWizardContainerProps {
   activeStep?: number;
@@ -12,23 +12,20 @@ interface RegistrationWizardContainerProps {
     title: React.ReactNode;
     backButton?: React.ReactNode;
     content: React.ReactNode;
-  };
-  panel: {
-    footer?: React.ReactNode;
-    data?: React.ReactNode;
+    footer: React.ReactNode;
   };
 }
 
 export const RegistrationWizardContainer: React.FC<RegistrationWizardContainerProps> = ({
   activeStep,
-  form,
-  panel
+  form
 }) => {
   const intl = useIntl();
 
   return (
     <div className={styles.page}>
       <div className={styles.container}>
+        <div className={styles.container_header}>DOGGEE</div>
         <div className={styles.form_container}>
           <h1 className={styles.form_title}>{form.title}</h1>
           {activeStep && (
@@ -53,12 +50,7 @@ export const RegistrationWizardContainer: React.FC<RegistrationWizardContainerPr
             )}
             {form.content}
           </div>
-        </div>
-        <div className={styles.panel_container}>
-          <div className={styles.panel_header}>DOGGEE</div>
-          {panel.data && <div className={styles.panel_data}>{panel.data}</div>}
-
-          <div className={styles.panel_footer}>{panel.footer}</div>
+          <div className={styles.form_footer}>{form.footer}</div>
         </div>
       </div>
     </div>

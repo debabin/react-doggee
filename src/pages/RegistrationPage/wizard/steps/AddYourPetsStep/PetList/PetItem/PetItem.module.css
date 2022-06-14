@@ -2,7 +2,7 @@
   min-width: 0;
   width: 100%;
   background: var(--background-color-field-focused);
-  border-radius: 5px;
+  border-radius: 0.35rem;
   padding: 9px 10px;
   color: var(--color-text);
   font-size: 12px;

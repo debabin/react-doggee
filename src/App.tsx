@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { IntlProvider, Theme, ThemeProvider } from '@features';
-import { LoginPage, MainPage,NotFoundPage, RegistrationPage } from '@pages';
+import { LoginPage, MainPage, NotFoundPage, RegistrationPage } from '@pages';
 import { requestUser } from '@utils/api';
 import { COOKIE_NAMES, ROUTES } from '@utils/constants';
 import { useStore } from '@utils/contextes';

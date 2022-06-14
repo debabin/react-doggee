@@ -1,7 +1,7 @@
 .data_container {
   background-color: var(--background-color-field);
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 0.35rem;
   width: 100%;
 }
 
@@ -35,6 +35,6 @@
 }
 
 .line {
-  height: 1px;
+  height: 0.07rem;
   background-color: var(--background-color-field-focused);
 }

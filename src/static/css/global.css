@@ -29,3 +29,15 @@
   --font-weight800: 800;
   --font-weight600: 600;
 }
+
+@media only screen and (min-width: 1023px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 421px) and (max-width: 1023px) {
+  :root {
+    font-size: 1.26vw;
+  }
+}

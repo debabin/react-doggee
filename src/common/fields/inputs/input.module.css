@@ -2,9 +2,9 @@
   position: relative;
   display: flex;
   background: var(--background-color-field);
-  border-radius: 5px;
+  border-radius: 0.35rem;
   width: 100%;
-  height: 48px;
+  height: 3.42rem;
   cursor: text;
   transition: var(--transition);
   display: flex;
@@ -30,12 +30,12 @@
 .input_container {
   display: flex;
   width: 100%;
-  padding: 20px 15px 9px;
+  padding: 1.42rem 1.07rem 0.64rem;
 }
 
 .indicator_container ~ .input_container {
   width: 85%;
-  padding-right: 0px;
+  padding-right: 0;
 }
 
 .indicator_container ~ .input:disabled {
@@ -50,9 +50,9 @@
   user-select: none;
   cursor: text;
   position: absolute;
-  left: 15px;
-  top: 15px;
-  font-size: 14px;
+  left: 1.07rem;
+  top: 1.07rem;
+  font-size: 1rem;
   color: var(--color-placeholder);
   z-index: 1;
   transition: transform 150ms ease-out, font-size 150ms ease-out;
@@ -65,13 +65,13 @@
 .input:focus ~ .input_label,
 .input:not([value='']) ~ .input_label {
   transform: translate(-5%, -75%);
-  font-size: 10px;
+  font-size: 0.71rem;
 }
 
 .input {
   border: none;
   width: 100%;
-  font-size: 12px;
+  font-size: 0.85rem;
   color: var(--color-text);
   background-color: transparent;
 }
@@ -85,8 +85,8 @@
 .helper_text {
   width: 100%;
   font-weight: 300;
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 0.71rem;
+  line-height: 1rem;
   color: var(--color-text-validation);
-  padding-left: 10px;
+  padding-left: 0.71rem;
 }

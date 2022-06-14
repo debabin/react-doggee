@@ -6,7 +6,7 @@ import { changeUser } from '@utils/api';
 import { useStore } from '@utils/contextes';
 import { validateIsEmpty } from '@utils/helpers';
 
-import { RegistrationWizardContainer } from '../../RegistrationWizardContainer/RegistrationWizardContainer';
+import { RegistrationWizardContainerDesktop } from '../../RegistrationWizardContainer';
 
 import { PetForm } from './PetForm/PetForm';
 import { PetList } from './PetList/PetList';
@@ -101,7 +101,7 @@ export const AddYourPetsStep: React.FC<AddYourPetsStepProps> = ({
   };
 
   return (
-    <RegistrationWizardContainer
+    <RegistrationWizardContainerDesktop
       activeStep={2}
       panel={{
         data: (

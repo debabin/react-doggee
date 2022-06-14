@@ -1,16 +1,16 @@
 .button {
-  height: 48px;
+  height: 3.42rem;
   width: 100%;
   background: var(--color-accent);
   box-shadow: var(--shadow-button);
-  border-radius: 5px;
+  border-radius: 0.35rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   color: #fff;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 300;
   font-style: normal;
   transition: var(--transition);
@@ -32,9 +32,9 @@
 
 .dot-flashing {
   position: relative;
-  width: 6px;
-  height: 6px;
-  border-radius: 5px;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 0.35rem;
   background-color: #fff;
   color: #fff;
   animation: dotFlashing 0.5s infinite linear alternate;
@@ -50,10 +50,10 @@
 }
 
 .dot-flashing::before {
-  left: -10px;
-  width: 6px;
-  height: 6px;
-  border-radius: 5px;
+  left: -0.71rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 0.35rem;
   background-color: #fff;
   color: #fff;
   animation: dotFlashing 0.5s infinite alternate;
@@ -61,10 +61,10 @@
 }
 
 .dot-flashing::after {
-  left: 10px;
-  width: 6px;
-  height: 6px;
-  border-radius: 5px;
+  left: 0.71rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 0.35rem;
   background-color: #fff;
   color: #fff;
   animation: dotFlashing 0.5s infinite alternate;

@@ -5,7 +5,7 @@ import { Button } from '@common/buttons';
 import { IntlText, useIntl } from '@features';
 import { formatDate } from '@utils/helpers';
 
-import { RegistrationWizardContainer } from '../../RegistrationWizardContainer/RegistrationWizardContainer';
+import { RegistrationWizardContainerDesktop } from '../../RegistrationWizardContainer';
 
 import { DataCard } from './DataCard/DataCard';
 import { DataItem } from './DataCard/DataItem/DataItem';
@@ -27,7 +27,7 @@ export const CheckDataStep: React.FC<CheckDataStepProps> = ({
   const intl = useIntl();
 
   return (
-    <RegistrationWizardContainer
+    <RegistrationWizardContainerDesktop
       activeStep={3}
       panel={{
         data: <div>123</div>

@@ -16,6 +16,20 @@
   height: 100%;
 }
 
+.container_header {
+  font-family: var(--font-family-baloo);
+  font-weight: 800;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  font-size: 2.85rem;
+  color: var(--color-accent);
+  height: auto;
+  margin-bottom: 2.85rem;
+}
+
 .stepper_container {
   width: 100%;
   padding: 29px;
@@ -38,6 +52,15 @@
   color: var(--color-accent);
   font-weight: var(--font-weight600);
   font-size: 20px;
+}
+
+.form_footer {
+  align-items: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-accent);
+  cursor: pointer;
+  text-align: center;
 }
 
 .panel_container {
@@ -68,12 +91,7 @@
 
 .panel_data {
   background-color: var(--background-color);
-  color: var(--color-text);
   width: 100%;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .panel_footer {
@@ -92,4 +110,35 @@
   text-align: left;
   width: 100%;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 421px) {
+  .page {
+    padding: 2.14rem 0;
+  }
+
+  .container {
+    min-width: 0;
+    height: 100%;
+    width: 100%;
+    background: inherit;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .content_container {
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .form_container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3.21rem;
+  }
 }
