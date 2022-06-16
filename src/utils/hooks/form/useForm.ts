@@ -6,12 +6,14 @@ interface UseFormParams<Values> {
     [K in keyof Values]?: (value: Pick<Values, K>[K]) => ValidationReturn;
   };
   validateOnChange?: boolean;
+  validateOnMount?: boolean;
   onSubmit?: (values: Values) => void;
 }
 
 export const useForm = <Values extends Object>({
   intialValues,
   validateSchema,
+  validateOnMount = false,
   validateOnChange = true,
   onSubmit
 }: UseFormParams<Values>) => {
@@ -33,15 +35,13 @@ export const useForm = <Values extends Object>({
     setErrors({ ...errors, [field]: error });
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
+  const validateForm = () => {
+    let isErrorExist = false;
 
     if (!validateSchema) {
-      setIsSubmiting(true);
-      return !!onSubmit && onSubmit(values);
+      return true;
     }
 
-    let isErrorExist = false;
     let errors = {};
     Object.keys(values).forEach((field) => {
       if (!validateSchema[field as keyof Values]) return;
@@ -52,8 +52,17 @@ export const useForm = <Values extends Object>({
         [field]: error
       };
     });
+    console.log('errors', errors, values);
     setErrors(errors);
-    if (isErrorExist) return;
+    return isErrorExist;
+  };
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+
+    const isFormValid = validateForm();
+    if (!isFormValid) return;
+
     setIsSubmiting(true);
     return !!onSubmit && onSubmit(values);
   };
@@ -65,6 +74,10 @@ export const useForm = <Values extends Object>({
     setValues(intialValues);
   };
 
+  React.useEffect(() => {
+    if (validateOnMount) validateForm();
+  }, []);
+
   return {
     values,
     errors,
@@ -73,6 +86,7 @@ export const useForm = <Values extends Object>({
     handleSubmit,
     isSubminting,
     setIsSubmiting,
-    resetForm
+    resetForm,
+    validateForm
   };
 };

@@ -1,5 +1,5 @@
 .calendar_container {
-  width: 200;
+  width: 12.5rem;
   border-radius: 0.35rem;
   text-transform: capitalize;
   background-color: var(--background-color-field-focused);
@@ -46,7 +46,6 @@
   align-items: center;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-
   gap: 0.07rem 0.07rem;
 }
 
@@ -64,7 +63,7 @@
 }
 
 .calendar_day_container {
-  padding: 5.35rem 0;
+  padding: 0.34rem;
   cursor: pointer;
 }
 
@@ -74,7 +73,7 @@
 }
 
 .calendar_additional_day_container {
-  padding: 5.35rem;
+  padding: 0.34rem;
   font-weight: 300;
   cursor: pointer;
   color: var(--color-placeholder);
@@ -92,7 +91,7 @@
 }
 
 .calendar_pick_item_container {
-  padding: 0.64rem 0;
+  padding: 0.64rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,6 +119,6 @@
 
 .calendar_unchoosable_year {
   font-weight: 300;
-  padding: 0.64rem 16px;
+  padding: 0.64rem 1rem;
   color: var(--color-placeholder);
 }

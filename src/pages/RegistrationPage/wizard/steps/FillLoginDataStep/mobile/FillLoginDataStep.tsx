@@ -17,7 +17,7 @@ export const FillLoginDataStep: React.FC<FillLoginDataStepProps> = ({ nextStep }
   const intl = useIntl();
   const navigate = useNavigate();
 
-  const { values, setFieldValue, handleSubmit, errors, rules, loading } = useFillLoginDataStep({
+  const { state, functions } = useFillLoginDataStep({
     nextStep
   });
 
@@ -31,60 +31,60 @@ export const FillLoginDataStep: React.FC<FillLoginDataStepProps> = ({ nextStep }
           </div>
         ),
         content: (
-          <form className={styles.form_container} onSubmit={handleSubmit}>
+          <form className={styles.form_container} onSubmit={functions.handleSubmit}>
             <Input
-              disabled={loading}
-              value={values.username}
+              disabled={state.loading}
+              value={state.values.username}
               label={intl.translateMessage('field.input.username.label')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const username = event.target.value;
-                setFieldValue('username', username);
+                functions.setFieldValue('username', username);
               }}
-              {...(!!errors &&
-                !!errors.username && {
-                  isError: !!errors.username,
-                  helperText: errors.username
+              {...(!!state.errors &&
+                !!state.errors.username && {
+                  isError: !!state.errors.username,
+                  helperText: state.errors.username
                 })}
             />
             <Spacing spacing={15} />
 
             <PasswordInput
-              disabled={loading}
-              value={values.password}
+              disabled={state.loading}
+              value={state.values.password}
               label={intl.translateMessage('field.input.password.label')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const password = event.target.value;
-                setFieldValue('password', password);
+                functions.setFieldValue('password', password);
               }}
-              {...(!!errors &&
-                !!errors.password && {
-                  isError: !!errors.password,
-                  helperText: errors.password
+              {...(!!state.errors &&
+                !!state.errors.password && {
+                  isError: !!state.errors.password,
+                  helperText: state.errors.password
                 })}
             />
             <Spacing spacing={15} />
 
             <PasswordInput
-              disabled={loading}
-              value={values.passwordAgain}
+              disabled={state.loading}
+              value={state.values.passwordAgain}
               label={intl.translateMessage('field.input.passwordAgain.label')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const passwordAgain = event.target.value;
-                setFieldValue('passwordAgain', passwordAgain);
+                functions.setFieldValue('passwordAgain', passwordAgain);
               }}
-              {...(!!errors &&
-                !!errors.password && {
-                  isError: !!errors.password,
-                  helperText: errors.password
+              {...(!!state.errors &&
+                !!state.errors.password && {
+                  isError: !!state.errors.password,
+                  helperText: state.errors.password
                 })}
             />
             <Spacing spacing={15} />
 
-            <PasswordRules rules={rules} hasPasswordErrors={!!errors?.password} />
+            <PasswordRules rules={state.rules} hasPasswordErrors={!!state.errors?.password} />
 
             <Spacing spacing={15} />
 
-            <Button type='submit' isLoading={loading}>
+            <Button type='submit' isLoading={state.loading}>
               <IntlText path='button.done' />
             </Button>
           </form>

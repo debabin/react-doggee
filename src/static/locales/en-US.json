@@ -42,6 +42,7 @@
   "page.registration.step.checkDataStep.title": "Check your data",
   "page.registration.step.checkDataStep.card.profile": "Profile",
   "page.registration.step.checkDataStep.card.pets": "Pets",
+  "page.registration.step.checkDataStep.hint.dontWorry": "Don't worry, you can change your details later",
 
   "validations.required": "field required"
 }

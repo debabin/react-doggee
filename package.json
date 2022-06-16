@@ -10,7 +10,7 @@
   "scripts": {
     "start": "craco start",
     "build": "react-scripts build",
-    "lint": "eslint src/**",
+    "lint": "eslint src/**/*.{tsx,ts}",
     "lint:fix": "eslint src/**/*.{tsx,ts} --fix",
     "prepare": "husky install"
   },

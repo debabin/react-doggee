@@ -5,10 +5,10 @@ import { Button } from '@common/buttons';
 import { IntlText, useIntl } from '@features';
 import { formatDate } from '@utils/helpers';
 
-import { RegistrationWizardContainerDesktop } from '../../RegistrationWizardContainer';
-
-import { DataCard } from './DataCard/DataCard';
-import { DataItem } from './DataCard/DataItem/DataItem';
+import { RegistrationWizardContainerMobile } from '../../../RegistrationWizardContainer';
+import { DataCard } from '../components/DataCard/DataCard';
+import { DataItem } from '../components/DataCard/DataItem/DataItem';
+import { DontWorry } from '../components/DontWorry/DontWorry';
 
 interface CheckDataStepProps {
   initialData: {
@@ -27,11 +27,8 @@ export const CheckDataStep: React.FC<CheckDataStepProps> = ({
   const intl = useIntl();
 
   return (
-    <RegistrationWizardContainerDesktop
+    <RegistrationWizardContainerMobile
       activeStep={3}
-      panel={{
-        data: <div>123</div>
-      }}
       form={{
         title: <IntlText path='page.registration.step.checkDataStep.title' />,
         backButton: (
@@ -71,6 +68,8 @@ export const CheckDataStep: React.FC<CheckDataStepProps> = ({
               })}
             </DataCard>
 
+            <Spacing spacing={15} />
+            <DontWorry />
             <Spacing spacing={15} />
 
             <Button type='submit'>

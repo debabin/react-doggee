@@ -1,4 +1,4 @@
-export * from './AddYourPetsStep/AddYourPetsStep';
-export * from './CheckDataStep/CheckDataStep';
+export * from './AddYourPetsStep';
+export * from './CheckDataStep';
 export * from './FillLoginDataStep';
-export * from './FillProfileDataStep/FillProfileDataStep';
+export * from './FillProfileDataStep';

@@ -68,6 +68,7 @@ export const PetList: React.FC<PetListProps> = ({
       </div>
       <div className={styles.line} />
       <div aria-hidden onClick={onAdd} className={styles.add_pet}>
+        <div className={styles.add_pet_icon} />
         {intl.translateMessage('page.registration.step.addYourPetsStep.addAnotherPet')}
       </div>
     </div>

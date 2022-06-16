@@ -9,11 +9,10 @@ import { useStore } from '@utils/contextes';
 import { validateIsEmpty } from '@utils/helpers';
 import { useForm } from '@utils/hooks';
 
-import { RegistrationWizardContainerDesktop } from '../../RegistrationWizardContainer';
+import { RegistrationWizardContainerMobile } from '../../../RegistrationWizardContainer';
+import { FillProfilePanelData } from '../components/FillProfilePanelData/FillProfilePanelData';
 
-import { FillProfilePanelData } from './FillProfilePanelData/FillProfilePanelData';
-
-import styles from '../../../RegistrationPage.module.css';
+import styles from '../../../../RegistrationPage.module.css';
 
 const fillProfileDataStepValidateSchema = {
   name: (value: string) => validateIsEmpty(value),
@@ -70,16 +69,8 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
   });
 
   return (
-    <RegistrationWizardContainerDesktop
+    <RegistrationWizardContainerMobile
       activeStep={1}
-      panel={{
-        ...(focusedField && { data: <FillProfilePanelData focusedField={focusedField} /> }),
-        footer: (
-          <div role='link' tabIndex={0} aria-hidden onClick={skipStep}>
-            <IntlText path='page.registration.skipAndFillInLater' />
-          </div>
-        )
-      }}
       form={{
         title: <IntlText path='page.registration.step.fillProfileData.title' />,
         content: (
@@ -100,7 +91,12 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
                 })}
             />
             <Spacing spacing={15} />
-
+            {focusedField && focusedField === 'name' && (
+              <>
+                <FillProfilePanelData focusedField={focusedField} />
+                <Spacing spacing={15} />
+              </>
+            )}
             <Input
               disabled={changeUserLoading}
               value={values.registrationAddress}
@@ -117,7 +113,12 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
                 })}
             />
             <Spacing spacing={15} />
-
+            {focusedField && focusedField === 'registrationAddress' && (
+              <>
+                <FillProfilePanelData focusedField={focusedField} />
+                <Spacing spacing={15} />
+              </>
+            )}
             <DateInput
               locale={intl.locale}
               disabled={changeUserLoading}
@@ -134,10 +135,16 @@ export const FillProfileDataStep: React.FC<FillProfileDataStepProps> = ({
                 })}
             />
             <Spacing spacing={15} />
+
             <Button type='submit' isLoading={changeUserLoading}>
               <IntlText path='button.next' />
             </Button>
           </form>
+        ),
+        footer: (
+          <div role='link' tabIndex={0} aria-hidden onClick={skipStep}>
+            <IntlText path='page.registration.skipAndFillInLater' />
+          </div>
         )
       }}
     />

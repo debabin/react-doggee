@@ -61,11 +61,11 @@ export const RegistrationPage: React.FC = () => {
         <AddYourPetsStep
           initialData={registrationData.addPetsData}
           skipStep={skipStep}
-          nextStep={(addPetsData) => {
+          nextStep={(addPetsData: AddPetsData) => {
             setRegistrationData({ ...registrationData, addPetsData });
             setStep('checkData');
           }}
-          backStep={(addPetsData) => {
+          backStep={(addPetsData: AddPetsData) => {
             setRegistrationData({ ...registrationData, addPetsData });
             setStep('fillProfileData');
           }}

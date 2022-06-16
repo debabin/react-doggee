@@ -12,7 +12,7 @@ interface RegistrationWizardContainerProps {
     title: React.ReactNode;
     backButton?: React.ReactNode;
     content: React.ReactNode;
-    footer: React.ReactNode;
+    footer?: React.ReactNode;
   };
 }
 
@@ -40,7 +40,7 @@ export const RegistrationWizardContainer: React.FC<RegistrationWizardContainerPr
               />
             </div>
           )}
-          <Spacing spacing={40} />
+          <Spacing spacing={15} />
           <div className={styles.content_container}>
             {form.backButton && (
               <>
@@ -50,6 +50,7 @@ export const RegistrationWizardContainer: React.FC<RegistrationWizardContainerPr
             )}
             {form.content}
           </div>
+          <Spacing spacing={15} />
           <div className={styles.form_footer}>{form.footer}</div>
         </div>
       </div>

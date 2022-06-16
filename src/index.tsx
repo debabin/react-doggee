@@ -13,7 +13,7 @@ import './index.css';
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 root.render(
-  <ApiClientProvider>
+  <ApiClientProvider onFailure={(e) => console.log('fetch client error', e)}>
     <StoreProvider>
       <App />
     </StoreProvider>

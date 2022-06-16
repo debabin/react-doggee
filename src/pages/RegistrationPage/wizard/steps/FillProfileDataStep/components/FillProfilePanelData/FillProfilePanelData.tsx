@@ -10,7 +10,9 @@ interface FillProfilePanelDataProps {
 
 export const FillProfilePanelData: React.FC<FillProfilePanelDataProps> = ({ focusedField }) => (
   <div className={styles.text}>
-    {focusedField === 'name' && <IntlText path='123' />}
+    {focusedField === 'name' && (
+      <IntlText path='page.registration.step.fillProfileData.hint.name' />
+    )}
     {focusedField === 'registrationAddress' && (
       <IntlText path='page.registration.step.fillProfileData.hint.registrationAddressHint' />
     )}

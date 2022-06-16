@@ -7,7 +7,7 @@ import { requestBreeds } from '@utils/api';
 import { validateIsEmpty, validateMaxLength } from '@utils/helpers';
 import { useForm } from '@utils/hooks';
 
-import styles from '../../../../RegistrationPage.module.css';
+import styles from '../../../../../RegistrationPage.module.css';
 
 const petFormValidateSchema = {
   dogName: (value: string) => validateIsEmpty(value),
@@ -19,31 +19,32 @@ const petFormValidateSchema = {
   }
 };
 
-interface PetFormValues {
-  dogName: string;
-  dogWeight: string;
-  breed: Breed;
-  dogBirthday: Date;
-}
-
 interface PetFromProps {
   pet: Pet;
+  petErrors: {
+    [id: string]: { [K in keyof typeof petFormValidateSchema]?: ValidationReturn };
+  };
   isLoading: boolean;
   onChange: (field: keyof PetFormValues, value: PetFormValues[keyof PetFormValues]) => void;
 }
 
-export const PetForm: React.FC<PetFromProps> = ({ pet, onChange, isLoading }) => {
+export const PetForm: React.FC<PetFromProps> = ({ pet, onChange, isLoading, petErrors }) => {
   const intl = useIntl();
 
   const { data: breedsData } = useQuery('breeds', () => requestBreeds({ params: null }), {
     cacheTime: 300000
   });
 
-  const { values, errors, setFieldValue, handleSubmit, resetForm } = useForm<PetFormValues>({
-    intialValues: { ...pet, dogBirthday: new Date(pet.dogBirthday) },
-    validateSchema: petFormValidateSchema,
-    validateOnChange: true
-  });
+  const { values, errors, setFieldValue, handleSubmit, resetForm, validateForm } =
+    useForm<PetFormValues>({
+      intialValues: { ...pet, dogBirthday: new Date(pet.dogBirthday) },
+      validateSchema: petFormValidateSchema,
+      validateOnChange: true
+    });
+
+  React.useEffect(() => {
+    if (petErrors[pet.id]) validateForm();
+  }, [petErrors, pet.id, values]);
 
   React.useEffect(() => {
     resetForm({ ...pet, dogBirthday: new Date(pet.dogBirthday) });
@@ -57,7 +58,6 @@ export const PetForm: React.FC<PetFromProps> = ({ pet, onChange, isLoading }) =>
         disabled={isLoading}
         value={pet.dogName}
         label={intl.translateMessage('field.input.dogName.label')}
-        // onFocus={() => setFocuseField('')}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           const dogName = event.target.value;
           setFieldValue('dogName', dogName);
@@ -103,7 +103,6 @@ export const PetForm: React.FC<PetFromProps> = ({ pet, onChange, isLoading }) =>
         disabled={isLoading}
         value={values.dogBirthday}
         label={intl.translateMessage('field.input.dogBirthday.label')}
-        // onFocus={() => setFocuseField(null)}
         onChange={(date) => {
           setFieldValue('dogBirthday', date);
           onChange('dogBirthday', date);
@@ -120,7 +119,6 @@ export const PetForm: React.FC<PetFromProps> = ({ pet, onChange, isLoading }) =>
         availableChars={/^[0-9]+$/g}
         value={values.dogWeight}
         label={intl.translateMessage('field.input.dogWeight.label')}
-        // onFocus={() => setFocuseField('')}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           const dogWeight = event.target.value;
           setFieldValue('dogWeight', dogWeight);

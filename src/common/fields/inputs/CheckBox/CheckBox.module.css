@@ -17,8 +17,8 @@
 .custom_checkbox {
   display: inline-block;
   cursor: pointer;
-  width: 1.07rem;
-  height: 1.07rem;
+  width: 0.93rem;
+  height: 0.93rem;
   border: 0.14rem solid var(--color-accent7);
   background: transparent;
   border-radius: 0.35rem;

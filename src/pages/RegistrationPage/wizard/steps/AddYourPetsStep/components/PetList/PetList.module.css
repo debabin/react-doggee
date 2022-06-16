@@ -2,6 +2,16 @@
   display: flex;
   flex-direction: column;
   gap: 0.71rem 0;
+  padding: 2.85rem 1.42rem;
+  color: var(--color-text);
+}
+
+@media only screen and (max-width: 421px) {
+  .pets_container {
+    border: 0.07rem solid var(--color-accent7);
+    border-radius: 0.35rem;
+    padding: 1.07rem 1.42rem;
+  }
 }
 
 .title {
@@ -15,19 +25,25 @@
   background-color: var(--background-color-field-focused);
 }
 
+@media only screen and (max-width: 421px) {
+  .line {
+    background-color: var(--color-accent7);
+  }
+}
+
 .add_pet {
   font-weight: 400;
   font-size: 0.85rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
   text-align: center;
   position: relative;
   cursor: pointer;
   width: 100%;
 }
 
-.add_pet::before {
-  position: absolute;
-  left: 60;
-  content: '';
+.add_pet_icon {
   width: 1.07rem;
   height: 1rem;
   background-size: 1.07rem 1rem;

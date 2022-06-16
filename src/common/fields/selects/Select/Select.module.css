@@ -18,7 +18,7 @@
 
 .option_container {
   cursor: pointer;
-  padding: 6.35rem 1.42rem;
+  padding: 0.6rem 1.25rem;
   font-weight: 400;
   font-size: 1rem;
   border-radius: inherit;
@@ -38,7 +38,7 @@
 }
 .selected_option_container {
   cursor: pointer;
-  padding: 6.35rem 1.42rem;
+  padding: 0.6rem 1.25rem;
   font-weight: 400;
   font-size: 1rem;
   border-radius: inherit;
@@ -68,7 +68,7 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
-  max-height: 150;
+  max-height: 9.37rem;
   overflow-y: scroll;
 }
 .select_options_container::-webkit-scrollbar {

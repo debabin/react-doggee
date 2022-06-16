@@ -1,0 +1,15 @@
+.text {
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.35rem;
+  padding: 2.85rem 1.42rem;
+}
+
+@media only screen and (max-width: 421px) {
+  .text {
+    border: 0.07rem solid var(--color-accent7);
+    border-radius: 0.35rem;
+    padding: 1.07rem 1.42rem;
+  }
+}

@@ -83,5 +83,16 @@ export const useFillLoginDataStep = ({ nextStep }: UseFillLoginDataStepParams) =
     [values.password, values.passwordAgain]
   );
 
-  return { loading: registrationLoading, values, errors, setFieldValue, handleSubmit, rules };
+  return {
+    state: {
+      loading: registrationLoading,
+      values,
+      errors,
+      rules
+    },
+    functions: {
+      setFieldValue,
+      handleSubmit
+    }
+  };
 };
