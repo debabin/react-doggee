@@ -52,9 +52,9 @@ export const useForm = <Values extends Object>({
         [field]: error
       };
     });
-    console.log('errors', errors, values);
+
     setErrors(errors);
-    return isErrorExist;
+    return !isErrorExist;
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {

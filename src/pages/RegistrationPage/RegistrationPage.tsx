@@ -35,7 +35,7 @@ export const RegistrationPage: React.FC = () => {
 
   const [step, setStep] = React.useState<
     'fillLoginData' | 'fillProfileData' | 'addPetsData' | 'checkData'
-  >('fillLoginData');
+  >('fillProfileData');
 
   const skipStep = React.useCallback(() => {
     navigate(ROUTES.MAIN);
