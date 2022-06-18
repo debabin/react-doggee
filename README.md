@@ -24,5 +24,6 @@
   - **useMutation, useQuery, useQueryLazy** (src/hooks/api) - hooks для удобной работы с rest api внутри компонентов
 - **Components/UI kit**
   - **Input, Button**
+  - **Select**
   - **Calendar** - календарь реализованый с использованием js date api
 - **CSS MODULES + Adaptive** - использовались css модули + полностью сделан адаптив
